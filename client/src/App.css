@@ -38,3 +38,12 @@ a{
     transform: rotate(360deg);
   }
 }
+
+.temp {
+  padding: 5%;
+  width: 120%;
+  /* margin-top: 5px; */
+  /* margin-left: 5px; */
+  /* border-radius: 10%; */
+  background-image: linear-gradient(#ccff00,white);
+}

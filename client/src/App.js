@@ -2,7 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router';
 import LoginComponent from './components/Login/LoginComponent'
-import Testcomp from './components/Home/Testcomp';
+import SideNavbar from './components/Home/SideNavbar';
+import TransactionComponent from './components/Home/TransactionComponent';
+import HomeComponent from './components/Home/HomeComponent';
 
 function App() {
   return (
@@ -28,14 +30,20 @@ function App() {
       </Route>
 
 
-      <div className="col-3">
+      <div className="col-2">
         <Route path="/home">
-          <Testcomp></Testcomp>
+          <SideNavbar></SideNavbar>
+        </Route>
+        <Route path="/transaction">
+          <SideNavbar></SideNavbar>
         </Route>
       </div>
-      <div className="col-9">
+      <div className="col-9 custcol9">
         <Route path="/home">
-          <Testcomp></Testcomp>
+          <HomeComponent></HomeComponent>
+        </Route>
+        <Route path="/transaction">
+          <TransactionComponent></TransactionComponent>
         </Route>
       </div>
     </>
