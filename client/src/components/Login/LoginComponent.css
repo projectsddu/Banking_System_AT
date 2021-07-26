@@ -1,50 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 .login {
-    /* background-color: rgb(180, 101, 10); */
-    margin-top: 20%;
+    margin-top: 15%;
     margin-right: 20px;
     margin-left: 60px;
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-input[type="text"] {
+.login input[type="text"] {
     padding: 10px 10px 10px 10px;
     margin: 2px 2px 2px 2px;
     width: 60%;
-    border-radius: 10px;
-    border: 1px solid black;
+    border-top: 1px solid white !important;
+    border-left: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-bottom: 3px solid rgb(241, 101, 234);
+
 }
 
 
-input[type="password"] {
+.login input[type="password"] {
     padding: 10px 10px 10px 10px;
     width: 60%;
     margin: 2px 2px 2px 2px;
-    /* border-radius: 10px; */
-    border-bottom: 4px solid black;
-    
+    border-top: 1px solid white !important;
+    border-left: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-bottom: 3px solid rgb(241, 101, 234);
+
 }
-@keyframes borderanim {
-    10% {border-bottom: 1px solid black}
-    20% {border-bottom: 1px solid black}
-    30% {border-bottom: 1px solid black}
-    40% {border-bottom: 2px solid black}
-    50% {border-bottom: 2px solid black}
-    60% {border-bottom: 2px solid black}
-    70% {border-bottom: 2px solid black}
-    80% {border-bottom: 3px solid black}
-    90% {border-bottom: 3px solid black}
-    100% {border-bottom: 3px solid black}
-}
-input[type="password"]:focus
-{
+input{
     outline: none;
-    text-decoration: none;
-    animation: borderanim;
-    animation-duration: 1.2s;
-    border-bottom: 3px solid black;
+    box-shadow:none !important;
+}
+
+.login input[type="password"]:focus
+{
+    background-color: whitesmoke;
+    border-top: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-left: 1px solid white !important;
+    border-bottom: 4px solid rgb(241, 101, 234);
+}
+.login input[type="text"]:focus
+{
+    background-color: whitesmoke;
+    border-top: 1px solid white !important;
+    border-right: 1px solid white !important;
+    border-left: 1px solid white !important;
+    border-bottom: 4px solid rgb(241, 101, 234);
+}
+.login input[type="password"]::placeholder{
+    color: #969595;
+}
+
+.login input[type="text"]::placeholder{
+    color: #969595;
 }
 .forgot_link {
     text-decoration: none;
@@ -54,8 +66,7 @@ a{
     text-decoration: none;
 }
 .Login_Image{
-    /* border: 2px solid black; */
-    margin-top: 7%;
+    margin-top: 1%;
     width: 125%;
     height: 110%;
     margin-right: 20px;
@@ -64,4 +75,37 @@ a{
 .Login_text{
     width:20%;
     border-bottom: 5px solid rgb(202, 46, 250);
+}
+.loginbtn{
+    width: 60%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(202, 46, 250);
+    font-weight: bolder;
+    font-size:large;
+    border:1px solid white
+
+}
+.loginbtn:hover{
+    background-color: #aa0ce9;
+    border:1px solid white
+}
+
+.login_header {
+    padding-top: 10px;
+    padding-bottom:10px;
+    padding-left: 43%;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent; 
+    font-size: 300%;
+    background-color: #f907fc;
+    background-image: linear-gradient(15deg, #e01384 ,#d00df7);
+    border-bottom: 5px solid rgb(202, 46, 250);
+    width: 100%;
+}
+.form-label{
+    font-size: 110%;
+    
 }
