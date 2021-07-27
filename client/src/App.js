@@ -5,6 +5,7 @@ import LoginComponent from './components/Login/LoginComponent'
 import SideNavbar from './components/Home/SideNavbar';
 import TransactionComponent from './components/Home/TransactionComponent';
 import HomeComponent from './components/Home/HomeComponent';
+import CardComponent from './components/Home/CardComponent';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <div className="col-2">
         <Route path="/home">
           <SideNavbar></SideNavbar>
+          
         </Route>
         <Route path="/transaction">
           <SideNavbar></SideNavbar>
@@ -40,7 +42,7 @@ function App() {
       </div>
       <div className="col-9 custcol9">
         <Route path="/home">
-          <HomeComponent></HomeComponent>
+          <CardComponent></CardComponent>
         </Route>
         <Route path="/transaction">
           <TransactionComponent></TransactionComponent>

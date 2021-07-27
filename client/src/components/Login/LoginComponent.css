@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    font-family: 'Poppins',sans-serif;
+}
 .login {
     margin-top: 15%;
     margin-right: 20px;
-    margin-left: 60px;
+    margin-left: 100px;
     font-weight: bold;
-    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
 }
 
 .login input[type="text"] {
@@ -73,15 +76,17 @@ a{
     
 }
 .Login_text{
-    width:20%;
+    width:30%;
+    margin-left:23px;
     border-bottom: 5px solid rgb(202, 46, 250);
 }
 .loginbtn{
-    width: 60%;
+    margin-left:23px;
+    width: 100%;
     color: rgb(255, 255, 255);
     background-color: rgb(202, 46, 250);
     font-weight: bolder;
-    font-size:large;
+    font-size:larger;
     border:1px solid white
 
 }
