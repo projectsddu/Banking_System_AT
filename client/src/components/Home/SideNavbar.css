@@ -19,8 +19,17 @@
     /* padding:5%; */
 }
 .SideNav{
-    width: 120%;
+   
+    width: 19%;
+    position: fixed;
+    z-index: 1;
+  /* top: 20px; */
+    left: 0px;
+    background: #f7f7f7;
+    overflow-x: hidden;
+    padding: 8px 0;
     justify-content: center;
+    /* padding-bottom: auto; */
 }
 .nav-link{
     color:rgba(255, 100, 100, 0.295);

@@ -114,7 +114,7 @@ function SideNavbar() {
 
     }, [])
     return (
-        <div class="SideNav sidenav_head flex-column flex-shrink-0 p-3 bg-light" >
+        <div class="SideNav sidenav_head flex-column flex-shrink-0 p-3 " >
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <img className="Headlogo" src={BANK_LOGO} />
                 <span class="fs-3">Bankers</span>
@@ -138,6 +138,7 @@ function SideNavbar() {
                                         <div className="col-9  ">{e["text"]}</div>
                                     </div>
                                 </button>
+                                
                                 <div class="collapse show" id={e["id"]}>
                                     {e["is_drop"] ?
                                         <ul class=" btn-toggle-nav  list-unstyled   ">

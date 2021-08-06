@@ -3,7 +3,7 @@ import './CardComponent.css'
 
 function CardComponent() {
     return (
-        <div class="card col-3 mt-3 illustration flex-fill">
+        <div class="gen_card col-3 mt-3 illustration flex-fill">
             <div class="card-body p-0 d-flex flex-fill">
                 <div class="row g-0 w-100">
                     <div class="">

@@ -47,3 +47,6 @@ a{
   /* border-radius: 10%; */
   background-image: linear-gradient(#ccff00,white);
 }
+.row{
+  margin-left:2px
+}

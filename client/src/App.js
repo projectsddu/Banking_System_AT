@@ -6,6 +6,7 @@ import SideNavbar from './components/Home/SideNavbar';
 import TransactionComponent from './components/Home/TransactionComponent';
 import HomeComponent from './components/Home/HomeComponent';
 import CardComponent from './components/Home/CardComponent';
+import RightComponent from './components/Home/RightComponent';
 
 function App() {
   return (
@@ -39,13 +40,20 @@ function App() {
         <Route path="/transaction">
           <SideNavbar></SideNavbar>
         </Route>
+        <Route path="/ecard">
+          <SideNavbar></SideNavbar>
+        </Route>
       </div>
       <div className="col-9 custcol9">
+        
         <Route path="/home">
-          <CardComponent></CardComponent>
+        <RightComponent component_name="home"></RightComponent>
         </Route>
         <Route path="/transaction">
-          <TransactionComponent></TransactionComponent>
+          <RightComponent component_name="transaction"></RightComponent>
+        </Route>
+        <Route path="/ecard">
+          <RightComponent component_name="ecards"></RightComponent>
         </Route>
       </div>
     </>
