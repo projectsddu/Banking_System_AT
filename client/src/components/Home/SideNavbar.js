@@ -115,14 +115,15 @@ function SideNavbar() {
     }, [])
     return (
         <div class="SideNav sidenav_head flex-column flex-shrink-0 p-3 " >
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <img className="Headlogo" src={BANK_LOGO} />
-                <span class="fs-3">Bankers</span>
+            <div className="radius-1">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <img className="Headlogo" src={BANK_LOGO} />
+                    <span class="fs-3 heading_sidenav">Bankers</span>
 
-            </a>
-
+                </a>
+            </div>
             <hr className="custHR" />
-            <ul class="nav nav-pills flex-column mb-auto">
+            <ul class="nav nav-pills nav-pills-design flex-column mb-auto">
                 {loading ? <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div> : navlist.map((e) => {
@@ -138,24 +139,24 @@ function SideNavbar() {
                                         <div className="col-9  ">{e["text"]}</div>
                                     </div>
                                 </button>
-                                
-                                <div class="collapse show" id={e["id"]}>
-                                    {e["is_drop"] ?
-                                        <ul class=" btn-toggle-nav  list-unstyled   ">
-                                            {e["dropdown_menu"].map((e1) => {
-                                                return (
-                                                    <>
-
-                                                        <li className="dropListShow col-8" ><a className={"droplink "} href="#" >{e1["text"]}</a></li>
-
-                                                    </>
-                                                )
-                                            })}
-
-
-                                        </ul> : <></>}
-                                </div>
                             </li>
+                            <div class="collapse show" id={e["id"]}>
+                                {e["is_drop"] ?
+                                    <ul class=" btn-toggle-nav  list-unstyled   ">
+                                        {e["dropdown_menu"].map((e1) => {
+                                            return (
+                                                <>
+
+                                                    <li className="dropListShow col-8" ><a className={"droplink "} href="#" >{e1["text"]}</a></li>
+
+                                                </>
+                                            )
+                                        })}
+
+
+                                    </ul> : <></>}
+                            </div>
+
 
                         </> :
 

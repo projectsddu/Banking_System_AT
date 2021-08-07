@@ -1,9 +1,22 @@
 .navbar{
-    background-color: #f2f2f2;
+    background-color: #e4e4e4;
     color:rgb(253, 10, 144);
-    height:70%;
-    width:108%;
+    height:100%;
+    width:112%;
     /* position: fixed; */
     margin-bottom:5px;
-    margin-left:-9px
+    margin-left:-35px;
+    padding:1%;
+}
+@media only screen and (max-width: 1300px){
+    .navbar{
+    background-color: #e4e4e4;
+    color:rgb(253, 10, 144);
+    height:100%;
+    width:112.6%;
+    /* position: fixed; */
+    margin-bottom:5px;
+    margin-left:-42px;
+    padding:1%;
+}
 }

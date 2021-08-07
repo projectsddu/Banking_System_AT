@@ -2,12 +2,15 @@
 *{
     font-family: 'Poppins',sans-serif;
 }
-.purple{
-    background-color: #f125e04f;
+.purple:hover{
+    /* background-color: #f125e0; */
+    background-color: blueviolet;
 }
-.blue
+.blue:hover
 {
-    background-color: rgba(12, 214, 250, 0.282);
+    background-color: blueviolet;
+
+    /* background-color: rgba(12, 214, 250, 0.884); */
 }
 .nav-item
 {
@@ -25,22 +28,26 @@
     z-index: 1;
   /* top: 20px; */
     left: 0px;
-    background: #f7f7f7;
+    /* background: #f7f7f7; */
+    background-color: #2687f7;
+/* background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%); */
     overflow-x: hidden;
     padding: 8px 0;
+    border-radius: 20px;
     justify-content: center;
+    color:white
     /* padding-bottom: auto; */
 }
 .nav-link{
-    color:rgba(255, 100, 100, 0.295);
+    color:rgb(255, 100, 100);
     text-decoration: none;
 }
 .purpleText
 {
-    color: rgb(174, 0, 255);
+    color: rgb(255, 255, 255);
 }
 .blueText{
-    color:rgb(22, 61, 255);
+    color:rgb(255, 255, 255);
 }
 /* .dropbtns{
     margin-left: 0%;
@@ -59,7 +66,7 @@
 
 
 .droplink{
-    color:black
+    color:rgb(255, 255, 255)
 }
 .droplink:hover{
     color:red;
@@ -71,6 +78,7 @@
     width: 100%;
     padding: 3%;
     border-radius: 2px;
+    color:white
     /* margin-left: 20%; */
     /* margin-bottom: ; */
 }
@@ -91,5 +99,12 @@
     padding-right: 10%;
 }
 .custHR{
-    border:1px solid black
+    border:1px solid rgb(255, 250, 250)
 }
+.heading_sidenav{
+    color:white 
+}
+/* .nav-pills-design{
+    background-color: rgba(245, 245, 245, 0.363);
+    margin: 10px;
+} */
