@@ -29,13 +29,13 @@
   /* top: 20px; */
     left: 0px;
     /* background: #f7f7f7; */
-    background-color: #2687f7;
+    background-color: #d4e0ee;
 /* background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%); */
     overflow-x: hidden;
     padding: 8px 0;
     border-radius: 20px;
     justify-content: center;
-    color:white
+    color:rgb(47, 93, 218)
     /* padding-bottom: auto; */
 }
 .nav-link{
@@ -44,10 +44,10 @@
 }
 .purpleText
 {
-    color: rgb(255, 255, 255);
+    color: rgb(26, 44, 150);
 }
 .blueText{
-    color:rgb(255, 255, 255);
+    color:rgb(57, 48, 139);
 }
 /* .dropbtns{
     margin-left: 0%;
