@@ -12,6 +12,10 @@ const User = mongoose.Schema({
         type: String,
         required: true
     },
+    pinNo: {
+        type: Number,
+        required: true
+    },
     address: {
         type: String,
         required: true
