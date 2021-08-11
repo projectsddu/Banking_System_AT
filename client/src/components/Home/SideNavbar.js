@@ -140,7 +140,7 @@ function SideNavbar() {
                                     </div>
                                 </button>
                             </li>
-                            <div class="collapse show" id={e["id"]}>
+                            {/* <div class="collapse show" id={e["id"]}>
                                 {e["is_drop"] ?
                                     <ul class=" btn-toggle-nav  list-unstyled   ">
                                         {e["dropdown_menu"].map((e1) => {
@@ -155,7 +155,7 @@ function SideNavbar() {
 
 
                                     </ul> : <></>}
-                            </div>
+                            </div> */}
 
 
                         </> :

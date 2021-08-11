@@ -7,6 +7,7 @@ import TransactionComponent from './components/Home/TransactionComponent';
 import HomeComponent from './components/Home/HomeComponent';
 import CardComponent from './components/Home/CardComponent';
 import RightComponent from './components/Home/RightComponent';
+import TempSideNavbar from './components/Home/TempSideNavbar';
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
 
       <div className="col-2">
         <Route path="/home">
-          <SideNavbar></SideNavbar>
+          {/* <SideNavbar></SideNavbar> */}
+          <TempSideNavbar></TempSideNavbar>
           
         </Route>
         <Route path="/transaction">
