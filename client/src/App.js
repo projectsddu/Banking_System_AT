@@ -37,19 +37,19 @@ function App() {
         <Route path="/home">
           {/* <SideNavbar></SideNavbar> */}
           <TempSideNavbar></TempSideNavbar>
-          
+
         </Route>
         <Route path="/transaction">
-          <SideNavbar></SideNavbar>
+          <TempSideNavbar></TempSideNavbar>
         </Route>
         <Route path="/ecard">
-          <SideNavbar></SideNavbar>
+          <TempSideNavbar></TempSideNavbar>
         </Route>
       </div>
       <div className="col-9 custcol9">
-        
+
         <Route path="/home">
-        <RightComponent component_name="home"></RightComponent>
+          <RightComponent component_name="home"></RightComponent>
         </Route>
         <Route path="/transaction">
           <RightComponent component_name="transaction"></RightComponent>
