@@ -11,7 +11,7 @@ router.post("/cards/getUserDebitCards", async (req, res) => {
         // const user_id = await User.findOne({ _id: req.body["user_id"] })
         // const user_ac = await Account.find({accountAttached:})
         // const cards = await DebitCard({ accountAttached.accountOwner: user_id })
-
+        
     }
     catch (e) {
         console.log(e.toString())

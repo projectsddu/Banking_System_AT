@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const jwt = require("jsonwebtoken")
 const User = mongoose.Schema({
     firstName: {
         type: String,
@@ -43,8 +44,37 @@ const User = mongoose.Schema({
     nodeName: {
         type: String,
         required: true
-    }
+    },
+    loginTokens: [
+        {
+            token: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 
 })
+User.methods.generateAuthToken = async function()
+{
+    try{
+        const userToken = jwt.sign({_id:this._id},"SECRETKEY")
+        this.loginTokens = this.loginTokens.concat({token:userToken})
+        let is_saved = this.save()
+        if(is_saved)
+        {
+            console.log("Login Token saved successfully");
+            return userToken
+        }
+        else
+        {
+            console.log("Error saving token");
+        }
+    }
+    catch(e)
+    {
+        console.log(e.toString())
+    }
+}
 const UserModel = mongoose.model("USER", User)
 module.exports = UserModel
