@@ -1,0 +1,40 @@
+.generic_chart{
+    border: 1px solid rgb(0, 255, 213);
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    /* margin: 3%; */
+    margin: 20px;
+    width: 55%;
+    padding: 2%;
+    background-color: rgb(41, 38, 39);
+}
+.chart-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(41, 38, 39);
+    margin-top: 10px;
+    width: 105%;
+    border-radius: 5px;
+}
+.left-chart{
+    color:rgb(248, 211, 141);
+    padding: 2%;
+    border:2px solid rgb(62, 20, 216);
+    width: 105%;
+    margin: 20px;
+    border-radius: 5px;
+}
+.left-chart p{
+    color: white;
+}
+.left-chart ul{
+    color:bisque;
+    font-size: 20px;
+    /* marker: ;s */
+}
+.main-chart-wrapper{
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+}

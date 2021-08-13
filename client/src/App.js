@@ -9,6 +9,7 @@ import CardComponent from './components/Home/CardComponent';
 import RightComponent from './components/Home/RightComponent';
 import TempSideNavbar from './components/Home/TempSideNavbar';
 
+
 function App() {
   return (
     <>
@@ -42,6 +43,10 @@ function App() {
         <Route path="/transaction">
           <TempSideNavbar></TempSideNavbar>
         </Route>
+        <Route path="/balance">
+          {/* <SideNavbar></SideNavbar> */}
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
         <Route path="/ecard">
           <TempSideNavbar></TempSideNavbar>
         </Route>
@@ -53,6 +58,9 @@ function App() {
         </Route>
         <Route path="/transaction">
           <RightComponent component_name="transaction"></RightComponent>
+        </Route>
+        <Route path="/balance">
+          <RightComponent component_name="balance"></RightComponent>
         </Route>
         <Route path="/ecard">
           <RightComponent component_name="ecards"></RightComponent>

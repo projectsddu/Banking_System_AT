@@ -123,7 +123,7 @@ function TempSideNavbar() {
   }, []);
   const styles = {
     "accordian": {
-      "background-color": "black",
+      "background-color": "#212121",
       "color": "#d7d9db",
       "border": "1px solid black",
       "padding": "",
