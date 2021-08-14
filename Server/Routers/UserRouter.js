@@ -3,6 +3,7 @@ const router = express.Router()
 const verifyDetails = require("../Middlewares/VerifyDetails")
 const authenticate = require("../Middlewares/Authenticate")
 const User = require("../Collections/UserModel")
+const test = require("../Middlewares/Test")
 
 router.post("/user/add_user", verifyDetails, async (req, res) => {
     console.log(req.create_user)
@@ -60,7 +61,13 @@ router.post("/user/login_user", async (req, res) => {
 
 })
 
-router.post("/user/testing", authenticate, async (req, res) => {
+router.post("/user/testing", [authenticate], async (req, res) => {
+    if (req.is_authenticated) {
+        console.log("Authenticated!")
+    }
+    else {
+        console.log("Not authenticated")
+    }
     return res.send("Jenil")
 })
 

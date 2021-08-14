@@ -13,8 +13,7 @@ const authenticate = async function (req, res, next) {
         }
         else {
             req.is_authenticated = true;
-            // console.log(user.firstName)
-            // return res.send("User found")
+            req.current_user = user;
         }
         next()
 

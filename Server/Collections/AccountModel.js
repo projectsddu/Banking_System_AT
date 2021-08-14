@@ -7,7 +7,8 @@ const Account = mongoose.Schema({
     },
 
     accountType: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'AccountTypeModel',
         required: true
     },
 
