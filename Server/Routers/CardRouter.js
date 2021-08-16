@@ -23,14 +23,13 @@ router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
                     const creditCard = await CreditCard.findOne({
                         accountAttached: e._id
                     })
-                    console.log(e)
                     return creditCard
                 })
             ).then((e) => {
                 if (e[0] == null) {
                     return {}
                 }
-                return e
+                return e[0]
             })
             return res.json({ "data": resp, "Success:": true })
 

@@ -18,9 +18,9 @@ router.post("/user/add_user", verifyDetails, async (req, res) => {
 })
 router.post("/user/login_user", async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username, pinNo } = req.body;
         console.log(req.body)
-        if (!username || !password) {
+        if (!username || !pinNo) {
             return res.json({ "Error": "Fields cannot be empty!" })
         }
         else {
@@ -29,7 +29,8 @@ router.post("/user/login_user", async (req, res) => {
             const user = await User.findOne({
                 firstName: user_names[0],
                 middleName: user_names[1],
-                lastName: user_names[2]
+                lastName: user_names[2],
+                pinNo: req.body.pinNo
             })
             // console.log("Name:"+user_names[0] + user_names[1] + user_names[2]);
             if (!user) {
