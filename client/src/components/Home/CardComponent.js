@@ -12,7 +12,7 @@ function CardComponent(props) {
                         <div class="illustration-text p-3 m-1">
                             <p>{props.myjsx}</p>
                             {props.isGraph ? props.topJSX
-                                : <h2 class="illustration-text display-6"><b> {props.username}</b></h2>}
+                                : <h1 class="illustration-text "><b> {props.username}</b></h1>}
                             <div className={props.isGraph ? "graph" : ""}>
                                 {props.lowerjsx}
                             </div>

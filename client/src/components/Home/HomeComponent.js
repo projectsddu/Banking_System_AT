@@ -7,6 +7,7 @@ import LineChart from './Chart_test_comp'
 import { useState, useEffect } from 'react'
 import CarouselComponent from './CarouselComponent'
 import HeadLineChartComponent from './HeadLineChartComponent'
+import TestComponent from './TempComponent'
 const axios = require("axios")
 
 
@@ -61,13 +62,13 @@ export default function HomeComponent() {
 
     // Data for card 1
     const header1 = <>
-        <p className="display-6">Welcome back,</p>
+        <p className="display-6"><b>Welcome back,</b></p>
     </>
 
     // Data for card 2
     const lowerjsx1 = <><br /><br />
         <HeadLineChartComponent
-            width={365}
+            width={355}
             height={110}
             datakey={"income"}
             data={[{ name: 'Jan', income: 400, expense: 600 },
@@ -87,7 +88,7 @@ export default function HomeComponent() {
     // Data for Card 3
     const lowerjsx2 = <><br /><br />
         <HeadLineChartComponent
-            width={365}
+            width={355}
             height={110}
             datakey={"expense"}
             data={[{ name: 'Jan', income: 400, expense: 600 },
@@ -130,7 +131,7 @@ export default function HomeComponent() {
             { name: 'Jun', income: 500, expense: 700 }]} prop={left_data}
             />
         </div>
-
+        <TestComponent></TestComponent>
         {/* <CarouselComponent></CarouselComponent> */}
     </>
     )

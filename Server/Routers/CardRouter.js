@@ -20,18 +20,40 @@ router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
             })
             var resp = await Promise.all(
                 allAc.map(async (e) => {
+                    // console.log(e)
                     const creditCard = await CreditCard.findOne({
                         accountAttached: e._id
                     })
+                    // creditCard["username"] = req.current_user.firstName + " " + req.current_user.lastName
+                    // console.log(creditCard)
+                    // console.log(req.current_user.firstName + " " + req.current_user.lastName)
                     return creditCard
                 })
             ).then((e) => {
-                if (e[0] == null) {
-                    return {}
-                }
-                return e[0]
+                // console.log(e[1])
+                const dat = e.filter((ev) => {
+                    // ev["username"] = req.current_user.firstName
+                    if (ev == null) {
+                        return false
+                    }
+                    else {
+                        return true
+                    }
+                })
+                return dat
             })
-            return res.json({ "data": resp, "Success:": true })
+            const userlist = []
+            const dat1 = resp.map((e) => {
+                // console.log(e)
+                Object.defineProperty(e, "username", {
+                    value: req.current_user
+                })
+                userlist.push(req.current_user.firstName + " " + req.current_user.lastName)
+                console.log(e)
+                return e
+            })
+
+            return res.json({ "data": dat1, "ulist": userlist, "Success:": true })
 
         }
         else {
@@ -39,7 +61,7 @@ router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
         }
     }
     catch (e) {
-        return res.json({ "Error": "Sorry we are unable to process your request please try again later!" })
+        return res.json({ "Error": "Sorry we are unable to process your request please try again later!" + e.toString() })
     }
 })
 
@@ -56,6 +78,7 @@ router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
                     const debitCard = await DebitCard.findOne({
                         accountAttached: e._id
                     })
+                    // debitCard["username"] = req.current_user.username
                     return debitCard
                 })
             ).then((e) => {

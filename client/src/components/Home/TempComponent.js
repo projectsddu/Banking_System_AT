@@ -36,10 +36,6 @@ export default function TempComponent() {
             // "border": "1px solid blue"
         }
     }
-    // Fetch data 
-
-
-
     return (
         <div id="demo" style={styles["outerwrapper"]} className="carousel slide" data-ride="carousel">
 
