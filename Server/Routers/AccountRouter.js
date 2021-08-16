@@ -70,7 +70,7 @@ router.post("/account/createTestAccount", [authenticate, createACMiddleware], as
                     accountOwner: req.current_user,
                     accountType: req.acType,
                     accountBalance: req.body.acInitBal,
-                    isEcardissued: req.body.isEcard
+                    isEcardIssued: req.body.isEcard
                 }).save()
                 if (!ac) {
                     return res.json({ "Error:": "Failed saving your account to DB" })

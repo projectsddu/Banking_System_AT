@@ -2,27 +2,37 @@ const express = require("express")
 const router = express.Router()
 const User = require("../Collections/UserModel")
 const CreditCard = require("../Collections/CreditCardModel")
-const DeditCard = require("../Collections/DebitCardModel")
+const DebitCard = require("../Collections/DebitCardModel")
 const Account = require("../Collections/AccountModel")
 const authenticate = require("../Middlewares/Authenticate")
-// const DebitCardModel = require("../Collections/DebitCardModel")
+const debitCardAuthenticate = require("../Middlewares/Account/CreateDebitCard")
+const creditCardAuthenticate = require("../Middlewares/Account/CreateDebitCard")
+const generateDebitCardDetails = require("../Utilies/Account/DebitCardGenerator")
+const generateCreditCardDetails = require("../Utilies/Account/CreditCardGenerator")
+const DebitCardModel = require("../Collections/DebitCardModel")
 
-router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
+
+router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
     try {
         if (req.is_authenticated) {
             const allAc = await Account.find({
                 accountOwner: req.current_user
             })
-            const allDebitCard = []
-            allAc.map((e) => {
-                const acId = e._id
-                const debitcard = DebitCard.findOne({
-                    accountAttached: e
+            var resp = await Promise.all(
+                allAc.map(async (e) => {
+                    const creditCard = await CreditCard.findOne({
+                        accountAttached: e._id
+                    })
+                    console.log(e)
+                    return creditCard
                 })
-                allDebitCard.push(debitcard)
+            ).then((e) => {
+                if (e[0] == null) {
+                    return {}
+                }
+                return e
             })
-
-            return res.json({ "data": debitcard, "Success:": true })
+            return res.json({ "data": resp, "Success:": true })
 
         }
         else {
@@ -30,21 +40,174 @@ router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
         }
     }
     catch (e) {
-        console.log(e.toString())
-        return res.JSON({ "Error": "Sorry we are unable to process your request please try again later!" })
+        return res.json({ "Error": "Sorry we are unable to process your request please try again later!" })
     }
 })
 
-router.post("/cards/getUserCreditCards", async (req, res) => {
-    try {
-        // const user_id = await User.findOne({ _id: req.body["user_id"] })
-        // const user_ac = await Account.find({accountAttached:})
-        // const cards = await DebitCard({ accountAttached.accountOwner: user_id })
 
+router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
+    try {
+        if (req.is_authenticated) {
+            const allAc = await Account.find({
+                accountOwner: req.current_user
+            })
+            var alldebs = []
+            var resp = await Promise.all(
+                allAc.map(async (e) => {
+                    const debitCard = await DebitCard.findOne({
+                        accountAttached: e._id
+                    })
+                    return debitCard
+                })
+            ).then((e) => {
+                return e
+            })
+            return res.json({ "data": resp, "Success:": true })
+
+        }
+        else {
+            return res.json({ "Error": "Hey you are not authenticated", "redirect": "true" })
+        }
+    }
+    catch (e) {
+        return res.json({ "Error": "Sorry we are unable to process your request please try again later!" })
+    }
+})
+
+// The req object requires a pin number to be passed.
+router.post("/cards/makeDebitCards/:acNum", [authenticate, debitCardAuthenticate], async (req, res) => {
+    try {
+
+
+        if (req.is_authenticated && req.makeDebitStatus) {
+
+            const ac = req.ac
+
+            if (ac && req.body.hasOwnProperty("pinNo")) {
+                ac.isEcardissued = true
+                // Genereate code and create debitcard object.
+                const cardDetails = await generateDebitCardDetails()
+                const curDate = new Date()
+                const expiryDate = new Date(
+                    curDate.getFullYear() + 5,
+                    curDate.getMonth(),
+                    curDate.getDate(),
+                    curDate.getHours(),
+                    curDate.getMinutes(),
+                    curDate.getSeconds()
+                );
+
+                const pinNumber = req.body.pinNo
+                if (pinNumber.toString().length == 4) {
+
+
+                    const debitCard = await DeditCard({
+                        accountAttached: ac,
+                        cardNumber: cardDetails.cardNum,
+                        cvvNumber: cardDetails.cvv,
+                        pinNumber: pinNumber,
+                        serviceProvider: "American Express",
+                        expiryDate: expiryDate
+
+                    })
+                    const status = debitCard.save()
+                    const acStatus = ac.save()
+                    if (status && acStatus) {
+                        return res.json({ "Success:": "Saved your card successfully" })
+                    }
+                    else {
+                        return res.json({ "Error:": "Failed saving debit card" })
+                    }
+                }
+                else {
+                    throw "Pin Number must be of 4 digit Long"
+                }
+
+            }
+            else {
+                return res.json({ "Error:": "No accounts found" })
+            }
+
+
+        }
+        else {
+            if (!req.makeDebitStatus) {
+                throw "Debit card already exists!"
+            }
+            return res.json({ "Error:": "Sorry you must be authenticated!", "redirect": true })
+        }
+    }
+    catch (e) {
+        return res.json({ "Error:": e.toString() })
+    }
+})
+
+router.post("/cards/makeCreditCards/:acNum", [authenticate, creditCardAuthenticate], async (req, res) => {
+    try {
+        if (req.is_authenticated) {
+            const ac = req.ac;
+            console.log(ac ? "true" : false)
+            console.log(req.body.hasOwnProperty("pinNo") ? "true" : false)
+
+            if (ac && req.body.hasOwnProperty("pinNo")) {
+                ac.isEcardIssued = true
+
+                // code genartion and creation of credit card object
+                const cardDetails = await generateCreditCardDetails()
+                const curDate = new Date()
+                const expiryDate = new Date(
+                    curDate.getFullYear() + 5,
+                    curDate.getMonth(),
+                    curDate.getDate(),
+                    curDate.getHours(),
+                    curDate.getMinutes(),
+                    curDate.getSeconds()
+                )
+                const pinNumber = req.body.pinNo
+                if (pinNumber.toString().length == 4) {
+                    const creditCard = await CreditCard({
+                        accountAttached: ac,
+                        cardNumber: cardDetails.cardNum,
+                        expiryDate: expiryDate,
+                        cvvNumber: cardDetails.cvv,
+                        pinNumber: req.body.pinNo,
+                        creditScore: 333,
+                        serviceProvider: "Rupay",
+                        creditLimit: 150000
+                    })
+                    const status = creditCard.save()
+                    const acStatus = ac.save()
+                    if (status && acStatus) {
+                        return res.json({ "Success:": "Saved your card successfully" })
+                    }
+                    else {
+                        return res.json({ "Error:": "Failed saving credit card" })
+                    }
+                }
+                else {
+                    throw "Pin Number must be 4 digit Long"
+                }
+
+            }
+            else {
+                if (req.body.hasOwnProperty("pinNo")) {
+                    return res.json({ "Error": "Pin no is not set" })
+                }
+                return res.json({ "Error:": "No account found" })
+            }
+
+        }
+        else {
+            if (!req.makeCreditStatus) {
+                return res.json({ "Error:": "CST false" })
+            }
+            return res.json({ "Error:": "Sorry you must be authenticated!", "redirect": true })
+        }
     }
     catch (e) {
         console.log(e.toString())
-        return res.JSON({ "Error": "Sorry we are unable to process your request please try again later!" })
+        return res.json({ "Error:": e.toString() })
+
     }
 })
 module.exports = router;

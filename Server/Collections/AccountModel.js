@@ -17,7 +17,7 @@ const Account = mongoose.Schema({
         required: true
     },
 
-    isEcardissued: {
+    isEcardIssued: {
         type: Boolean,
         required: true
     }
