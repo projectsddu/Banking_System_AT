@@ -3,19 +3,14 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
-/* 
-body {
-    background-color: #777;
-    font-family: 'Poppins', sans-serif
-} */
-
 .trx-wrapper {
     background-color: #222;
     min-height: 100px;
     margin: 10px auto;
-    width: 100%;
+    width: 90%;
+    padding: 6%;
 }
 
 .dark,
@@ -24,7 +19,8 @@ body {
 }
 
 .navbar {
-    padding: 0.5rem 0rem
+    padding: 1%;
+    width:110%;
 }
 
 .navbar .navbar-brand {

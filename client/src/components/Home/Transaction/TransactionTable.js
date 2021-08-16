@@ -13,6 +13,7 @@ function TransactionTable() {
                         </ul>
                     </div>
                 </nav>
+                <br />
                 <div class="row mt-2 pt-2">
                     <div class="col-md-6" id="income">
                         <div class="d-flex justify-content-start align-items-center">

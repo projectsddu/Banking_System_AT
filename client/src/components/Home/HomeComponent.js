@@ -1,10 +1,52 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import CardComponent from './CardComponent'
 // import Line from './Chart_test_comp'
 // import ChartContainer from './Chart_test_comp'
 import LineChart from './Chart_test_comp'
+import { useState, useEffect } from 'react'
+import CarouselComponent from './CarouselComponent'
+import HeadLineChartComponent from './HeadLineChartComponent'
+const axios = require("axios")
+
 
 export default function HomeComponent() {
+
+    const history = useHistory()
+
+    const useFetch = url => {
+        const [data, setData] = useState(null);
+        const [loading, setLoading] = useState(true);
+
+        // Similar to componentDidMount and componentDidUpdate:
+        useEffect(async () => {
+            const response = await fetch(url, { method: "POST" });
+            // console.log("her")
+            const data = await response.json();
+            setData(data);
+            // console.log(data)
+            setLoading(false);
+        }, []);
+
+        return { data, loading };
+    };
+
+    const { data, loading } = useFetch("/home/index");
+    // console.log(loading ? "jenil" : data["data"])
+    if (!loading) {
+
+        if (data["data"].hasOwnProperty("Error:")) {
+            history.push("/login")
+        }
+    }
+
+    const capitalize = function (str) {
+        var str1 = str[0].toUpperCase()
+        str1 += str.slice(1, str.length);
+        return str1
+    }
+    //set user data
+
     const left_data = {
         "header": "Income Expense Chart",
         "quote": "Spend as much as you have!",
@@ -16,12 +58,67 @@ export default function HomeComponent() {
             "Overall Profile Rating (OPR):Poor"
         ]
     }
+
+    // Data for card 1
+    const header1 = <>
+        <p className="display-6">Welcome back,</p>
+    </>
+
+    // Data for card 2
+    const lowerjsx1 = <><br /><br />
+        <HeadLineChartComponent
+            width={365}
+            height={110}
+            datakey={"income"}
+            data={[{ name: 'Jan', income: 400, expense: 600 },
+            { name: 'Feb', income: 400, expense: 200 },
+            { name: 'Mar', income: 600, expense: 700 },
+            { name: 'Apr', income: 900, expense: 400 },
+            { name: 'May', income: 1200, expense: 900 },
+            { name: 'Jun', income: 500, expense: 700 }]}
+        ></HeadLineChartComponent>
+
+    </>
+    const topJSX1 = <>
+        <h1><b>Income</b></h1>
+        <h3><b>$13500</b></h3>
+    </>
+
+    // Data for Card 3
+    const lowerjsx2 = <><br /><br />
+        <HeadLineChartComponent
+            width={365}
+            height={110}
+            datakey={"expense"}
+            data={[{ name: 'Jan', income: 400, expense: 600 },
+            { name: 'Feb', income: 400, expense: 200 },
+            { name: 'Mar', income: 600, expense: 700 },
+            { name: 'Apr', income: 900, expense: 400 },
+            { name: 'May', income: 1200, expense: 900 },
+            { name: 'Jun', income: 500, expense: 700 }]}
+        ></HeadLineChartComponent>
+
+    </>
+    const topJSX2 = <>
+        <h1><b>Expense</b></h1>
+        <h3><b>$26000</b></h3>
+    </>
     return (<>
         <div className="row mt-3">
 
-            <CardComponent className="col-4" username="Jenil Gandhi"></CardComponent>
-            <CardComponent className="col-4" username="Jenil Gandhi"></CardComponent>
-            <CardComponent className="col-4" username="Jenil Gandhi"></CardComponent>
+            <CardComponent
+                className="col-4"
+                username={loading ? "" :
+                    capitalize(data["data"]["firstName"])
+                    + " " +
+                    capitalize(data["data"]["lastName"])}
+                myjsx={header1}
+            >
+
+            </CardComponent>
+            <CardComponent className="col-4" strokecolor={"rgba(204, 255, 0,0.5)"} fillcolor={"rgba(204, 255, 0,0.5)"} topJSX={topJSX1} isGraph={true} lowerjsx={lowerjsx1} info="Income"></CardComponent>
+            <CardComponent className="col-4" topJSX={topJSX2} isGraph={true} lowerjsx={lowerjsx2} info="Expense"></CardComponent>
+
 
         </div>
         <div className="row">
@@ -33,6 +130,8 @@ export default function HomeComponent() {
             { name: 'Jun', income: 500, expense: 700 }]} prop={left_data}
             />
         </div>
+
+        {/* <CarouselComponent></CarouselComponent> */}
     </>
     )
 }

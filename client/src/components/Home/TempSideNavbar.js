@@ -125,26 +125,27 @@ function TempSideNavbar() {
     "accordian": {
       "background-color": "#212121",
       "color": "#d7d9db",
-      "border": "1px solid black",
+      "border": "0px solid black",
       "padding": "",
       "text-decoration": "none",
-      "font-size": "20px",
       "display": "block",
-      // "border": "5px solid red",
-      "outline": "1px solid #111",
+      "outline": "0px solid #111",
       "border-radius": "0px",
       "width": "100%",
       "text-align": "left",
       "cursor": "pointer",
-      // "outline": "none"
+      "font-size": "16px",
+      "font-weight": "lighter"      // "outline": "none"
     },
     "acc-border": {
-      "border": "1px solid black"
+      "border": "0px solid black"
     }, "dropbtn": {
       "float": "right"
     },
     "accordian-item": {
-      "border": "0px"
+      "border": "0px",
+      "font-size": "14px",
+      "font-weight": "lighter"
     }
   }
 

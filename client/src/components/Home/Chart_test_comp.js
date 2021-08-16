@@ -30,8 +30,8 @@ export default function LinChart(props) {
                 </div>
                 <div className="generic_chart">
                     <AreaChart
-                        width={500}
-                        height={400}
+                        width={400}
+                        height={300}
                         data={data}
                         margin={{
                             top: 10,
