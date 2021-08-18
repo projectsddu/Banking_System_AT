@@ -123,7 +123,7 @@ router.post("/cards/makeDebitCards/:acNum", [authenticate, debitCardAuthenticate
                 if (pinNumber.toString().length == 4) {
 
 
-                    const debitCard = await DeditCard({
+                    const debitCard = await DebitCard({
                         accountAttached: ac,
                         cardNumber: cardDetails.cardNum,
                         cvvNumber: cardDetails.cvv,

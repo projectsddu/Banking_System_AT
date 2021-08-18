@@ -41,7 +41,7 @@ export default function TempComponent() {
 
 
     return (
-        <div id="demo" style={styles["outerwrapper"]} className="carousel slide" data-ride="carousel">
+        <div id="demo" style={styles["outerwrapper"]} className="carousel slide" data-ride="carousel" data-interval="false">
 
             {/* <!-- Indicators --> */}
             <ul class="carousel-indicators">
@@ -58,7 +58,7 @@ export default function TempComponent() {
                         <EcardComponent cvv="588" className="col-6" type_card="credit" valid_thru="06/21" name="Jenil J Gandhi" cardnumber="1234-3456-2234-9900"></EcardComponent>
                         <div className="col-4" style={styles["sideComp"]}>
                             <h3>A/C No. : 98987452666649</h3>
-                            <h3>Balance : $98987452666649</h3>
+                            <h3>Balance : $989</h3>
                             <h3>make transaction</h3>
                         </div>
                     </div>

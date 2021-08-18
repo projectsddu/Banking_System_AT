@@ -44,7 +44,7 @@ function TempSideNavbar() {
       },
       {
         "id": "ACDetails",
-        "text": "Account Details",
+        "text": "Your Accounts",
         "vector-asset": ACD_SVG,
         "vector-asset-color": "#ccff00",
         "background-color": "blue",
@@ -53,14 +53,14 @@ function TempSideNavbar() {
         "is_drop": true,
         "dropdown_menu": [
           {
-            "text": "Balance",
+            "text": "Jenil Jignesh (XX234)",
             "vector-asset": "link",
             "text-color": "green",
             "background-color": "purple",
             "href": "link to the page"
           },
           {
-            "text": "General Info",
+            "text": "Mahendra corp (XX212)",
             "vector-asset": "link",
             "text-color": "green",
             "background-color": "purple",

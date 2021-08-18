@@ -131,7 +131,7 @@ export default function HomeComponent() {
             { name: 'Jun', income: 500, expense: 700 }]} prop={left_data}
             />
         </div>
-        <TestComponent></TestComponent>
+        {/* <TestComponent></TestComponent> */}
         {/* <CarouselComponent></CarouselComponent> */}
     </>
     )

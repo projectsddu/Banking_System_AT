@@ -2,11 +2,14 @@ import React from 'react'
 import CardComponent from '../CardComponent'
 import CardComponentBalance from './CardComponentBalance'
 import ARROW_LOGO from '../Asset/arrow_logo.svg'
+import GREEN_DOWN_ARROW_LOGO from '../Asset/green_down_arrow_for_transaction.svg'
+import RED_UP_ARROW_LOGO from '../Asset/red_up_arrow_for_transaction.svg'
 import TransactionTable from './TransactionTable'
 
 export default function BalanceComponent() {
     const topjsx = <>
-        <h3>Transfer your funds Quickly </h3>
+        {/* <h3>Transfer your funds Quickly </h3> */}
+        <h3>Click for Quick Transfer</h3>
     </>
     const bottomjsx = <>
         <img className="col-3  leading_icon" src={ARROW_LOGO} />

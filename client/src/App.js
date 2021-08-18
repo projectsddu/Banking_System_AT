@@ -3,7 +3,6 @@ import './App.css';
 import { Route } from 'react-router';
 import LoginComponent from './components/Login/LoginComponent'
 import SideNavbar from './components/Home/SideNavbar';
-import TransactionComponent from './components/Home/TransactionComponent';
 import HomeComponent from './components/Home/HomeComponent';
 import CardComponent from './components/Home/CardComponent';
 import RightComponent from './components/Home/RightComponent';
@@ -50,6 +49,9 @@ function App() {
         <Route path="/ecard">
           <TempSideNavbar></TempSideNavbar>
         </Route>
+        <Route path="/account">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
       </div>
       <div className="col-9 custcol9">
 
@@ -62,8 +64,15 @@ function App() {
         <Route path="/balance">
           <RightComponent component_name="balance"></RightComponent>
         </Route>
-        <Route path="/ecard">
+        <Route path="/ecard/debitcards">
           <RightComponent component_name="ecards"></RightComponent>
+        </Route>
+        <Route path="/ecard/creditcards">
+          <RightComponent component_name="ecards"></RightComponent>
+        </Route>
+
+        <Route path="/Account/:slug">
+          <RightComponent component_name="account"></RightComponent>
         </Route>
       </div>
     </>

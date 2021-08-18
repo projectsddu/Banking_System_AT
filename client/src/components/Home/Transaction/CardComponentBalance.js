@@ -12,7 +12,7 @@ function CardComponentBalance(props) {
                     <div class="">
                         <div class="balance_card-text p-3 m-1">
                             {props.iscustom ? props.topjsx :
-                                <h4 class="balance_card-text">props.info</h4>
+                                <h4 class="balance_card-text">{props.info}</h4>
                             }
                         </div>
                         <div>
