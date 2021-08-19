@@ -52,6 +52,9 @@ function App() {
         <Route path="/account">
           <TempSideNavbar></TempSideNavbar>
         </Route>
+        <Route path="/makePayment">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
       </div>
       <div className="col-9 custcol9">
 
@@ -73,6 +76,9 @@ function App() {
 
         <Route path="/Account/:slug">
           <RightComponent component_name="account"></RightComponent>
+        </Route>
+        <Route path="/makePayment">
+          <RightComponent component_name="makePayment"></RightComponent>
         </Route>
       </div>
     </>

@@ -6,7 +6,7 @@ import DebitCardComponent from '../Home/DebitCard/DebitCardComponent'
 import CreditCardComponent from '../Home/CreditCard/CreditCardComponents'
 import BalanceComponent from '../Home/Transaction/BalanceComponent'
 import AccountComponent from '../Home/Account/AccountComponent'
-
+import MakePayement from '../Home/Payment/MakePayment'
 
 function RightComponent({ component_name }) {
     const component_mapping = {
@@ -15,7 +15,8 @@ function RightComponent({ component_name }) {
         "ecards/debitcards": <DebitCardComponent></DebitCardComponent>,
         "ecards/creditcards": <CreditCardComponent></CreditCardComponent>,
         "balance": <BalanceComponent></BalanceComponent>,
-        "account": <AccountComponent></AccountComponent>
+        "account": <AccountComponent></AccountComponent>,
+        "makePayment": <MakePayement></MakePayement>
     }
     return (
         <div className="col">
@@ -23,6 +24,7 @@ function RightComponent({ component_name }) {
                 <TopNavbarComponent property_name={component_name}></TopNavbarComponent>
             </div>
             <div className="row">
+                <h1>{component_name}</h1>
 
                 {component_mapping[component_name]}
 

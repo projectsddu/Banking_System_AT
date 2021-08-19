@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './TempSideNavbar.css'
 import TRX_SVG from "./Asset/trx_icon.svg";
 import ACD_SVG from "./Asset/account_details.svg";
@@ -104,7 +105,7 @@ function TempSideNavbar() {
     }
 
   ]);
-
+  const history = useHistory()
   const uri = "/user/getACDetails/-1"
   const useFetch = url => {
     const [data, setData] = useState(null);
@@ -223,6 +224,7 @@ function TempSideNavbar() {
                   {e["dropdown_menu"].map((e1) => {
                     return (<>
                       <NavLink to={loading ? "" : "/Account/" + e1["_id"]}>
+
                         <div className="partition">
                           {loading ? "" : e1["text"] + " " + (String)(e1["_id"]).slice(19, 24)}< br />
                         </div>

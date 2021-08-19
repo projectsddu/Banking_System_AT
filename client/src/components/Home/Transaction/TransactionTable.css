@@ -310,3 +310,9 @@ tbody tr td .fa-long-arrow-down {
     border: 0px;
     color:white;
 }
+.incdec{
+    background-color: rgb(205, 211, 209);
+    margin: 3%;
+    font-weight: bold;
+    color:black
+}

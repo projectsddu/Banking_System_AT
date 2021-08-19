@@ -10,6 +10,8 @@ import LineChart from '../Chart_test_comp'
 
 
 export default function AccountComponent() {
+    const location = useLocation()
+    const [uril, setUril] = useState(null)
     const trxData = [
         {
             "activity": "Cheers bill",
@@ -52,6 +54,118 @@ export default function AccountComponent() {
             "amount": 100,
             "type": "credit"
         },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
+        {
+            "activity": "Kerala Trip",
+            "account_no": "XXX1234",
+            "date": "12 Jul 2020, 23:40",
+            "mode": "Neft",
+            "amount": 100,
+            "type": "credit"
+        },
     ]
     const left_data = {
         "header": "Income Expense Chart",
@@ -65,10 +179,6 @@ export default function AccountComponent() {
         ]
     }
 
-    // useEffect(() => {
-
-
-    // }, [])
 
 
     const useFetch = url => {
@@ -78,7 +188,6 @@ export default function AccountComponent() {
         // Similar to componentDidMount and componentDidUpdate:
         useEffect(async () => {
             const response = await fetch(url, { method: "POST" });
-            // console.log("her")
             const data = await response.json();
             setData(data);
             console.log(data)
@@ -88,12 +197,17 @@ export default function AccountComponent() {
         return { data, loading };
     };
 
+    const fetchData = () => {
+
+    }
     let slug = useLocation()
     // console.log(slug["pathname"].split("/")[2]);
     let final_request = "/account/" + slug["pathname"].split("/")[2];
     // console.log(final_request);
 
     const { data, loading } = useFetch(final_request);
+
+    // const makePaymentUrl = "/makePayment";
 
     return (
         <div className="Account-page-wrapper ">

@@ -4,6 +4,7 @@ const verifyDetails = require("../Middlewares/VerifyDetails")
 const authenticate = require("../Middlewares/Authenticate")
 const User = require("../Collections/UserModel")
 const test = require("../Middlewares/Test")
+var SHA256 = require("crypto-js/sha256")
 
 router.post("/user/add_user", verifyDetails, async (req, res) => {
     console.log(req.create_user)
@@ -25,13 +26,23 @@ router.post("/user/login_user", async (req, res) => {
         }
         else {
             // your username is firstname_middlename_lastname
+
             const user_names = username.split("_")
+            console.log(req.body.pinNo)
+            console.log(user_names)
             const user = await User.findOne({
                 firstName: user_names[0],
                 middleName: user_names[1],
                 lastName: user_names[2],
                 pinNo: req.body.pinNo
             })
+            // const user1 = await User.findOne({
+            //     firstName: "keval",
+            //     middleName: "dharmesh",
+            //     lastName: "gandevia",
+
+            // })
+            // console.log(user1)
             // console.log("Name:"+user_names[0] + user_names[1] + user_names[2]);
             if (!user) {
                 return res.json({ "Error:": "No user found" })

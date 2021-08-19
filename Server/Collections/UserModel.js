@@ -1,4 +1,6 @@
 const mongoose = require("mongoose")
+// const bcrypt = require('bcrypt');
+// var SHA256 = require("crypto-js/sha256");
 const jwt = require("jsonwebtoken")
 const User = mongoose.Schema({
     firstName: {
@@ -55,26 +57,34 @@ const User = mongoose.Schema({
     ]
 
 })
-User.methods.generateAuthToken = async function()
-{
-    try{
-        const userToken = jwt.sign({_id:this._id},"SECRETKEY")
-        this.loginTokens = this.loginTokens.concat({token:userToken})
+User.methods.generateAuthToken = async function () {
+    try {
+        const userToken = jwt.sign({ _id: this._id }, "SECRETKEY")
+        this.loginTokens = this.loginTokens.concat({ token: userToken })
         let is_saved = this.save()
-        if(is_saved)
-        {
+        if (is_saved) {
             console.log("Login Token saved successfully");
             return userToken
         }
-        else
-        {
+        else {
             console.log("Error saving token");
         }
     }
-    catch(e)
-    {
+    catch (e) {
         console.log(e.toString())
     }
 }
+
+// hashing the password
+// User.pre('save', async function (next) {
+//     console.log('inside the pre');
+//     if (this.isModified('pinNo')) {
+//         this.pinNo = SHA256(this.pinNo).toString()
+//         console.log(SHA256(this.pinNo).toString())
+//     }
+//     next();
+// })
+
+
 const UserModel = mongoose.model("USER", User)
 module.exports = UserModel
