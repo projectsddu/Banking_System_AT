@@ -6,10 +6,11 @@
     box-sizing: border-box;
 }
 .trx-wrapper {
-    background-color: #222;
+    background-color: rgb(32, 29, 29);
     min-height: 100px;
-    margin: 10px auto;
-    width: 90%;
+    /* margin: 10px auto; */
+    /* border: 2px solid #00a2ff; */
+    width: 101%;
     padding: 6%;
 }
 
@@ -18,13 +19,16 @@
     background-color: #222
 }
 
-.navbar {
+.trx-wrapper.navbar {
     padding: 1%;
-    width:110%;
+    width:100%;
 }
 
-.navbar .navbar-brand {
+.trx-wrapper .navbar .navbar-brand {
     font-size: 30px
+}
+.trx-wrapper .topnavigation{
+    width: 107%;
 }
 
 #income {
@@ -35,17 +39,17 @@
     display: none
 }
 
-.nav-item .nav-link .fa-bell-o,
+.trx-wrapper .nav-item .nav-link .fa-bell-o,
 .fa-long-arrow-down,
-.fa-long-arrow-up {
+.fa-long-arrow-up{
     padding: 10px 10px;
     background-color: #444;
     border-radius: 50%;
     position: relative;
-    font-size: 18px
+    font-size: 18px;
 }
 
-.nav-item .nav-link .fa-bell-o::after {
+.trx-wrapper .nav-item .nav-link .fa-bell-o::after {
     content: '';
     position: absolute;
     width: 7px;
@@ -81,7 +85,7 @@
     padding: 0px 0px 0px 10px
 }
 
-.navbar-brand p {
+.trx-wrapper .navbar-brand p {
     display: block;
     font-size: 14px;
     margin-bottom: 3px
@@ -142,7 +146,7 @@
 }
 
 .table-dark {
-    background-color: #222
+    background-color: #222;
 }
 
 .table thead th {
@@ -300,3 +304,9 @@ tbody tr td .fa-long-arrow-down {
     width:10%;
 }
 
+.sort-btns{
+    background-color: #00000000;
+    font-size: 1.6em;
+    border: 0px;
+    color:white;
+}

@@ -28,8 +28,20 @@ router.post("/user/getACDetails/:acNumber", [authenticate], async (req, res) => 
                 const allAc = await Account.find({
                     accountOwner: req.current_user
                 })
+                console.log(req.current_user.firstName + " " + req.current_user.lastName)
+                var ulist = []
+                const user_list = Promise.all(allAc.map(async (e) => {
+                    console.log(e["accountOwner"]["_id"])
+                    const user = await User.findOne({ _id: e["accountOwner"]["_id"] })
+                    // console.log(user)
+                    ulist.push(user)
+                    return user["firstName"]
+                })).then((e) => {
+                    ulist = e
+                    console.log(e)
+                    return res.json({ "data": allAc, "ulist": ulist, "Success": true });
+                })
 
-                return res.json({ "data": allAc, "Success": true });
             }
             else {
                 // particular account details
@@ -119,7 +131,39 @@ router.post("/account/createAccountType", [authenticate], async (req, res) => {
     }
 })
 
+router.post("/account/:acNum", [authenticate], async (req, res) => {
+    try {
+        if (req.is_authenticated) {
+            const acnum = req.params.acNum;
+            if (acnum == -1) {
+                // all account details
+                const allAc = await Account.find({
+                    accountOwner: req.current_user
+                })
 
+                return res.json({ "data": allAc, "Success": true });
+            }
+            else {
+                // particular account details
+                console.log(acnum)
+                console.log(String(acnum).length)
+                if (String(acnum).length != 24) {
+                    return res.json({ "Error:": "Account number must be 24 characters long" })
+                }
+                const ac = await Account.findOne({
+                    _id: acnum
+                })
+                return res.json({ "data": ac, "Success": true, "userList": req.current_user });
+            }
+        }
+        else {
+            return res.json({ "Error": "Hey you are not authenticated", "redirect": "true" })
+        }
+    }
+    catch (e) {
+        return res.json({ "Error:": e.toString() })
+    }
+})
 
 
 // // This is to be used by the admin.

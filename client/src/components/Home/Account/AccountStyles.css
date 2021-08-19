@@ -5,7 +5,7 @@
     /* border: 1px solid #ccff00; */
 }
 .topDetails{
-    border:2px solid rgb(0, 179, 250) ;
+    /* border:2px solid rgb(0, 179, 250) ; */
     border-radius: 2%;
     padding: 1.1%;
 }
@@ -50,11 +50,13 @@
     padding: 2%;
     font-weight: 500;
     color:white;
-    background-image: linear-gradient(125deg,rgb(141, 4, 253),#cc00ff);
+    /* background-color: #E93B81; */
+    background-color: #FF577F;
+    /* background-image: linear-gradient(125deg,rgb(141, 4, 253),#ff006a); */
 }
 .payment:hover{
-    color:#cdcec9;
-     background-image: linear-gradient(270deg,rgb(141, 4, 253),#cc00ff);
+    color: white;
+    background-image: linear-gradient(270deg,rgb(141, 4, 253),#cc00ff);
 
 }
 .paymentButton{

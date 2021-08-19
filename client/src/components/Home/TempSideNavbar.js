@@ -12,114 +12,147 @@ import { useState } from "react";
 // import BANK_LOGO from './Asset/Bankers_logo.svg'
 
 function TempSideNavbar() {
-  const [loading, setLoading] = useState(true);
-  const [navlist, setNavlist] = useState([]);
-  useEffect(() => {
-    const navbar_json = [
-      {
-        "id": "Transactions",
-        "text": "Transactions",
-        "vector-asset": TRX_SVG,
-        "vector-asset-color": "#ccff00",
-        "background-color": "purple",
-        "text-color": "purpleText",
-        "is_drop": true,
-        "href": "/home",
-        "dropdown_menu": [
-          {
-            "text": "RTGS",
-            "vector-asset": "link",
-            "text-color": "green",
-            "background-color": "purple",
-            "href": "link to the page"
-          },
-          {
-            "text": "NEFT",
-            "vector-asset": "link",
-            "text-color": "green",
-            "background-color": "purple",
-            "href": "link to the page"
-          }
-        ]
-      },
-      {
-        "id": "ACDetails",
-        "text": "Your Accounts",
-        "vector-asset": ACD_SVG,
-        "vector-asset-color": "#ccff00",
-        "background-color": "blue",
-        "text-color": "blueText",
-        "href": "/home",
-        "is_drop": true,
-        "dropdown_menu": [
-          {
-            "text": "Jenil Jignesh (XX234)",
-            "vector-asset": "link",
-            "text-color": "green",
-            "background-color": "purple",
-            "href": "link to the page"
-          },
-          {
-            "text": "Mahendra corp (XX212)",
-            "vector-asset": "link",
-            "text-color": "green",
-            "background-color": "purple",
-            "href": "link to the page"
-          }
-        ]
-      },
-      {
-        "id": "ecard",
-        "text": "Your E-cards",
-        "vector-asset": E_CARD_SVG,
-        "vector-asset-color": "#ccff00",
-        "background-color": "purple",
-        "text-color": "purpleText",
-        "href": "/home",
-        "is_drop": true,
-        "dropdown_menu": [
-          {
-            "text": "jenils",
-            "vector-asset": "",
-            "text-color": "green",
-            "background-color": "purple",
-            "href": "link to the page"
-          },
-          {
-            "text": "Your ecards are good",
-            "vector-asset": "",
-            "text-color": "green",
-            "background-color": "purple",
-            "href": "link to the page"
-          }
-        ]
-      },
-      {
-        "id": "QUICKT",
-        "text": "Quick Transfer",
-        "vector-asset": Q_T_SVG,
-        "vector-asset-color": "#ccff00",
-        "background-color": "blue",
-        "text-color": "blueText",
-        "href": "/home",
-        "is_drop": false,
-        "dropdown_menu": []
-      },
-      {
-        "id": "assistance",
-        "text": "24 X 7 Assistance",
-        "vector-asset": H_ASSIT,
-        "vector-asset-color": "#ccff00",
-        "background-color": "purple",
-        "text-color": "purpleText",
-        "href": "/login",
-        "is_drop": false,
-        "dropdown_menu": []
-      }
+  const [navlist, setNavlist] = useState([
+    {
+      "id": "Transactions",
+      "text": "Transactions",
+      "vector-asset": TRX_SVG,
+      "vector-asset-color": "#ccff00",
+      "background-color": "purple",
+      "text-color": "purpleText",
+      "is_drop": true,
+      "href": "/home",
+      "dropdown_menu": [
+        // {
+        //   "text": "RTGS",
+        //   "vector-asset": "link",
+        //   "text-color": "green",
+        //   "background-color": "purple",
+        //   "href": "link to the page"
+        // },
+        {
+          "text": "Quick Transfer",
+          "vector-asset": "link",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "link to the page"
+        }
+      ]
+    },
+    {
+      "id": "ACDetails",
+      "text": "Your Accounts",
+      "vector-asset": ACD_SVG,
+      "vector-asset-color": "#ccff00",
+      "background-color": "blue",
+      "text-color": "blueText",
+      "href": "/home",
+      "is_drop": true,
+      "dropdown_menu": []
+      // {
+      //   "text": "Jenil Jignesh (XX234)",
+      //   "vector-asset": "link",
+      //   "text-color": "green",
+      //   "background-color": "purple",
+      //   "href": "link to the page"
+      // },
+      // {
+      //   "text": "Mahendra corp (XX212)",
+      //   "vector-asset": "link",
+      //   "text-color": "green",
+      //   "background-color": "purple",
+      //   "href": "link to the page"
+      // }
 
-    ];
-    setNavlist(navbar_json);
-    setLoading(false);
+    },
+    {
+      "id": "ecard",
+      "text": "Your E-cards",
+      "vector-asset": E_CARD_SVG,
+      "vector-asset-color": "#ccff00",
+      "background-color": "purple",
+      "text-color": "purpleText",
+      "href": "/home",
+      "is_drop": true,
+      "dropdown_menu": [
+        {
+          "text": "jenils",
+          "vector-asset": "",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "link to the page"
+        },
+        {
+          "text": "Your ecards are good",
+          "vector-asset": "",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "link to the page"
+        }
+      ]
+    },
+    {
+      "id": "assistance",
+      "text": "24 X 7 Assistance",
+      "vector-asset": H_ASSIT,
+      "vector-asset-color": "#ccff00",
+      "background-color": "purple",
+      "text-color": "purpleText",
+      "href": "/login",
+      "is_drop": false,
+      "dropdown_menu": []
+    }
+
+  ]);
+
+  const uri = "/user/getACDetails/-1"
+  const useFetch = url => {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(async () => {
+      const response = await fetch(url, { method: "POST" });
+      // console.log("her")
+      const data = await response.json();
+      setData(data);
+      // console.log(data)
+      const tplist = []
+      for (var i = 0; i < data["data"].length; i++) {
+        var obj1 = data["data"][i]
+        data["data"][i]["text"] = data["ulist"][i]
+        // data["data"][i]["acnumber"]
+      }
+      navlist[1]["dropdown_menu"] = data["data"]
+      setNavlist(navlist)
+      console.log(navlist)
+      console.log(data)
+      setLoading(false);
+    }, []);
+
+    return { data, loading };
+  };
+  const { data, loading } = useFetch(uri)
+  // console.log(loading ? "" : data)
+  // const [loading, setLoading] = useState(true);
+
+
+
+
+  function getLastAcNo(e, n = 5) {
+    var length = e.length
+    return e.slice(length - n, length)
+  }
+
+
+
+
+  useEffect(() => {
+
+
+
+    // setNavlist(navbar_json)
+
   }, []);
   const styles = {
     "accordian": {
@@ -184,17 +217,23 @@ function TempSideNavbar() {
                 aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample"
               >
+
+                {/* <ul> */}
                 <div class="accordion-body">
-                  {/* <ul> */}
                   {e["dropdown_menu"].map((e1) => {
                     return (<>
-                      <div className="partition">
-                        {e1["text"]}<br />
-                      </div>
+                      <NavLink to={loading ? "" : "/Account/" + e1["_id"]}>
+                        <div className="partition">
+                          {loading ? "" : e1["text"] + " " + (String)(e1["_id"]).slice(19, 24)}< br />
+                        </div>
+
+                      </NavLink>
                     </>)
                   })}
-                  {/* </ul> */}
                 </div>
+                {/* </ul> */}
+
+
               </div>
             </div>
           </div>);

@@ -42,6 +42,7 @@ router.post("/user/login_user", async (req, res) => {
                 const token = await user.generateAuthToken()
 
                 // Saving current users session
+
                 const savedCookie = await res.cookie("LoginToken", token, {
                     expires: new Date(Date.now() + 2589200000),
                     httpOnly: true,

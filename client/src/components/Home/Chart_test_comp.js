@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import './GenericChart.css'
 
 
-export default function LinChart(props) {
+export default function LineChart(props) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
     const [leftData, setleftData] = useState({})

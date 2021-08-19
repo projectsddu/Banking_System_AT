@@ -16,6 +16,7 @@
     "bootstrap": "^5.1.0",
     "chart.js": "^3.5.0",
     "hammerjs": "^2.0.8",
+    "js-cookie": "^3.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-chartjs-2": "^3.0.4",
@@ -27,6 +28,7 @@
     "react-slick": "^0.28.1",
     "react-slideshow-image": "^3.5.0",
     "recharts": "^2.1.0",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
