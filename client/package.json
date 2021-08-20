@@ -27,6 +27,7 @@
     "react-scripts": "^4.0.3",
     "react-slick": "^0.28.1",
     "react-slideshow-image": "^3.5.0",
+    "react-toastify": "^7.0.4",
     "recharts": "^2.1.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.2"

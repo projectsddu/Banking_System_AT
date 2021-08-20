@@ -7,9 +7,12 @@ import HomeComponent from './components/Home/HomeComponent';
 import CardComponent from './components/Home/CardComponent';
 import RightComponent from './components/Home/RightComponent';
 import TempSideNavbar from './components/Home/TempSideNavbar';
-
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 function App() {
+  if (typeof window !== "undefined") {
+    injectStyle();
+  }
   return (
     <>
       {/* <div className="col-2 fill">

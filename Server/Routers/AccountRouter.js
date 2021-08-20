@@ -18,6 +18,35 @@ const authenticate = require("../Middlewares/Authenticate")
 const createACMiddleware = require("../Middlewares/Account/CreateAccount")
 // const AccountType = require("../Collections/AccountTypeModel")
 
+
+router.post("/user/checkExists/:acNumber", [authenticate], async (req, res) => {
+    try {
+        if (req.is_authenticated) {
+            const acNum = req.params.acNumber;
+
+            const accountExist = await Account.findOne({
+                _id: acNum
+            })
+
+            if (accountExist) {
+                return res.json({ "Success:": true })
+            }
+            else {
+                return res.json({ "Success:": false })
+            }
+            //Success :true
+        }
+        else {
+
+        }
+    }
+    catch (e) {
+        console.log(e.toString())
+        return res.json({ "Success:": false })
+    }
+})
+
+
 router.post("/user/getACDetails/:acNumber", [authenticate], async (req, res) => {
     try {
 

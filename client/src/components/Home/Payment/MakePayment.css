@@ -40,7 +40,7 @@
   }
 
   .make-payment-container {
-    background-color: #f2f2f2;
+    background-color: #000000;
     padding: 5px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
@@ -52,9 +52,16 @@
     width: 100%;
     margin-bottom: 20px;
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid rgb(37, 36, 36);
+    color:black;
+    border-radius: 9px;
     box-sizing: border-box;
+    background-color: aliceblue;
+  }
+
+  .make-payment-input:focus {
+    background-color: rgb(214, 212, 212);
+    color:rgb(0, 0, 0)
   }
 
   .make-payment-label {
@@ -72,20 +79,22 @@
   }
 
   .make-payment-btn {
-    background-color: #04AA6D;
-    color: white;
+    background-color: #000000c0;
+    color: #FFFFFF;
     padding: 12px;
     margin: 10px 0;
     border: none;
-    width: 100%;
+    width: 50%;
     border-radius: 3px;
-    cursor: pointer;
+    font-weight: bold;
+    cursor: grab;
     font-size: 17px;
     box-sizing: border-box;
+    margin-left: 225px;
   }
 
   .make-payment-btn:hover {
-    background-color: #777aff;
+    background-color: #636363;
     box-sizing: border-box;
   }
 
@@ -95,12 +104,19 @@
 
 .make-payment-sender-details {
     font-weight: bolder;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   font-size:xx-large;
 }
 
 .make-payment-receiver-details {
     font-weight: bolder;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   font-size:xx-large;
+}
+.make-payment-wrapper{
+  background-color: rgb(255, 255, 255);
+  
+  border:7px solid rgb(0, 174, 255);
+  border-radius: 2%;
+  color:#000000;
 }
