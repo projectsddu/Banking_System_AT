@@ -7,7 +7,7 @@ import E_CARD_SVG from "./Asset/e_cards_icon.svg";
 import Q_T_SVG from "./Asset/quick_transfer.svg";
 import H_ASSIT from "./Asset/24_7_assistance.svg";
 import BANK_LOGO from "./Asset/Bankers_logo.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 // import BANK_LOGO from './Asset/Bankers_logo.svg'
@@ -223,13 +223,13 @@ function TempSideNavbar() {
                 <div class="accordion-body">
                   {e["dropdown_menu"].map((e1) => {
                     return (<>
-                      <NavLink to={loading ? "" : "/Account/" + e1["_id"]}>
+                      <a href={loading ? "" : "/Account/" + e1["_id"]}>
 
                         <div className="partition">
                           {loading ? "" : e1["text"] + " " + (String)(e1["_id"]).slice(19, 24)}< br />
                         </div>
 
-                      </NavLink>
+                      </a>
                     </>)
                   })}
                 </div>

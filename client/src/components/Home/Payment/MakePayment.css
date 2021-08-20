@@ -94,11 +94,13 @@
 } */
 
 .make-payment-sender-details {
+    font-weight: bolder;
   text-decoration: underline;
   font-size:xx-large;
 }
 
 .make-payment-receiver-details {
+    font-weight: bolder;
   text-decoration: underline;
   font-size:xx-large;
 }

@@ -66,13 +66,22 @@ router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
 })
 
 
-router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
+router.post("/cards/getUserDebitCards/:acNumber", [authenticate], async (req, res) => {
     try {
         if (req.is_authenticated) {
-            const allAc = await Account.find({
-                accountOwner: req.current_user
-            })
+            if (req.params.acNumber == -1) {
+
+                var allAc = await Account.find({
+                    accountOwner: req.current_user
+                })//[[ac1],[ac2],....]
+            }
+            else {
+                var allAc = await Account.find({
+                    _id: req.params.acNumber
+                })//[[ac1]]
+            }
             var alldebs = []
+            var ulist = []
             var resp = await Promise.all(
                 allAc.map(async (e) => {
                     const debitCard = await DebitCard.findOne({
@@ -84,7 +93,12 @@ router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
             ).then((e) => {
                 return e
             })
-            return res.json({ "data": resp, "Success:": true })
+            var ul = await Promise.all(
+                allAc.map(async (e) => {
+                    ulist.push(req.current_user.firstName + " " + req.current_user.lastName)
+                })
+            ).then((e) => { return e })
+            return res.json({ "data": resp, "ulist": ulist, "Success:": true })
 
         }
         else {
@@ -92,7 +106,7 @@ router.post("/cards/getUserDebitCards", [authenticate], async (req, res) => {
         }
     }
     catch (e) {
-        return res.json({ "Error": "Sorry we are unable to process your request please try again later!" })
+        return res.json({ "Error": "Sorry we are unable to process your request please try again later!" + e.toString() })
     }
 })
 

@@ -132,7 +132,8 @@ function TransactionTable(props) {
         mywindow.document.write('<html><head><title>' + document.title + '</title>');
         mywindow.document.write(mycss)
         mywindow.document.write('</head><body >');
-        mywindow.document.write("<h1>Bank Statement for you</h1>")
+        mywindow.document.write("<h1>Bankers</h1>")
+        sortByDate()
         mywindow.document.write("<table class='allTable' style='border:1px solid red'> <thead style='border:1px solid red'><tr><th style='border:4px solid red'>S.No</th><th style='border:4px solid red'>Activity</th><th style='border:4px solid red'>Debit/Credit</th><th style='border:4px solid red'>Date</th><th style='border:4px solid red'>Amount</th></tr></thead>")
         mywindow.document.write("<tbody>")
         transactions.map((e, key) => {
@@ -149,11 +150,11 @@ function TransactionTable(props) {
         <div>
             <div class="trx-wrapper rounded">
                 <nav class="navbar topnavigation navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand" href="#">{props.heading}<p class="text-muted pl-1">{props.lowerheading}</p> </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="collapse navbar-collapse printPassbook" id="navbarNav">
                         {/* <ul class="navbar-nav ml-lg-auto">
                             <li class="nav-item "> <a href="#"><span class="fa fa-search"></span></a> <input type="search" class="dark" placeholder="Search" /></li>
                         </ul> */}
-                        <button className="btn btn-outline btn-danger" onClick={(e) => {
+                        <button className="btn btn-outline  btn-danger" onClick={(e) => {
                             printPassbook(e)
                         }}>Print Passbook</button>
                     </div>

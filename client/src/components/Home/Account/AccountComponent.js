@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min'
 import DebitCardComponent from '../DebitCard/DebitCardComponent'
 import './AccountStyles.css'
 import '../Transaction/TransactionTable.css'
@@ -180,7 +181,10 @@ export default function AccountComponent() {
     }
 
 
+    const capitalize = (str) => {
 
+        return str[0].toUpperCase() + str.slice(1, str.lengh)
+    }
     const useFetch = url => {
         const [data, setData] = useState(null);
         const [loading, setLoading] = useState(true);
@@ -197,9 +201,7 @@ export default function AccountComponent() {
         return { data, loading };
     };
 
-    const fetchData = () => {
 
-    }
     let slug = useLocation()
     // console.log(slug["pathname"].split("/")[2]);
     let final_request = "/account/" + slug["pathname"].split("/")[2];
@@ -209,6 +211,9 @@ export default function AccountComponent() {
 
     // const makePaymentUrl = "/makePayment";
 
+    let make_payment_req_url = "/makePayment/" + slug["pathname"].split("/")[2];
+
+    console.log(make_payment_req_url);
     return (
         <div className="Account-page-wrapper ">
             <div className="col bord">
@@ -216,13 +221,13 @@ export default function AccountComponent() {
                     <div className="col-7 ">
                         <DebitCardComponent cvv="588" className="col-6" type_card="credit" valid_thru="06/21" name={loading ? <div class="spinner-border text-warning" role="status">
                             <span class="sr-only">Loading...</span>
-                        </div> : data["userList"]["firstName"] + " " + data["userList"]["lastName"]} cardnumber="1234-5555-2234-9900"></DebitCardComponent>
+                        </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])} cardnumber="1234-5555-2234-9900"></DebitCardComponent>
                     </div>
                     <div className="col-5 leftDetails ">
                         <div className="detailsHeader ">
                             <h1 className="name-header">{loading ? <div class="spinner-border text-warning" role="status">
                                 <span class="sr-only">Loading...</span>
-                            </div> : data["userList"]["firstName"] + " " + data["userList"]["lastName"]}</h1>
+                            </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])}</h1>
                         </div>
                         <div className="acDetails">
                             <h2 className="left-money"> Balance:<span className="money"> ${loading ? <div class="spinner-border text-warning" role="status">
@@ -235,11 +240,11 @@ export default function AccountComponent() {
                                 <h2 className="left-money col">Holders:</h2>
                                 <span className="holder col"> {loading ? <div class="spinner-border text-warning" role="status">
                                     <span class="sr-only">Loading...</span>
-                                </div> : data["userList"]["firstName"]}</span>
+                                </div> : capitalize(data["userList"]["firstName"])}</span>
                             </div>
                         </div>
                         <div className="paymentButton mt-4">
-                            <button className="btn payment">Make Payment</button>
+                            <NavLink to={make_payment_req_url}><button className="btn payment">Make Payment</button></NavLink>
                         </div>
                     </div>
 

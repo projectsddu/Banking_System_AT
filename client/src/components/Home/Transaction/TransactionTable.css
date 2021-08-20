@@ -316,3 +316,8 @@ tbody tr td .fa-long-arrow-down {
     font-weight: bold;
     color:black
 }
+.printPassbook{
+    margin-left: 50%;
+    margin-top:1.3%;
+    float: right;
+}

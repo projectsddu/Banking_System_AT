@@ -6,7 +6,10 @@ import Cookies from 'js-cookie';
 
 export default function TopNavbarComponent({ property_name }) {
 
+    const capitalize = (str) => {
 
+        return str[0].toUpperCase() + str.slice(1, str.lengh)
+    }
 
     const useFetch = url => {
         const [data, setData] = useState(null);
@@ -40,8 +43,8 @@ export default function TopNavbarComponent({ property_name }) {
         <div>
             <nav class="navbar ">
                 <div class="container topnav">
-                    <p className="navText">{property_name}</p>
-                    <p className="float-left">img {loading ? spinJSX : data["data"]["firstName"]}</p>
+                    <p className="navText">{capitalize(property_name)}</p>
+                    <p className="float-left">img {loading ? spinJSX : capitalize(data["data"]["firstName"])}</p>
                 </div>
 
             </nav>

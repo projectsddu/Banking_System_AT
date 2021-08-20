@@ -24,8 +24,6 @@ function RightComponent({ component_name }) {
                 <TopNavbarComponent property_name={component_name}></TopNavbarComponent>
             </div>
             <div className="row">
-                <h1>{component_name}</h1>
-
                 {component_mapping[component_name]}
 
             </div>
