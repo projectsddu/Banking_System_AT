@@ -1,5 +1,7 @@
 const verifyDetails = async function (data) {
-
+    if (data["accountBalance"] == -1) {
+        return "please wait while details loads"
+    }
 
     // Check for name
     const name = data["fullName"]
@@ -13,38 +15,33 @@ const verifyDetails = async function (data) {
     if (acNum.length != 24) {
         return "Account Number must be 24 Digits long"
     }
-    else {
-        // Now check to backend if the account exists or not
-        const url = "/user/checkExists/"+acNum
-        const response = fetch(url, { method: "POST" }).then((e)=>{
-            console.log(e)
-        });
-        
-    }
+    // Now check to backend if the account exists or not
+
+
+
 
 
     // Check for email
+    const email = data["email"];
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!email.match(mailformat)) {
+        return "You have entered an invalid email address!";
+    }
+
+
 
     // Amount < Your Balance
-    const amount = data["amount"]
-    const accountBalance = data["acDetails"][0]["accountBalance"]
-    if (amount > balance) {
+    const amount = data["amount"] == "" ? 0 : Number(data["amount"])
+    const accountBalance = data["accountBalance"]
+    if (amount <= 0) {
+        return "Enter a valid amount"
+    }
+    else if (amount > accountBalance) {
         return "Amount to be transfer must be less than available balance";
     }
-    else {
-        // need to transfer money from one account to another
-    }
 
-    // Reason is optional
-    const acNum1 = "c5860";
-    const acNum2 = "89747";
-    let defaultReason = `Transfer from ${acNum1} to ${acNum2}`;
-    const reason = data["reason"]
-    if (reason != "") {
-        return defaultReason;
-    }
-    else {
-        
-    }
-    // return "mujsabnkjasn"
+
+    return "Your Details are verified please be patient while we process your request"
 }
+
+module.exports = verifyDetails

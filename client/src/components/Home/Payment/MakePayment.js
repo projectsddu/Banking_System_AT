@@ -3,83 +3,26 @@ import './MakePayment.css'
 import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { ToastContainer, toast } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
-// import verifyPayment from '../Utility/VerifyPayment'
+import verifyPayment from '../Utility/VerifyPayment'
 
 function MakePayment() {
 
     const [userDetails, setUserDetails] = useState({
         fullName: '',
         acNumber: '',
-        email:'',
-        amount:'',
-        reason:''        
+        email: '',
+        amount: '',
+        reason: ''
     });
-    const verifyDetails = async function (data) {
-        if(data["accountBalance"]==-1)
-        {
-            return "please wait while details loads"
-        }
-
-        // Check for name
-        const name = data["fullName"]
-        if (name == "") {
-            return "Name cannot be empty"
-        }
-
-
-        // Account Number must be of 24 length
-        const acNum = data["acNumber"]
-        if (acNum.length != 24) {
-            return "Account Number must be 24 Digits long"
-        }
-        else {
-            // Now check to backend if the account exists or not
-            const url = "/user/checkExists/" + acNum
-            const response = fetch(url, { method: "POST" }).then((e) => {
-                if(e.PromiseState=="fulfilled")
-                {
-                    console.log(e);
-                }
-                // return e
-            });
-        }
-
-
-        // Check for email
-        const email = data["email"];
-        // if()
-        
-        // Amount < Your Balance
-        const amount = data["amount"]
-        const accountBalance = data["accountBalance"]
-        if (amount > accountBalance) {
-            return "Amount to be transfer must be less than available balance";
-        }
-        else {
-            // need to transfer money from one account to another
-        }
-
-        // Reason is optional
-        const acNum1 = "c5860";
-        const acNum2 = "89747";
-        let defaultReason = `Transfer from ${acNum1} to ${acNum2}`;
-        const reason = data["reason"]
-        if (reason != "") {
-            return defaultReason;
-        }
-        else {
-
-        }
-    }
 
     function handleOnSubmit(e) {
 
         e.preventDefault()
-        userDetails["accountBalance"] = loading?-1:data["acDetails"][0]["accountBalance"]
-        const msg = verifyDetails(userDetails).then((e)=>{
+        userDetails["accountBalance"] = loading ? -1 : data["acDetails"][0]["accountBalance"]
+        const msg = verifyPayment(userDetails).then((e) => {
             toast.dark(e);
         })
-        
+
     }
     // function that used to display string in formatted method
     const capitalize = (str) => {
@@ -128,7 +71,7 @@ function MakePayment() {
     const expiryMonth = monthNames[(new Date(expiryDate)).getMonth()];
     const expiryYear = (new Date(expiryDate)).getFullYear();;
 
-    
+
 
     // const Loading... = <><h1>Jenil</h1></>
     return (
@@ -241,7 +184,7 @@ function MakePayment() {
                                     />
                                 </div>
 
-{/* Reciever's part */}
+                                {/* Reciever's part */}
 
                                 <div class="make-payment-col-50">
                                     <h3 class="make-payment-receiver-details">
@@ -273,10 +216,11 @@ function MakePayment() {
                                         value={userDetails.acNumber}
                                         placeholder="1111-2222-3333-4444"
                                         onChange={(e) => {
-                                            setUserDetails({ ...userDetails, acNumber: e.target.value })}
+                                            setUserDetails({ ...userDetails, acNumber: e.target.value })
                                         }
-                                                
-                                            
+                                        }
+
+
                                     />
                                     <label class="make-payment-label" for="email">
                                         <i class="fa fa-envelope"></i> Email
