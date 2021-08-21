@@ -1,5 +1,6 @@
 import React from 'react'
 import HomeComponent from './HomeComponent'
+import QuickTransfer from './QuickTransfer/QuickTransfer'
 import TopNavbarComponent from './TopNavbarComponent'
 import EcardsComponent from './EcardsComponent'
 import DebitCardComponent from '../Home/DebitCard/DebitCardComponent'
@@ -7,6 +8,11 @@ import CreditCardComponent from '../Home/CreditCard/CreditCardComponents'
 import BalanceComponent from '../Home/Transaction/BalanceComponent'
 import AccountComponent from '../Home/Account/AccountComponent'
 import MakePayement from '../Home/Payment/MakePayment'
+import CarLoan from '../Home/Loan/CarLoan/CarLoan'
+import HomeLoan from '../Home/Loan/HomeLoan/HomeLoan'
+import ViewFixedDeposits from '../Home/FixedDeposits/ViewFixedDeposits'
+import ApplyFixedDeposits from '../Home/FixedDeposits/ApplyFixedDeposits'
+import TFAssistanceComponent from '../Home/TFAssistance/TFAssistanceComponent'
 
 function RightComponent({ component_name }) {
     const component_mapping = {
@@ -16,7 +22,13 @@ function RightComponent({ component_name }) {
         "ecards/creditcards": <CreditCardComponent></CreditCardComponent>,
         "balance": <BalanceComponent></BalanceComponent>,
         "account": <AccountComponent></AccountComponent>,
-        "makePayment": <MakePayement></MakePayement>
+        "makePayment": <MakePayement></MakePayement>,
+        "quickTransfer": <QuickTransfer></QuickTransfer>,
+        "carLoan": <CarLoan></CarLoan>,
+        "homeLoan": <HomeLoan></HomeLoan>,
+        "viewfixedDeposits": <ViewFixedDeposits></ViewFixedDeposits>,
+        "applyfixedDeposits": <ApplyFixedDeposits></ApplyFixedDeposits>,
+        "assistance": <TFAssistanceComponent />
     }
     return (
         <div className="col">

@@ -24,25 +24,18 @@ function TempSideNavbar() {
       "is_drop": true,
       "href": "/home",
       "dropdown_menu": [
-        // {
-        //   "text": "RTGS",
-        //   "vector-asset": "link",
-        //   "text-color": "green",
-        //   "background-color": "purple",
-        //   "href": "link to the page"
-        // },
         {
           "text": "Quick Transfer",
           "vector-asset": "link",
           "text-color": "green",
           "background-color": "purple",
-          "href": "link to the page"
+          "href": "/quickTransfer"
         }
       ]
     },
     {
       "id": "ACDetails",
-      "text": "Your Accounts",
+      "text": "Your Current Accounts",
       "vector-asset": ACD_SVG,
       "vector-asset-color": "#ccff00",
       "background-color": "blue",
@@ -50,45 +43,69 @@ function TempSideNavbar() {
       "href": "/home",
       "is_drop": true,
       "dropdown_menu": []
-      // {
-      //   "text": "Jenil Jignesh (XX234)",
-      //   "vector-asset": "link",
-      //   "text-color": "green",
-      //   "background-color": "purple",
-      //   "href": "link to the page"
-      // },
-      // {
-      //   "text": "Mahendra corp (XX212)",
-      //   "vector-asset": "link",
-      //   "text-color": "green",
-      //   "background-color": "purple",
-      //   "href": "link to the page"
-      // }
-
     },
     {
-      "id": "ecard",
-      "text": "Your E-cards",
+      "id": "SavingsAc",
+      "text": "Your Saving Accounts",
+      "vector-asset": ACD_SVG,
+      "vector-asset-color": "#ccff00",
+      "background-color": "blue",
+      "text-color": "blueText",
+      "href": "",
+      "is_drop": true,
+      "dropdown_menu": []
+    },
+    {
+      "id": "TermDeposit",
+      "text": "Fixed Deposits",
+      "vector-asset": ACD_SVG,
+      "vector-asset-color": "#ccff00",
+      "background-color": "blue",
+      "text-color": "blueText",
+      "href": "",
+      "is_drop": true,
+      "dropdown_menu": [
+        {
+          "text": "View your FD",
+          "vector-asset": "",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "/viewfixedDeposits"
+        },
+        {
+          "text": "Apply for New FD",
+          "vector-asset": "",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "/applyfixedDeposits"
+        },
+
+      ]
+    }
+    ,
+    {
+      "id": "loan",
+      "text": "Apply for loan",
       "vector-asset": E_CARD_SVG,
       "vector-asset-color": "#ccff00",
       "background-color": "purple",
       "text-color": "purpleText",
-      "href": "/home",
+      "href": "",
       "is_drop": true,
       "dropdown_menu": [
         {
-          "text": "jenils",
+          "text": "Home Loan",
           "vector-asset": "",
           "text-color": "green",
           "background-color": "purple",
-          "href": "link to the page"
+          "href": "/loan/homeloan"
         },
         {
-          "text": "Your ecards are good",
+          "text": "Car Loan",
           "vector-asset": "",
           "text-color": "green",
           "background-color": "purple",
-          "href": "link to the page"
+          "href": "/loan/carloan"
         }
       ]
     },
@@ -99,7 +116,7 @@ function TempSideNavbar() {
       "vector-asset-color": "#ccff00",
       "background-color": "purple",
       "text-color": "purpleText",
-      "href": "/login",
+      "href": "/assistance",
       "is_drop": false,
       "dropdown_menu": []
     }
@@ -122,9 +139,11 @@ function TempSideNavbar() {
       for (var i = 0; i < data["data"].length; i++) {
         var obj1 = data["data"][i]
         data["data"][i]["text"] = data["ulist"][i]
-        // data["data"][i]["acnumber"]
+        data["data"][i]["href"] = "/Account/" + obj1["_id"]
       }
       navlist[1]["dropdown_menu"] = data["data"]
+      // navlist[1]["dropdown_menu"]["data"]["link"] = "/Account/"
+
       setNavlist(navlist)
       console.log(navlist)
       console.log(data)
@@ -203,14 +222,17 @@ function TempSideNavbar() {
                   aria-controls="flush-collapseOne"
                   style={styles["accordian"]}
                 >
-                  {e["text"]}
-                  {e["is_drop"] ?
-                    <i
-                      class="fas fa-chevron-down float-right"
-                      style={styles["dropbtn"]}
-                    ></i> : ""
-                  }
+                  <Link to={e["href"]} style={{ "font-size": "1.1em" }}>
+                    {e["text"]}
+                    {e["is_drop"] ?
+                      <i
+                        class="fas fa-chevron-down float-right"
+                        style={styles["dropbtn"]}
+                      ></i> : ""
+                    }
+                  </Link>
                 </button>
+
               </h3>
               <div
                 id={e["id"]}
@@ -223,13 +245,20 @@ function TempSideNavbar() {
                 <div class="accordion-body">
                   {e["dropdown_menu"].map((e1) => {
                     return (<>
-                      <a href={loading ? "" : "/Account/" + e1["_id"]}>
+                      {e.id == "ACDetails" ?
+                        <a href={loading ? "" : e1["href"]}>
 
-                        <div className="partition">
-                          {loading ? "" : e1["text"] + " " + (String)(e1["_id"]).slice(19, 24)}< br />
-                        </div>
+                          <div className="partition">
+                            {loading ? "" : e1["text"] + " " + (String)(e1["_id"]).slice(19, 24)}< br />
+                          </div>
 
-                      </a>
+                        </a>
+                        :
+                        <Link to={e1["href"]}>
+                          <div className="partition">
+                            {loading ? "" : e1["text"] + " " + (String)(e1["_id"]).slice(19, 24)}< br />
+                          </div>
+                        </Link>}
                     </>)
                   })}
                 </div>

@@ -29,12 +29,12 @@ export default function TopNavbarComponent({ property_name }) {
     };
     const { data, loading } = useFetch("/home/getDetails")
 
-    console.log(loading ? "" : data["data"])
+    console.log(loading ? "Loading......" : data)
 
 
     // console.log(userCookies.get("UserName"));
     // console.log(document.cookie.split(";"))
-    console.log(Cookies.get("Username"))
+    // console.log(Cookies.get("Username"))
     // console.log(Cookies.get('UserName'))
     const spinJSX = <><div class="spinner-border text-info" role="status">
         <span class="visually-hidden">Loading...</span>

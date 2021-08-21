@@ -70,5 +70,6 @@
 
 .btn, 
 .payment{
-    width:100%;
+    padding: 6%;
+    width:120%;
 }

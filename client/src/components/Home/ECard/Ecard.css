@@ -11,8 +11,10 @@ body {
     margin:0px;
     padding:0px;
 }
+.card-wrappers{
 
-.card {
+}
+.card-wrappers .card {
     margin-left:8%;
     width: 80%;
     aspect-ratio: 16/9;
@@ -28,7 +30,7 @@ body {
     margin:5%;
 }
 
-.card::before {
+.card-wrappers .card::before {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -43,7 +45,7 @@ body {
     opacity: 0.8
 }
 
-.card::after {
+.card-wrappers .card::after {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -58,13 +60,13 @@ body {
     clip-path: polygon(28% 13%, 48% 45%, 75% 63%, 100% 99%, 0 100%, 0% 60%, 0 0)
 }
 
-.upper {
+.card-wrappers .upper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1
 }
-.middle {
+.card-wrappers .middle {
     display: flex;
     margin-top:8%;
     justify-content: space-between;
@@ -72,20 +74,20 @@ body {
     z-index: 1
 }
 
-.upper h6 {
+.card-wrappers .upper h6 {
     font-size: 18px
 }
 
-.upper h4 {
+.card-wrappers .upper h4 {
     font-size: 30px;
     text-transform: uppercase
 }
 
-.lower {
+.card-wrappers .lower {
     position: absolute;
     bottom: 20px;
     z-index: 1
 }
-.fill{
+.card-wrappers .fill{
     border:2px solid black
 }

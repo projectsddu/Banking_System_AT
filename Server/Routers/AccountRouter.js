@@ -19,6 +19,7 @@ const createACMiddleware = require("../Middlewares/Account/CreateAccount")
 // const AccountType = require("../Collections/AccountTypeModel")
 
 
+
 router.post("/user/checkExists/:acNumber", [authenticate], async (req, res) => {
     try {
         if (req.is_authenticated) {

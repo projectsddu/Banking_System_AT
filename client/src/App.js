@@ -45,6 +45,9 @@ function App() {
         <Route path="/transaction">
           <TempSideNavbar></TempSideNavbar>
         </Route>
+        <Route path="/quickTransfer">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
         <Route path="/balance">
           {/* <SideNavbar></SideNavbar> */}
           <TempSideNavbar></TempSideNavbar>
@@ -58,6 +61,21 @@ function App() {
         <Route path="/makePayment">
           <TempSideNavbar></TempSideNavbar>
         </Route>
+        <Route path="/loan/carLoan">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
+        <Route path="/loan/homeLoan">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
+        <Route path="/viewfixedDeposits">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
+        <Route path="/applyfixedDeposits">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
+        <Route path="/assistance">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
       </div>
       <div className="col-9 custcol9">
 
@@ -66,6 +84,9 @@ function App() {
         </Route>
         <Route path="/transaction">
           <RightComponent component_name="transaction"></RightComponent>
+        </Route>
+        <Route path="/quickTransfer">
+          <RightComponent component_name="quickTransfer"></RightComponent>
         </Route>
         <Route path="/balance">
           <RightComponent component_name="balance"></RightComponent>
@@ -76,12 +97,26 @@ function App() {
         <Route path="/ecard/creditcards">
           <RightComponent component_name="ecards"></RightComponent>
         </Route>
-
         <Route path="/Account/:slug">
           <RightComponent component_name="account"></RightComponent>
         </Route>
         <Route path="/makePayment">
           <RightComponent component_name="makePayment"></RightComponent>
+        </Route>
+        <Route path="/loan/carLoan">
+          <RightComponent component_name="carLoan"></RightComponent>
+        </Route>
+        <Route path="/loan/homeLoan">
+          <RightComponent component_name="homeLoan"></RightComponent>
+        </Route>
+        <Route path="/viewfixedDeposits">
+          <RightComponent component_name="viewfixedDeposits"></RightComponent>
+        </Route>
+        <Route path="/applyfixedDeposits">
+          <RightComponent component_name="applyfixedDeposits"></RightComponent>
+        </Route>
+        <Route path="/assistance">
+          <RightComponent component_name="assistance"></RightComponent>
         </Route>
       </div>
     </>

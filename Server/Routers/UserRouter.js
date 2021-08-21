@@ -17,6 +17,8 @@ router.post("/user/add_user", verifyDetails, async (req, res) => {
         return res.json({ "Error:": "user already exists" })
     }
 })
+
+
 router.post("/user/login_user", async (req, res) => {
     try {
         const { username, pinNo } = req.body;
