@@ -15,8 +15,8 @@ import { useState } from "react";
 function TempSideNavbar() {
   const [navlist, setNavlist] = useState([
     {
-      "id": "Transactions",
-      "text": "Transactions",
+      "id": "Transfer",
+      "text": "Transfer Money",
       "vector-asset": TRX_SVG,
       "vector-asset-color": "#ccff00",
       "background-color": "purple",
@@ -25,11 +25,18 @@ function TempSideNavbar() {
       "href": "/home",
       "dropdown_menu": [
         {
-          "text": "Quick Transfer",
+          "text": "RTGS",
           "vector-asset": "link",
           "text-color": "green",
           "background-color": "purple",
-          "href": "/quickTransfer"
+          "href": "/quickTransfer/RTGS"
+        },
+        {
+          "text": "NEFT",
+          "vector-asset": "link",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "/quickTransfer/NEFT"
         }
       ]
     },

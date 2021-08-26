@@ -7,7 +7,7 @@ router.post("/home/getDetails", [authenticate], async (req, res) => {
     try {
 
         if (req.is_authenticated) {
-            // console.log("Getting details")s
+            // console.log("Getting details")
             return res.json({ "Success": true, "data": req.current_user })
         }
         else {

@@ -1,0 +1,44 @@
+.neftHeader{
+    color:rgb(255, 0, 128)
+}
+.custBtn1{
+    width: 20%;
+    padding: 1%;
+    margin-top:2% ;
+    background-color: rgb(40, 139, 226);
+    border: 0px;
+    border-radius: 3px;
+    color:white
+
+}
+.custCol{
+    display: flex;
+    justify-content: center;
+}
+.neftInps{
+    background-color: rgb(58, 55, 58);
+    border:3px solid rgb(112, 112, 112);
+    color: white;
+}
+.neftInps :focus{
+
+    background-color: rgb(10, 10, 10);
+    border:3px solid rgb(117, 117, 117);
+    color:yellow
+}
+.neftForm input[type=text]:focus{
+    background-color: rgb(77, 76, 76);
+    border:3px solid rgb(117, 117, 117);
+    color:rgb(251, 255, 0)
+}
+.neftForm input[type=number]:focus{
+    background-color: rgb(77, 76, 76);
+    border:3px solid rgb(117, 117, 117);
+    color:rgb(251, 255, 0)
+}
+
+/* .neftForm input[type=text]:{
+ background-color: rgb(10, 10, 10);
+    border:3px solid rgb(117, 117, 117);
+    color:yellow
+} */

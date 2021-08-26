@@ -76,6 +76,12 @@ function App() {
         <Route path="/assistance">
           <TempSideNavbar></TempSideNavbar>
         </Route>
+        <Route path="/RTGS">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
+        <Route path="/NEFT">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
       </div>
       <div className="col-9 custcol9">
 
@@ -117,6 +123,12 @@ function App() {
         </Route>
         <Route path="/assistance">
           <RightComponent component_name="assistance"></RightComponent>
+        </Route>
+        <Route path="/RTGS">
+          <RightComponent component_name="RTGS"></RightComponent>
+        </Route>
+        <Route path="/NEFT">
+          <RightComponent component_name="NEFT"></RightComponent>
         </Route>
       </div>
     </>

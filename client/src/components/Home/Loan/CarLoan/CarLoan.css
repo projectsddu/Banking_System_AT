@@ -1,0 +1,44 @@
+/* body{
+  padding:20px;
+} */
+
+#carLoanCalcForm{
+    padding:10px;
+    display:block;
+  }
+  
+  .carLoanInput{
+    padding:10px;
+    display:block;
+    width: 100%;
+  }
+  
+  .carLoanClearFix{
+    clear:both!important;
+  }
+  
+  .carLoanPaymentCalc{
+    background-color: #f7f7f7;
+    border: 1px solid #d3d3d3;
+    padding: 35px 35px;
+    overflow: auto;
+  }
+  
+  .carLoanCalcBtn{
+    display:inline-block;
+    background:#c62233;
+    color:#fff;
+    text-align:center;
+    padding:10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+  
+  #carLoanPaymentResults{
+    display: none;
+    background:#fff;
+    padding: 30px 60px 36px 60px;
+    border:1px solid lightgrey;
+    margin-top:-40%;
+    margin-left:47%;
+  }

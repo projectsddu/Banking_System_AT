@@ -13,6 +13,8 @@ import HomeLoan from '../Home/Loan/HomeLoan/HomeLoan'
 import ViewFixedDeposits from '../Home/FixedDeposits/ViewFixedDeposits'
 import ApplyFixedDeposits from '../Home/FixedDeposits/ApplyFixedDeposits'
 import TFAssistanceComponent from '../Home/TFAssistance/TFAssistanceComponent'
+import NEFTComponent from './Transfers/NEFT/NEFTComponent'
+import RTGSComponent from './Transfers/RTGS/RTGSComponent'
 
 function RightComponent({ component_name }) {
     const component_mapping = {
@@ -28,7 +30,9 @@ function RightComponent({ component_name }) {
         "homeLoan": <HomeLoan></HomeLoan>,
         "viewfixedDeposits": <ViewFixedDeposits></ViewFixedDeposits>,
         "applyfixedDeposits": <ApplyFixedDeposits></ApplyFixedDeposits>,
-        "assistance": <TFAssistanceComponent />
+        "assistance": <TFAssistanceComponent />,
+        "NEFT": <NEFTComponent />,
+        "RTGS": <RTGSComponent />
     }
     return (
         <div className="col">

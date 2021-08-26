@@ -59,10 +59,10 @@ export default function LoginComponent({ data }) {
                     <h2 className="login_header">Bankers</h2>
                 </div>
                 <div className="col-6">
-                    <div className="row">
-                        <img className="Login_Image col-8" src={img} />
 
-                    </div>
+                    <img className="Login_Image" src={img} />
+
+
                 </div>
                 <div className="col-6">
                     <form>
@@ -90,12 +90,60 @@ export default function LoginComponent({ data }) {
                                 />
                                 <div class="underline"></div>
                                 <label>IPIN / Password</label>
+                                {/* <div className="login-vertical-bar"></div> */}
                             </div>
-                            <button type="submit" class="btn btn-primary loginbtn" onClick={(e) => saveData(e)}>Login</button>
+                            <button type="submit" class="  loginbtn" onClick={(e) => saveData(e)}>Login</button>
                         </div>
                     </form>
                 </div>
             </div>
+
+
+
+
+
+            {/* <div className="mainLoginWrapper">
+                <div>
+                    <img className="Login_Image" src={img} />
+                </div>
+
+                <div>
+                    <div className="login-vertical-bar"></div>
+                </div>
+
+                <div>
+                    <form>
+                        <div class="wrapper">
+                            <div className="Login_text">
+                                <h2><b>Login</b></h2>
+                            </div>
+                            <div class="input-data m-4">
+                                <input id="username"
+                                    type="text"
+                                    value={userDetails.username}
+                                    // onChange = {e=>setUserDetails(userDetails[id]=)}
+                                    onChange={e => setUserDetails({ ...userDetails, username: e.target.value })}
+                                    required
+                                />
+                                <div class="underline"></div>
+                                <label>User ID / Account Number</label>
+                            </div>
+                            <div class="input-data m-4">
+                                <input id="pinNo"
+                                    type="password"
+                                    value={userDetails.pinNo}
+                                    onChange={e => setUserDetails({ ...userDetails, pinNo: e.target.value })}
+                                    required
+                                />
+                                <div class="underline"></div>
+                                <label>IPIN / Password</label>
+
+                            </div>
+                            <button type="submit" class="  loginbtn" onClick={(e) => saveData(e)}>Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div> */}
         </>
     )
 }

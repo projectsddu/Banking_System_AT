@@ -212,6 +212,8 @@ export default function AccountComponent() {
     // const makePaymentUrl = "/makePayment";
 
     let make_payment_req_url = "/makePayment/" + slug["pathname"].split("/")[2];
+    let make_neft_payment_req_url = "/NEFT/" + slug["pathname"].split("/")[2];
+    let make_rtgs_payment_req_url = "/RTGS/" + slug["pathname"].split("/")[2];
 
     console.log(make_payment_req_url);
     return (
@@ -244,7 +246,9 @@ export default function AccountComponent() {
                             </div>
                         </div>
                         <div className="paymentButton mt-4">
-                            <NavLink to={make_payment_req_url}><button className="btn payment">Make Payment</button></NavLink>
+                            <NavLink to={make_payment_req_url}><button className="btn payment m-2">Make Payment</button></NavLink>
+                            <NavLink to={make_rtgs_payment_req_url}><button className="btn payment m-2">RTGS</button></NavLink>
+                            <NavLink to={make_neft_payment_req_url}><button className="btn payment m-2">NEFT</button></NavLink>
                         </div>
                     </div>
 

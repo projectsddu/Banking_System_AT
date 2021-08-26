@@ -241,8 +241,8 @@ function TransactionTable(props) {
                     <div class="pt-3">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <button className="incdec btn" onClick={() => decrement()}>&lt;</button>
-                                <button className="incdec btn" onClick={() => increment()}>&gt;</button>
+                                <button className="incdec btn1 btnl" onClick={() => decrement()}>&lt;</button>
+                                <button className="incdec btn1" onClick={() => increment()}>&gt;</button>
                             </ul>
                         </nav>
                     </div>

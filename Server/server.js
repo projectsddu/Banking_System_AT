@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser")
 const HomeRouter = require("./Routers/HomeRouter")
 const AccountRouter = require("./Routers/AccountRouter")
 const CardRouter = require("./Routers/CardRouter")
+const PaymentRouter = require("./Routers/PaymentRouter")
 
 require("./Database/connect")
 const HOST = '127.0.0.1';
@@ -28,6 +29,7 @@ app.use(cookieParser())
 app.use(require('./Routers/HomeRouter.js'));
 app.use(require('./Routers/UserRouter.js'));
 app.use(require('./Routers/AccountRouter.js'));
+app.use(require('./Routers/PaymentRouter.js'));
 app.use(require('./Routers/CardRouter.js'));
 
 
