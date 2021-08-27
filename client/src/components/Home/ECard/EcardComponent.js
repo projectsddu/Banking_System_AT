@@ -9,8 +9,8 @@ export default function EcardComponent(props) {
     return (
         <>
             <div className="card-wrappers">
-                <div class={class_card}>
-                    <div class="upper">
+                <div className={class_card}>
+                    <div className="upper">
                         <h4>Bankers</h4>
                         <h5>American Express</h5>
                     </div>
@@ -18,7 +18,7 @@ export default function EcardComponent(props) {
                         <h5>CVV <b type="password">{props.cvv}</b></h5>
                         <h6>Valid Thru:<b>{props.valid_thru}</b></h6>
                     </div>
-                    <div class="lower">
+                    <div className="lower">
                         <h4><b>{props.cardnumber}</b></h4>
                         <h5>{props.name}</h5>
                     </div>

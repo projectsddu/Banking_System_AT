@@ -2,17 +2,20 @@ const express = require('express')
 const router = express.Router()
 const authenticate = require("../Middlewares/Authenticate")
 const Account = require("../Collections/AccountModel")
+const Transaction = require("../Collections/TransactionModel")
+const User = require("../Collections/UserModel")
 const verifyDebitCardTransaction = require('../Middlewares/Payment/VerifyDebitCardTransactions')
 
 router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransaction], async (req, res) => {
     try {
+        console.log(await req.body)
         if (req.is_authenticated) {
             // const acNum = req.params.acNumber;
 
             // verify receiver details
-            const { fullName, accountNumber, email, amount, reason } = req.body;
+            const { fullName, acNumber, email, amount, reason } = req.body;
 
-            if (!fullName || !accountNumber || !email || !amount || !reason) {
+            if (!fullName || !acNumber || !email || !amount) {
                 return res.status(422).json({ Error: "All fields are required!!" });
             }
 
@@ -20,19 +23,46 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
                 // fullname verification remaining
 
                 const receiverAccount = await Account.findOne({
-                    _id: accountNumber
+                    _id: acNumber
                 })
 
                 if (receiverAccount) {
-                    if (req.current_ac.accountBalance < amount) {
-                        return res.status(422).json({ Error: "NO sufficient amount" });
+                    if (parseInt(req.current_ac.accountBalance) < parseInt(amount)) {
+                        console.log("here")
+                        return res.status(200).json({ Error: "NO sufficient amount" });
                     }
                     else {
                         // Success code to be written
-                        if (req.current_debitcard.cardNumber == accountNumber) {
+                        if (req.current_debitcard.cardNumber == acNumber) {
                             return res.status(422).json({ Error: "same card number not valid!!" });
                         }
                         else {
+                            // Add data to transactions
+                            const recieverUser = await User.findOne({
+                                _id: receiverAccount.accountOwner
+                            })
+
+                            receiverAccount.accountBalance = receiverAccount.accountBalance + parseInt(amount)
+                            req.current_ac.accountBalance = parseInt(req.current_ac.accountBalance) - parseInt(amount)
+
+
+                            let st1 = await receiverAccount.save()
+                            let st2 = await req.current_ac.save()
+
+                            const trxObj = Transaction({
+                                sender: req.current_user,
+                                receiver: recieverUser,
+                                amount: amount,
+                                transactionDateTime: Date.now(),
+                                mode: "card",
+                                reason: reason,
+                                isPending: false
+                            })
+
+                            let st3 = await trxObj.save()
+                            if (!st1 || !st2 || !st3) {
+                                throw "Error saving your data"
+                            }
                             return res.json({ "Success:": true });
                         }
                     }
@@ -53,4 +83,6 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
         return res.json({ "Success:": false })
     }
 })
+
+//For NEFT
 module.exports = router;

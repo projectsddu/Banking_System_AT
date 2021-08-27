@@ -25,7 +25,7 @@ function TransactionTable(props) {
 
     // used to sort the transaction according to date
     function compDate(a, b) {
-        return new Date(b["date"]).getTime() - new Date(a["date"]).getTime();
+        return Date.parse(String(b)) - Date.parse(String(a));
     }
 
     // this is an onclick method to sort the transaction by the date
@@ -56,7 +56,7 @@ function TransactionTable(props) {
             numQuery++
             setNumQuery(numQuery)
         }
-        console.log(numQuery)
+        // console.log(numQuery)
     }
 
     const decrement = function () {
@@ -216,15 +216,23 @@ function TransactionTable(props) {
                         </thead>
                         <tbody>
                             {transactions.map((e, key) => {
-                                console.log("NumQuery" + numQuery)
+                                // console.log("NumQuery" + numQuery)
                                 if (key >= (numQuery - 1) * NUMTRX && key < numQuery * NUMTRX) {
 
-                                    console.log(key)
+                                    // console.log(key)
                                     return (
                                         <tr>
-                                            <td scope="row"> <span class="fa fa-briefcase mr-1"></span> {e["activity"]} </td>
+                                            <td scope="row"> <span class="fa fa-briefcase mr-1"></span> {e["reason"]} </td>
                                             <td>{e["account_no"]}</td>
-                                            <td class="text-muted">{e["date"]}</td>
+                                            <td class="text-muted">{new Date(e["transactionDateTime"]).getDate() + "/" +
+                                                new Date(e["transactionDateTime"]).getMonth() + "/" +
+                                                new Date(e["transactionDateTime"]).getFullYear() + " " +
+                                                new Date(e["transactionDateTime"]).getHours()
+                                                + ":" +
+                                                new Date(e["transactionDateTime"]).getMinutes()
+                                                + ":" +
+                                                new Date(e["transactionDateTime"]).getSeconds()
+                                            }</td>
                                             <td class="text-muted">{e["mode"]}</td>
                                             <td class="d-flex justify-content-end align-items-center"> {e["type"] == "debit" ? <img className="RED_UP_ARROW_LOGO" src={RED_UP_ARROW_LOGO} /> : <img className="GREEN_DOWN_ARROW_LOGO" src={GREEN_DOWN_ARROW_LOGO} />} ${e["amount"]} </td>
                                         </tr>

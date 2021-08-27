@@ -60,8 +60,9 @@
 
 }
 .paymentButton{
-    display: flex;
-    justify-content: left;
+    /* display: flex; */
+    /* justify-content: left; */
+    width: 80%;
 }
 .name-header{
     font-size: 2.7em;

@@ -14,6 +14,7 @@ const router = express.Router()
 const Account = require("../Collections/AccountModel")
 const AccountType = require("../Collections/AccountTypeModel")
 const User = require("../Collections/UserModel")
+const Transaction = require("../Collections/TransactionModel")
 const authenticate = require("../Middlewares/Authenticate")
 const createACMiddleware = require("../Middlewares/Account/CreateAccount")
 // const AccountType = require("../Collections/AccountTypeModel")
@@ -183,7 +184,14 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                 const ac = await Account.findOne({
                     _id: acnum
                 })
-                return res.json({ "data": ac, "Success": true, "userList": req.current_user });
+                const transactions = await Transaction.find({
+                    $or: [
+                        { sender: req.current_user },
+                        { receiver: req.current_user },
+
+                    ]
+                }).sort({ "date": "descending" })
+                return res.json({ "data": ac, "transaction": transactions, "Success": true, "userList": req.current_user });
             }
         }
         else {

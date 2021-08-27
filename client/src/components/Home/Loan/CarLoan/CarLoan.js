@@ -1,120 +1,181 @@
 import React from 'react'
 import './CarLoan.css'
+import calculatePayments from '../../Utility/Loan/CarLoan/CarLoanCalc'
 export default function CarLoan() {
 
-    function calculatePayments(e) {
-        console.log("kjeni")
-        e.preventDefault()
-        // console.log(e)
-        var vehiclePrice = document.getElementById('vehiclePrice').value
-        var loanTerm = document.getElementById('loanTerm').value
-        var intRate = document.getElementById('intRate').value
-        var downPayment = document.getElementById('downPayment').value
-        var tradeValue = document.getElementById('tradeValue').value
-        var amount = parseInt(vehiclePrice)
-        var months = parseInt(loanTerm)
-        var down = parseInt(downPayment)
-        var trade = parseInt(tradeValue)
-        var totalDown = down + trade
-        var annInterest = parseFloat(intRate)
-        var monInt = annInterest / 1200;
-
-        if (!amount) {
-            alert('Please add a loan amount');
-            return;
-        }
-
-        if (!months) {
-            months = 60;
-            loanTerm = document.getElementById('loanTerm').value = '60';
-        }
-
-        if (!downPayment) {
-            down = 0;
-            downPayment = document.getElementById('downPayment').value = '0';
-        }
-
-        if (!trade) {
-            trade = 0;
-            tradeValue = document.getElementById('tradeValue').value = '0';
-        }
-
-        if (!annInterest) {
-            annInterest = 3.25;
-            intRate = document.getElementById('intRate').value = '3.25';
-        }
-
-
-        var calc = ((monInt + (monInt / (Math.pow((1 + monInt), months) - 1))) * (amount - (totalDown || 0))).toFixed(2);
-
-        var carLoanPaymentResults = document.getElementById('carLoanPaymentResults');
-        carLoanPaymentResults.style.display = 'block';
-        carLoanPaymentResults.innerHTML = '';
-        var results = document.createElement('div');
-        results.innerHTML = '<h1 style="text-align:center">Estimated Monthly Payment is:<br/></h1>' + '<h3 style="text-align:center">₹ ' + calc + '/Month</h3>';
-
-        carLoanPaymentResults.append(results);
-    }
-
-
     return (
-        <div class="col-md-12 carLoanPaymentCalc">
+        <>
+            <div className="col-md-12 carLoanPaymentCalc">
 
-            <div class="col-md-6">
+                <div className="col-md-6">
 
-                <form id="carLoanCalcForm">
-                    <div class="col-md-10">
-                        <h2>Calculate Your Auto Loan Payment</h2>
-                        <div class="form-group">
-                            <label for="vehiclePrice">Vehicle Price</label>
-                            <input class="carLoanInput" type="text"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control"
-                                id="vehiclePrice" placeholder="Vehicle Price" />
+                    <form id="carLoanCalcForm">
+                        <div className="col-md-10">
+                            <h2>Calculate your Auto Loan Payment</h2>
+                            <div className="form-group">
+                                <label for="vehiclePrice">Vehicle Price</label>
+                                <input className="carLoanInput" type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
+                                    id="vehiclePrice" placeholder="Vehicle Price" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label for="downPayment">Down Payment</label>
-                            <input class="carLoanInput" type="text"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control"
-                                id="downPayment" placeholder="Down Payment" />
+                        <div className="col-md-10">
+                            <div className="form-group">
+                                <label for="downPayment">Down Payment</label>
+                                <input className="carLoanInput" type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
+                                    id="downPayment" placeholder="Down Payment" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label for="tradeValue">Trade In Value</label>
-                            <input class="carLoanInput" type="text"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control"
-                                id="tradeValue" placeholder="Trade In Value" /*value="0"*/ />
+                        <div className="col-md-10">
+                            <div className="form-group">
+                                <label for="tradeValue">Trade In Value</label>
+                                <input className="carLoanInput" type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
+                                    id="tradeValue" placeholder="Trade In Value" /*value="0"*/ />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label for="intRate">Interest Rate</label>
-                            <input class="carLoanInput" type="text"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control"
-                                id="intRate" placeholder="Interest Rate" /*value="3.25"*/ />
+                        <div className="col-md-10">
+                            <div className="form-group">
+                                <label for="intRate">Interest Rate</label>
+                                <input className="carLoanInput" type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
+                                    id="intRate" placeholder="Interest Rate" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label for="loanTerm">Loan Term</label>
-                            <input class="carLoanInput" type="text"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control"
-                                id="loanTerm" placeholder="Loan Term (ex: 36 Months)" />
+                        <div className="col-md-10">
+                            <div className="form-group">
+                                <label for="loanTerm">Loan Term</label>
+                                <input className="carLoanInput" type="text"
+                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
+                                    id="loanTerm" placeholder="Loan Term (ex: 36 Months)" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="carLoanClearFix"></div>
-                    <div class="col-md-12">
-                        <button class="carLoanCalcBtn" onClick={(e) => { calculatePayments(e) }} id="calculate" value="Calulate">Calculate</button>
-                    </div>
-                </form>
-            </div>
-            <div class="carLoanPaymentResults">
-                <div id="carLoanPaymentResults">
+                        <div className="carLoanClearFix"></div>
+                        <div className="col-md-12">
+                            <button className="carLoanCalcBtn" onClick={(e) => { calculatePayments(e) }} id="calculate" value="Calulate">Calculate</button>
+                        </div>
+                    </form>
+                </div>
+                <div className="carLoanPaymentResults">
+                    <div id="carLoanPaymentResults">
 
+                    </div>
                 </div>
             </div>
-        </div>
+
+
+            <div>
+                <form class="car-loan-form">
+                    <h1 class="car-loan-form-h1">If you have any questions, please do not hesitate to contact us : 1860 6161 6161
+                    </h1>
+
+                    <div class="car-loan-contact-form">
+                        {/* <!-- <div id="sendmessage"> Your message has been sent successfully. Thank you. </div> --> */}
+
+                        <div class="left-car-loan-form">
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Full Name<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-male"></i></span>
+                                <input class="car-loan-form-input" type="text" name="nom" id="nom" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">E-mail <span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-envelope-o"></i></span>
+                                <input class="car-loan-form-input" type="email" name="email" id="email" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Occupation<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-user"></i></span>
+                                <input class="car-loan-form-input" type="text" name="occupation" id="occupation" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Company Name<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="far fa-building"></i></span>
+                                <input class="car-loan-form-input" type="text" name="cmpname" id="cmpname" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Monthy Income<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fas fa-rupee-sign"></i></span>
+                                <input class="car-loan-form-input" type="text" name="monthlyincome" id="monthlyincome" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Loan Amount<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fas fa-rupee-sign"></i></span>
+                                <input class="car-loan-form-input" type="text" name="loanamount" id="loanamount" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Loan Tenure<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-info"></i></span>
+                                <input class="car-loan-form-input" type="text" name="loantenure" id="loantenure" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                        </div>
+
+                        <div class="right-car-loan-form">
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Address<span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-location-arrow"></i></span>
+                                <input class="car-loan-form-input" type="text" name="address" id="address" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Postcode <span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-map-marker"></i></span>
+                                <input class="car-loan-form-input" type="text" name="postal" id="postal" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">City <span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-building-o"></i></span>
+                                <input class="car-loan-form-input" type="text" name="ville" id="ville" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Phone number <span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-phone"></i></span>
+                                <input class="car-loan-form-input" type="text" name="phone" id="phone" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Subject <span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-comment-o"></i></span>
+                                <input class="car-loan-form-input" type="text" name="sujet" id="sujet" required />
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+
+                            <div class="car-loan-form-group">
+                                <p class="car-loan-form-p">Message <span class="car-loan-form-span">*</span></p>
+                                <span class="car-loan-form-icon-case"><i class="fa fa-comments-o"></i></span>
+                                <textarea class="car-loan-form-textarea" name="message" rows="14" required></textarea>
+                                {/* <!-- <div class="validation"></div> --> */}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="car-loan-form-btn">Send</button>
+
+                </form>
+            </div>
+        </>
     )
 }

@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.mi
 import { ToastContainer, toast } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import verifyPayment from '../Utility/VerifyPayment'
+import useFetch from '../Utility/General/Usefetch';
 
 function MakePayment() {
 
@@ -20,8 +21,17 @@ function MakePayment() {
         e.preventDefault()
         userDetails["accountBalance"] = loading ? -1 : data["acDetails"][0]["accountBalance"]
         const msg = verifyPayment(userDetails).then((e) => {
-            toast.dark(e);
+            if (e == "Your Details are verified please be patient while we process your request") {
+                toast.info(e);
+                saveData();
+            }
+            else {
+
+                toast.error(e);
+            }
         })
+
+
 
     }
     // function that used to display string in formatted method
@@ -47,21 +57,6 @@ function MakePayment() {
     let slug = useLocation()
     let make_payement_req = "/cards/getUserDebitCards/" + slug["pathname"].split("/")[2];
 
-    const useFetch = url => {
-        const [data, setData] = useState(null);
-        const [loading, setLoading] = useState(true);
-
-        // Similar to componentDidMount and componentDidUpdate:
-        useEffect(async () => {
-            const response = await fetch(url, { method: "POST" });
-            const data = await response.json();
-            setData(data);
-            console.log(data)
-            setLoading(false);
-        }, []);
-
-        return { data, loading };
-    };
 
     const { data, loading } = useFetch(make_payement_req);
 
@@ -72,14 +67,43 @@ function MakePayment() {
     const expiryYear = (new Date(expiryDate)).getFullYear();;
 
 
+    const saveData = async function () {
 
+        // var myHeaders = new Headers();
+        // myHeaders.append("Content-Type", "text");
+
+
+
+
+        fetch('/payment/debit/' + slug["pathname"].split("/")[2], {
+            method: 'POST',
+            body: JSON.stringify(userDetails),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        }).then(function (response) {
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then(function (data) {
+            if (data.hasOwnProperty("Success:")) {
+                toast.success("Your payment was a success");
+                // history.goBack()
+            }
+        }).catch(function (error) {
+            toast.dark("Something went wrong!");
+        });
+
+
+    }
     // const Loading... = <><h1>Jenil</h1></>
     return (
         <>
             <div class="make-payment-row">
                 <div class="make-payment-col-75 ">
                     <div class="make-payment-container make-payment-wrapper">
-                        <form action="#">
+                        <form>
                             <div class="make-payment-row">
                                 <div class="make-payment-col-50">
                                     <h3 class="make-payment-sender-details">
@@ -105,7 +129,7 @@ function MakePayment() {
                                         }
                                     />
                                     <label class="make-payment-label" for="ccnum">
-                                        <i class="fa fa-address-card-o"></i> Credit card number{" "}
+                                        <i class="fa fa-address-card-o"></i> Debit card number{" "}
                                     </label>
                                     <input
                                         disabled
@@ -214,7 +238,7 @@ function MakePayment() {
                                         minlength="24"
                                         maxLength="24"
                                         value={userDetails.acNumber}
-                                        placeholder="1111-2222-3333-4444"
+                                        placeholder="24 Digits"
                                         onChange={(e) => {
                                             setUserDetails({ ...userDetails, acNumber: e.target.value })
                                         }

@@ -31,8 +31,20 @@ const Transaction = mongoose.Schema({
         required: true
     },
 
+    mode: {
+        type: String,
+        required: true
+    },
+    reason: {
+        type: String,
+        required: true
+    },
     lockType: {
         type: String,
+        required: false
+    },
+    isPending: {
+        type: Boolean,
         required: true
     }
 

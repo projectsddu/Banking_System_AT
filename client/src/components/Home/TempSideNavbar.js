@@ -211,7 +211,7 @@ function TempSideNavbar() {
 
   return (
     <div className="sidenav">
-      <a href="/" class="d-flex heading_logo align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <a href="/home" class="d-flex heading_logo align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <img className="Headlogo" src={BANK_LOGO} />
         <span class="fs-3 heading_sidenav">Bankers</span>
       </a>

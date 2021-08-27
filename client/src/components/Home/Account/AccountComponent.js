@@ -8,6 +8,7 @@ import GREEN_DOWN_ARROW_LOGO from '../Asset/green_down_arrow_for_transaction.svg
 import RED_UP_ARROW_LOGO from '../Asset/red_up_arrow_for_transaction.svg'
 import TransactionTable from '../Transaction/TransactionTable'
 import LineChart from '../Chart_test_comp'
+import useFetch from '../Utility/General/Usefetch'
 
 
 export default function AccountComponent() {
@@ -185,77 +186,58 @@ export default function AccountComponent() {
 
         return str[0].toUpperCase() + str.slice(1, str.lengh)
     }
-    const useFetch = url => {
-        const [data, setData] = useState(null);
-        const [loading, setLoading] = useState(true);
-
-        // Similar to componentDidMount and componentDidUpdate:
-        useEffect(async () => {
-            const response = await fetch(url, { method: "POST" });
-            const data = await response.json();
-            setData(data);
-            console.log(data)
-            setLoading(false);
-        }, []);
-
-        return { data, loading };
-    };
 
 
     let slug = useLocation()
-    // console.log(slug["pathname"].split("/")[2]);
     let final_request = "/account/" + slug["pathname"].split("/")[2];
-    // console.log(final_request);
-
     const { data, loading } = useFetch(final_request);
-
-    // const makePaymentUrl = "/makePayment";
-
     let make_payment_req_url = "/makePayment/" + slug["pathname"].split("/")[2];
     let make_neft_payment_req_url = "/NEFT/" + slug["pathname"].split("/")[2];
     let make_rtgs_payment_req_url = "/RTGS/" + slug["pathname"].split("/")[2];
-
+    console.log(loading ? "....." : data)
     console.log(make_payment_req_url);
     return (
         <div className="Account-page-wrapper ">
             <div className="col bord">
                 <div className="row topDetails">
                     <div className="col-7 ">
-                        <DebitCardComponent cvv="588" className="col-6" type_card="credit" valid_thru="06/21" name={loading ? <div class="spinner-border text-warning" role="status">
-                            <span class="sr-only">Loading...</span>
+                        <DebitCardComponent cvv="588" className="col-6" type_card="credit" valid_thru="06/21" name={loading ? <div className="spinner-border text-warning" role="status">
+                            <span className="sr-only">Loading...</span>
                         </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])} cardnumber="1234-5555-2234-9900"></DebitCardComponent>
                     </div>
                     <div className="col-5 leftDetails ">
                         <div className="detailsHeader ">
-                            <h1 className="name-header">{loading ? <div class="spinner-border text-warning" role="status">
-                                <span class="sr-only">Loading...</span>
+                            <h1 className="name-header">{loading ? <div className="spinner-border text-warning" role="status">
+                                <span className="sr-only">Loading...</span>
                             </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])}</h1>
                         </div>
                         <div className="acDetails">
                             <h2 className="left-money"> Balance:<span className="money"> ${loading ? <div class="spinner-border text-warning" role="status">
-                                <span class="sr-only">Loading...</span>
+                                <span className="sr-only">Loading...</span>
                             </div> : data["data"]["accountBalance"]}</span></h2>
 
                         </div>
                         <div className="acDetails">
                             <div className="row">
                                 <h2 className="left-money col">Holders:</h2>
-                                <span className="holder col"> {loading ? <div class="spinner-border text-warning" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <span className="holder col"> {loading ? <div className="spinner-border text-warning" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div> : capitalize(data["userList"]["firstName"])}</span>
                             </div>
                         </div>
-                        <div className="paymentButton mt-4">
-                            <NavLink to={make_payment_req_url}><button className="btn payment m-2">Make Payment</button></NavLink>
-                            <NavLink to={make_rtgs_payment_req_url}><button className="btn payment m-2">RTGS</button></NavLink>
-                            <NavLink to={make_neft_payment_req_url}><button className="btn payment m-2">NEFT</button></NavLink>
+                        <div className="row mt-4">
+                            <NavLink className="col-5 m-1" to={make_payment_req_url}><button className="btn  payment">Card Transfer</button></NavLink><br />
+                            <NavLink className="col-3 m-1" to={make_rtgs_payment_req_url}><button className=" btn payment ">RTGS</button></NavLink><br />
+                            <NavLink className="col-3 " to={make_neft_payment_req_url}><button className="btn payment ">NEFT</button></NavLink>
                         </div>
                     </div>
 
                 </div>
                 <br />
                 <div className="row">
-                    <TransactionTable heading="Latest Transactions" lowerheading="transactions for ac no : 123456789" trxdata={trxData}></TransactionTable>
+                    {loading ? "" :
+                        <TransactionTable heading="Latest Transactions" lowerheading="transactions for ac no : 123456789" trxdata={data["transaction"]}></TransactionTable>
+                    }
                 </div>
                 <br />
 
