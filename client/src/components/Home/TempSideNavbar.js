@@ -183,7 +183,8 @@ function TempSideNavbar() {
   }, []);
   const styles = {
     "accordian": {
-      "background-color": "#212121",
+      // "background-color": "#212121",
+      "background-color": "#3A3B3C",
       "color": "#d7d9db",
       "border": "0px solid black",
       "padding": "",
@@ -211,10 +212,12 @@ function TempSideNavbar() {
 
   return (
     <div className="sidenav">
-      <a href="/home" class="d-flex heading_logo align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <img className="Headlogo" src={BANK_LOGO} />
-        <span class="fs-3 heading_sidenav">Bankers</span>
-      </a>
+      <div className="headofNav">
+        <a href="/home" class="d-flex heading_logo align-items-center mb-3 mb-md-0 me-md-auto  text-decoration-none">
+          <img className="Headlogo" src={BANK_LOGO} />
+          <span class="fs-3 heading_sidenav">Bankers</span>
+        </a>
+      </div>
       {navlist.map((e) => {
         return (
           <div class="accordion accordian-flush" id="accordionFlushExample" >

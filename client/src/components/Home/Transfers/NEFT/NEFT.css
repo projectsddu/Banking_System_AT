@@ -1,14 +1,14 @@
 .neftHeader{
-    color:rgb(255, 0, 128)
+    color:var(--bBlue)
 }
 .custBtn1{
     width: 20%;
     padding: 1%;
     margin-top:2% ;
-    background-color: rgb(40, 139, 226);
+    background-color: var(--bBlue);
     border: 0px;
     border-radius: 3px;
-    color:white
+    color:rgb(20, 15, 15)
 
 }
 .custCol{
@@ -24,17 +24,17 @@
 
     background-color: rgb(10, 10, 10);
     border:3px solid rgb(117, 117, 117);
-    color:yellow
+    color:var(--bBlue)
 }
 .neftForm input[type=text]:focus{
     background-color: rgb(77, 76, 76);
     border:3px solid rgb(117, 117, 117);
-    color:rgb(251, 255, 0)
+    color:var(--bBlue)
 }
 .neftForm input[type=number]:focus{
     background-color: rgb(77, 76, 76);
     border:3px solid rgb(117, 117, 117);
-    color:rgb(251, 255, 0)
+    color:var(--bBlue)
 }
 
 /* .neftForm input[type=text]:{

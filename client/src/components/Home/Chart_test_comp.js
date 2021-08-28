@@ -7,7 +7,7 @@ import './GenericChart.css'
 export default function LineChart(props) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
-    const [leftData, setleftData] = useState({})
+    const [leftData, setleftData] = useState({ })
     useEffect(() => {
 
         setData(props.data)
@@ -44,8 +44,8 @@ export default function LineChart(props) {
                         <XAxis dataKey="name" stroke="#07acf2" />
                         <YAxis stroke="#07acf2" />
                         <Tooltip />
-                        <Area type="monotone" dataKey="income" stroke="rgb(7, 242, 226)" fill="rgba(7, 242, 226,1)" />
-                        <Area type="monotone" dataKey="expense" stroke="#ccff00" fill="rgba(204, 255, 0,0.5)" />
+                        <Area type="monotone" dataKey="income" stroke="#008cffec" fill="#008cffec" />
+                        <Area type="monotone" dataKey="expense" stroke="#00EBD6EC" fill="#00EBD6EC" />
                     </AreaChart>
                 </div>
             </div>

@@ -69,11 +69,6 @@ function MakePayment() {
 
     const saveData = async function () {
 
-        // var myHeaders = new Headers();
-        // myHeaders.append("Content-Type", "text");
-
-
-
 
         fetch('/payment/debit/' + slug["pathname"].split("/")[2], {
             method: 'POST',

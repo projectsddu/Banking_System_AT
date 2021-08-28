@@ -29,7 +29,7 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
                 if (receiverAccount) {
                     if (parseInt(req.current_ac.accountBalance) < parseInt(amount)) {
                         console.log("here")
-                        return res.status(200).json({ Error: "NO sufficient amount" });
+                        return res.status(422).json({ Error: "Not enough balanace to do transaction!!" });
                     }
                     else {
                         // Success code to be written
@@ -56,7 +56,7 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
                                 receiver: recieverUser,
                                 amount: amount,
                                 transactionDateTime: Date.now(),
-                                mode: "card",
+                                mode: "CARD",
                                 reason: reason,
                                 isPending: false
                             })

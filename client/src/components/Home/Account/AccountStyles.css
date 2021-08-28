@@ -1,4 +1,5 @@
 .Account-page-wrapper{
+    /* background-color: var(--navBlack ); */
     padding: 2px;
 }
 .bord{
@@ -6,12 +7,16 @@
 }
 .topDetails{
     /* border:2px solid rgb(0, 179, 250) ; */
-    border-radius: 2%;
+    /* border-radius: 2%; */
+    width: 100%;
+    margin-left: 15px;
     padding: 1.1%;
+    background-color: var(--navBlack);
 }
 .topDetails .leftDetails{
    
-    color:rgb(243, 2, 122);
+    /* color:var(--basicGreen); */
+    color:#00CCFF;
     margin-top: 3%;
 }
 .detailsHeader{
@@ -22,7 +27,10 @@
     padding: 1%;
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(125deg,#ae00ff,rgb(53, 81, 202));
+    /* background-image: linear-gradient(125deg,var(--dbBlue),rgb(2, 175, 255)); */
+    /* background-image: linear-gradient(125deg,#B5FA8A,var(--dbBlue)00%); */
+    /* background-color: var(--dbBlue); */
+    background-color: #0daaf3;
     color:#ffffff;
     font-family: cursive;
     font-size: 1.5em;
@@ -35,7 +43,9 @@
     font-size: 1em;
 }
 .left-money{
-    color:rgb(4, 253, 170)
+    /* color:rgb(4, 253, 170) */
+    color:rgb(255, 255, 255)
+    /* color:var(--) */
 }
 .holder{
     margin-top:0.8%;
@@ -44,14 +54,15 @@
 }
 .payment{
     /* aspect-ratio: 16/9; */
-    width: 50%;
+    /* width: 50%; */
     /* margin: 10px; */
     font-size: 1.3em;
-    padding: 2%;
+    /* padding: 2%; */
+    height:90%;
     font-weight: 500;
-    color:white;
+    color:rgb(34, 33, 33);
     /* background-color: #E93B81; */
-    background-color: #FF577F;
+    background-color: var(--green1);
     /* background-image: linear-gradient(125deg,rgb(141, 4, 253),#ff006a); */
 }
 .payment:hover{
@@ -66,7 +77,9 @@
 }
 .name-header{
     font-size: 2.7em;
-    border-bottom: 3px solid rgb(0, 255, 213);
+    /* color:var(--basicGreen); */
+    color:#00CCFF;
+    border-bottom: 3px solid var(--basicGreen);
 }
 
 .btn, 

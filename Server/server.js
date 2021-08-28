@@ -6,6 +6,7 @@ const HomeRouter = require("./Routers/HomeRouter")
 const AccountRouter = require("./Routers/AccountRouter")
 const CardRouter = require("./Routers/CardRouter")
 const PaymentRouter = require("./Routers/PaymentRouter")
+const RTGSRouter = require("./Routers/RTGSRouter")
 
 require("./Database/connect")
 const HOST = '127.0.0.1';
@@ -31,5 +32,6 @@ app.use(require('./Routers/UserRouter.js'));
 app.use(require('./Routers/AccountRouter.js'));
 app.use(require('./Routers/PaymentRouter.js'));
 app.use(require('./Routers/CardRouter.js'));
+app.use(require('./Routers/RTGSRouter.js'));
 
 

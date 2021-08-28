@@ -10,11 +10,14 @@
   justify-content: center;
   color:#f1f1f1;
   margin-top: -7%;
+  /* background-color: aliceblue; */
 }
 .partition{
   display: flex;
-  background-color: rgb(253, 10, 144);
-  background-color: #2f7ff7;
+  /* background-color: rgb(253, 10, 144); */
+  /* background-color: #2f7ff7; */
+  /* background-color: #00DDF3; */
+  background-color: var(--bBlue);
   /* FF3D68 */
   /* background-image: linear-gradient(215deg,#C3073F,#950740,#6f2232); */
   margin-bottom: 3%;
@@ -22,7 +25,8 @@
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  color:#ffffff;
+  font-weight: 500;
+  color:#252525;
 }
 /* .accordian-button {
   background-color: #ccff00;
@@ -35,7 +39,9 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #222831;
+  /* background-color: #222831; */
+  /* background-color: #0d1117; */
+  background-color: #242526;
   overflow-x: hidden;
   padding-top: 20px;
   
@@ -81,7 +87,8 @@
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 20px;
-  color: #ece9e9;
+  /* color: #e4e6eb; */
+  color: #ffffff;
   display: block;
   border: none;
   background: none;
@@ -111,6 +118,12 @@
     background-color: #ff0000;
 }
 .accordion-body{
-  background-color: #171717;
+  background-color: #242526;
   border:0px;
 }
+/* .heading_logo{
+  background-color: aliceblue;
+}
+.headofNav{
+  background-color: aliceblue;
+} */

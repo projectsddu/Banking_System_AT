@@ -212,7 +212,7 @@ export default function AccountComponent() {
                             </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])}</h1>
                         </div>
                         <div className="acDetails">
-                            <h2 className="left-money"> Balance:<span className="money"> ${loading ? <div class="spinner-border text-warning" role="status">
+                            <h2 className="left-money"> Balance:<span className="money"> ${loading ? <div className="spinner-border text-warning" role="status">
                                 <span className="sr-only">Loading...</span>
                             </div> : data["data"]["accountBalance"]}</span></h2>
 
@@ -226,9 +226,11 @@ export default function AccountComponent() {
                             </div>
                         </div>
                         <div className="row mt-4">
-                            <NavLink className="col-5 m-1" to={make_payment_req_url}><button className="btn  payment">Card Transfer</button></NavLink><br />
-                            <NavLink className="col-3 m-1" to={make_rtgs_payment_req_url}><button className=" btn payment ">RTGS</button></NavLink><br />
-                            <NavLink className="col-3 " to={make_neft_payment_req_url}><button className="btn payment ">NEFT</button></NavLink>
+                            <NavLink className="col-5 mr-1" style={{ "margin-left": "-13px", }} to={make_payment_req_url}><button className="btn  payment">Card Transfer</button></NavLink><br />
+                            <NavLink className="col-3 mr-1" to={make_rtgs_payment_req_url}><button className=" btn payment ">RTGS</button></NavLink><br />
+                            <NavLink className="col-3 " style={{ "padding": "0px", }} to={make_neft_payment_req_url}><button className=" btn payment ">NEFT</button></NavLink><br />
+
+                            {/* <NavLink className="col-3 " to={make_neft_payment_req_url}><button className="btn payment ">NEFT</button></NavLink> */}
                         </div>
                     </div>
 

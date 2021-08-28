@@ -121,12 +121,12 @@ function TransactionTable(props) {
     return (
         <div>
             <div class="trx-wrapper rounded">
-                <nav class="navbar topnavigation navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand" href="#">{props.heading}<p class="text-muted pl-1">{props.lowerheading}</p> </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                <nav style={{ "background-color": "#2f3438" }} class="navbar topnavigation navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand" href="#">{props.heading}<p class="text-muted pl-1">{props.lowerheading}</p> </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
                     <div class="collapse navbar-collapse printPassbook" id="navbarNav">
                         {/* <ul class="navbar-nav ml-lg-auto">
                             <li class="nav-item "> <a href="#"><span class="fa fa-search"></span></a> <input type="search" class="dark" placeholder="Search" /></li>
                         </ul> */}
-                        <button className="btn btn-outline  btn-danger" onClick={(e) => {
+                        <button className="btn print-passbook" onClick={(e) => {
                             printPassbook(e)
                         }}>Print Passbook</button>
                     </div>

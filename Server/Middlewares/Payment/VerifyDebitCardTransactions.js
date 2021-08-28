@@ -20,7 +20,7 @@ const verifyDebitCardTransaction = async function (req, res, next) {
                 req.current_debitcard = debitCard;
             }
             else {
-                throw "Debit Card with this account do not exists"
+                throw "Debit Card with this account do not exists!!"
             }
         }
         else {
