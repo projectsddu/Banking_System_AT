@@ -51,6 +51,8 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
 
                             const trxObj = Transaction({
                                 sender: req.current_user,
+                                senderAc: req.current_ac,
+                                receiverAc: receiverAccount,
                                 receiver: recieverUser,
                                 amount: amount,
                                 transactionDateTime: Date.now(),

@@ -236,7 +236,7 @@ export default function AccountComponent() {
                 <br />
                 <div className="row">
                     {loading ? "" :
-                        <TransactionTable heading="Latest Transactions" lowerheading="transactions for ac no : 123456789" trxdata={data["transaction"]}></TransactionTable>
+                        <TransactionTable heading="Latest Transactions" lowerheading="transactions for ac no : 123456789" curAc={slug["pathname"].split("/")[2]} trxdata={data["transaction"]}></TransactionTable>
                     }
                 </div>
                 <br />

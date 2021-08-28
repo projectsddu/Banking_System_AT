@@ -25,14 +25,13 @@ function TransactionTable(props) {
 
     // used to sort the transaction according to date
     function compDate(a, b) {
-        return Date.parse(String(b)) - Date.parse(String(a));
+        return Date.parse(String(b["transactionDateTime"])) - Date.parse(String(a["transactionDateTime"]));
     }
 
     // this is an onclick method to sort the transaction by the date
     function sortByDate() {
         transactions.sort(compDate)
         setTransactions(transactions.map((e) => { return e }));
-        console.log(transactions);
     }
 
     // this is an onclick method to sort the transaction by the amounts
@@ -46,8 +45,10 @@ function TransactionTable(props) {
         // transactions must be initialized
         var credit = 0
         var debit = 0
+        const curAc = props.curAc
         transactions.map((e) => {
-            e["type"] == "debit" ? debit += e["amount"] : credit += e["amount"]
+            // e["type"] == "debit" ? debit += e["amount"] : credit += e["amount"]
+            e["senderAc"] == curAc ? debit += e["amount"] : credit += e["amount"]
         })
         setIncome({ "credit": credit, "debit": debit })
     }
@@ -58,7 +59,18 @@ function TransactionTable(props) {
         }
         // console.log(numQuery)
     }
-
+    const isDebit = function (e) {
+        const curAc = props.curAc
+        if (e["senderAc"] == curAc) {
+            console.log(
+                "called"
+            )
+            return true
+        }
+        else {
+            return false
+        }
+    }
     const decrement = function () {
         console.log(numQuery)
         if (numQuery == 1) {
@@ -69,62 +81,14 @@ function TransactionTable(props) {
             setNumQuery(numQuery)
         }
     }
-    const populateData = function () {
-        var low = numQuery - 1 * 7
-        var high = numQuery * 7
-        let final_jsx = [];
-        for (var i = low; i < high; i++) {
-            let e = transactions[i]
-            final_jsx.append(
-                <tr>
-                    <td scope="row"> <span class="fa fa-briefcase mr-1"></span> {e["activity"]} </td>
-                    <td>{e["account_no"]}</td>
-                    <td class="text-muted">{e["date"]}</td>
-                    <td class="text-muted">{e["mode"]}</td>
-                    <td class="d-flex justify-content-end align-items-center"> {e["type"] == "debit" ? <img className="RED_UP_ARROW_LOGO" src={RED_UP_ARROW_LOGO} /> : <img className="GREEN_DOWN_ARROW_LOGO" src={GREEN_DOWN_ARROW_LOGO} />} ${e["amount"]} </td>
-                </tr>
-            )
-        }
-        console.log(final_jsx)
-        return final_jsx
-    }
+
     useEffect(() => {
     }, [transactions]);
 
     useEffect(() => {
         getTotalByAmount()
     }, [])
-    const jsx1 = <><table class="table table-dark table-borderless">
-        <thead>
-            <tr>
-                <th scope="col">
-                    <button class="sort-btns">
-                        Activity
-                    </button>
-                </th>
-                <th scope="col">
-                    <button class="sort-btns">
-                        Account
-                    </button>
-                </th>
-                <th scope="col">
-                    <button class="sort-btns" onClick={() => sortByDate()}>
-                        Date <i class="fas fa-sort"></i>
-                    </button>
-                </th>
-                <th scope="col">
-                    <button class="sort-btns">
-                        Mode
-                    </button>
-                </th>
-                <th scope="col" class="text-right">
-                    <button class="sort-btns" onClick={() => sortByAmount()}>
-                        Amount <i class="fas fa-sort"></i>
-                    </button>
-                </th>
-            </tr>
-        </thead>
-    </table></>
+
 
     const printPassbook = (elem) => {
         var mywindow = window.open('', 'PRINT', 'height=400,width=600');
@@ -137,7 +101,14 @@ function TransactionTable(props) {
         mywindow.document.write("<table class='allTable' style='border:1px solid red'> <thead style='border:1px solid red'><tr><th style='border:4px solid red'>S.No</th><th style='border:4px solid red'>Activity</th><th style='border:4px solid red'>Debit/Credit</th><th style='border:4px solid red'>Date</th><th style='border:4px solid red'>Amount</th></tr></thead>")
         mywindow.document.write("<tbody>")
         transactions.map((e, key) => {
-            mywindow.document.write("<tr><th style='border:1px solid black'>" + (key + 1) + "</th><th style='border:1px solid black'>" + e["activity"] + "</th><th style='border:1px solid black'>" + e["type"] + "</th><th style='border:1px solid black'>" + e["date"] + "</th><th style='border:1px solid black'>$" + e["amount"] + "</th></tr>")
+            mywindow.document.write("<tr><th style='border:1px solid black'>" + (key + 1) + "</th><th style='border:1px solid black'>" + e["reason"] + "</th><th style='border:1px solid black'>" + (e["senderAc"] == curAc ? "Debit" : "Credit") + "</th><th style='border:1px solid black'>" + new Date(e["transactionDateTime"]).getDate() + "/" +
+                new Date(e["transactionDateTime"]).getMonth() + "/" +
+                new Date(e["transactionDateTime"]).getFullYear() + " " +
+                new Date(e["transactionDateTime"]).getHours()
+                + ":" +
+                new Date(e["transactionDateTime"]).getMinutes()
+                + ":" +
+                new Date(e["transactionDateTime"]).getSeconds() + "</th><th style='border:1px solid black'>$" + e["amount"] + "</th></tr>")
         })
 
         mywindow.document.write('</tbody></table></body >');
@@ -146,6 +117,7 @@ function TransactionTable(props) {
         mywindow.print();
         mywindow.close();
     }
+    let curAc = props.curAc
     return (
         <div>
             <div class="trx-wrapper rounded">
@@ -223,7 +195,7 @@ function TransactionTable(props) {
                                     return (
                                         <tr>
                                             <td scope="row"> <span class="fa fa-briefcase mr-1"></span> {e["reason"]} </td>
-                                            <td>{e["account_no"]}</td>
+                                            <td>{e["senderAc"] == curAc ? "to " + e["receiverAc"] : "from " + e["senderAc"]}</td>
                                             <td class="text-muted">{new Date(e["transactionDateTime"]).getDate() + "/" +
                                                 new Date(e["transactionDateTime"]).getMonth() + "/" +
                                                 new Date(e["transactionDateTime"]).getFullYear() + " " +
@@ -234,7 +206,7 @@ function TransactionTable(props) {
                                                 new Date(e["transactionDateTime"]).getSeconds()
                                             }</td>
                                             <td class="text-muted">{e["mode"]}</td>
-                                            <td class="d-flex justify-content-end align-items-center"> {e["type"] == "debit" ? <img className="RED_UP_ARROW_LOGO" src={RED_UP_ARROW_LOGO} /> : <img className="GREEN_DOWN_ARROW_LOGO" src={GREEN_DOWN_ARROW_LOGO} />} ${e["amount"]} </td>
+                                            <td class="d-flex justify-content-end align-items-center"> {e["senderAc"] == curAc ? <img className="RED_UP_ARROW_LOGO" src={RED_UP_ARROW_LOGO} /> : <img className="GREEN_DOWN_ARROW_LOGO" src={GREEN_DOWN_ARROW_LOGO} />} ${e["amount"]} </td>
                                         </tr>
                                     )
                                 }
