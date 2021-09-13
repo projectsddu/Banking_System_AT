@@ -14,32 +14,32 @@ import { useState } from "react";
 
 function TempSideNavbar() {
   const [navlist, setNavlist] = useState([
-    {
-      "id": "Transfer",
-      "text": "Transfer Money",
-      "vector-asset": TRX_SVG,
-      "vector-asset-color": "#ccff00",
-      "background-color": "purple",
-      "text-color": "purpleText",
-      "is_drop": true,
-      "href": "/home",
-      "dropdown_menu": [
-        {
-          "text": "RTGS",
-          "vector-asset": "link",
-          "text-color": "green",
-          "background-color": "purple",
-          "href": "/quickTransfer/RTGS"
-        },
-        {
-          "text": "NEFT",
-          "vector-asset": "link",
-          "text-color": "green",
-          "background-color": "purple",
-          "href": "/quickTransfer/NEFT"
-        }
-      ]
-    },
+    // {
+    //   "id": "Transfer",
+    //   "text": "Transfer Money",
+    //   "vector-asset": TRX_SVG,
+    //   "vector-asset-color": "#ccff00",
+    //   "background-color": "purple",
+    //   "text-color": "purpleText",
+    //   "is_drop": true,
+    //   "href": "/home",
+    //   "dropdown_menu": [
+    //     {
+    //       "text": "RTGS",
+    //       "vector-asset": "link",
+    //       "text-color": "green",
+    //       "background-color": "purple",
+    //       "href": "/quickTransfer/RTGS"
+    //     },
+    //     {
+    //       "text": "NEFT",
+    //       "vector-asset": "link",
+    //       "text-color": "green",
+    //       "background-color": "purple",
+    //       "href": "/quickTransfer/NEFT"
+    //     }
+    //   ]
+    // },
     {
       "id": "ACDetails",
       "text": "Your Current Accounts",

@@ -101,7 +101,7 @@ function MakePayment() {
                         <form>
                             <div class="make-payment-row">
                                 <div class="make-payment-col-50">
-                                    <h3 class="make-payment-sender-details">
+                                    <h3 style={{ "color": "#ffffff" }} class="make-payment-sender-details">
                                         <b>Sender Details</b>
                                     </h3>
                                     <br />
@@ -146,6 +146,7 @@ function MakePayment() {
                                                 Expiry Month
                                             </label>
                                             <input
+                                                style={{ "margin-left": "-20px" }}
                                                 disabled
                                                 class="make-payment-input"
                                                 type="text"
@@ -206,7 +207,7 @@ function MakePayment() {
                                 {/* Reciever's part */}
 
                                 <div class="make-payment-col-50">
-                                    <h3 class="make-payment-receiver-details">
+                                    <h3 style={{ "color": "#ffffff" }} class="make-payment-receiver-details">
                                         Receiver Details
                                     </h3>
                                     <br />

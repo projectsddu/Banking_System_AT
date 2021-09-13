@@ -10,6 +10,7 @@
 ********************************************/
 
 const express = require("express");
+const axios = require("axios").create({ baseUrl: "http://localhost:8000" })
 const router = express.Router()
 const Account = require("../Collections/AccountModel")
 const AccountType = require("../Collections/AccountTypeModel")
@@ -176,6 +177,7 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
             }
             else {
                 // particular account details
+                console.log("kndfkndfkdnfkndkfnkdnfk,")
                 console.log(acnum)
                 console.log(String(acnum).length)
                 if (String(acnum).length != 24) {
@@ -191,6 +193,11 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
 
                     ]
                 }).sort({ "date": "descending" })
+
+                const respppp = await axios({ url: "/cards/getUserDebitCards/" + acnum, method: "post" })
+                console.log("jenil")
+                console.log(await respppp.body)
+                console.log("Keval")
                 return res.json({ "data": ac, "transaction": transactions, "Success": true, "userList": req.current_user });
             }
         }

@@ -12,6 +12,7 @@
   }
 
   .make-payment-col-25 {
+    margin-left: -30px;
     -ms-flex: 25%;
     /* IE10 */
     flex: 25%;
@@ -53,7 +54,7 @@
     margin-bottom: 20px;
     padding: 12px;
     border: 1px solid rgb(37, 36, 36);
-    color:black;
+    color:rgb(0, 0, 0);
     border-radius: 9px;
     box-sizing: border-box;
     background-color: aliceblue;
@@ -61,10 +62,11 @@
 
   .make-payment-input:focus {
     background-color: rgb(214, 212, 212);
-    color:rgb(0, 0, 0)
+    color:rgb(255, 255, 255)
   }
 
   .make-payment-label {
+    color: aliceblue;
     margin-bottom: 10px;
     display: block;
     box-sizing: border-box;
@@ -114,8 +116,9 @@
   font-size:xx-large;
 }
 .make-payment-wrapper{
-  background-color: rgb(255, 255, 255);
-  
+  /* background-color: rgb(255, 255, 255); */
+  background-color: var(--bodyBlack);
+  color:aliceblue;
   border:7px solid rgb(0, 174, 255);
   border-radius: 2%;
   color:#000000;

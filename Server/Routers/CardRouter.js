@@ -98,6 +98,7 @@ router.post("/cards/getUserDebitCards/:acNumber", [authenticate], async (req, re
                     ulist.push(req.current_user.firstName + " " + req.current_user.lastName)
                 })
             ).then((e) => { return e })
+            console.log("Here on card router")
             return res.json({ "data": resp, "acDetails": allAc, "ulist": ulist, "Success:": true })
 
         }

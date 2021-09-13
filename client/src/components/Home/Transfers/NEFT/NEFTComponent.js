@@ -51,6 +51,15 @@ export default function NEFTComponent() {
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="reason" class="col-sm-2 col-form-label">Reason </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control neftInps" placeholder="Reason" id="reason"
+                                value={data["reason"]}
+                                onChange={(e) => { setData({ ...data, reason: e.target.value }) }}
+                            />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="inputPassword3" class="col-sm-2 col-form-label">Amount </label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control neftInps" placeholder="Amount" id="inputPassword3"

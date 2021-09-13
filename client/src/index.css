@@ -4,10 +4,12 @@
   --bBlue: #00d2f7;
   --dbBlue:#0066ff;
   --basicGreen:#00EBD6;
+  --green2:#00ff73;
   --white: #ffffff;
   --navBlack:#242526;
   --bodyBlack:#18191A;
-  --green1:#6CF5B0
+  --green1:#6CF5B0;
+  --green3:#00ffb3;
 }
 body {
   margin: 0;
