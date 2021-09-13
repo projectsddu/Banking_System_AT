@@ -14,7 +14,7 @@ router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req,
         }
 
         if (req.current_ac.accountBalance < amount) {
-            return res.status(200).json({ Error: "Not enough amount to do RTGS!!" });
+            return res.status(200).json({ Error: "Not enough amount to do NEFT!!" });
         }
         else {
             const beneficiaryUser = await User.findOne({

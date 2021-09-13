@@ -1,18 +1,63 @@
 import React from 'react'
-import './NEFT.css'
+import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { injectStyle } from "react-toastify/dist/inject-style";
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from "react-toastify";
+import './NEFT.css'
 
 export default function NEFTComponent() {
 
     const [data, setData] = useState({
-        name: "",
-        ac: "",
+        beneficiaryName: "",
+        beneficiaryAcNum: "",
         amount: "",
-        ISFC: ""
+        ifscCode: "",
+        reason: ""
     })
     useEffect(() => {
 
     }, [data])
+
+    function handleOnSubmit(e) {
+        e.preventDefault();
+        saveData();
+    }
+
+    const slug = useLocation();
+    console.log(slug["pathname"].split("/"));
+
+    const saveData = async function () {
+
+        const acNum = slug["pathname"].split("/")[2];
+        console.log(acNum);
+
+        fetch('/verifyNEFT/' + acNum, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        }).then(function (response) {
+            console.log(response)
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then(function (data) {
+            if (data.hasOwnProperty("Success:")) {
+                // console.log(data)
+                toast.success("Your payment was a success");
+                // history.goBack()
+            }
+            else {
+                toast.dark("Something went wrong!");
+                // console.log(data.body)
+            }
+        }).catch(function (error) {
+            // console.log(error.body)
+            toast.dark("Something went wrong! ++");
+        });
+    }
 
     return (
         <div>
@@ -26,8 +71,8 @@ export default function NEFTComponent() {
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Beneficiary Name</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control neftInps" id="inputEmail3"
-                                value={data["name"]}
-                                onChange={(e) => { setData({ ...data, name: e.target.value }) }}
+                                value={data["beneficiaryName"]}
+                                onChange={(e) => { setData({ ...data, beneficiaryName: e.target.value }) }}
                                 // setUserDetails()
                                 placeholder="Beneficiary Name" />
                         </div>
@@ -36,8 +81,8 @@ export default function NEFTComponent() {
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Beneficiary A/C</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control neftInps" id="inputEmail3"
-                                value={data["ac"]}
-                                onChange={(e) => { setData({ ...data, ac: e.target.value }) }}
+                                value={data["beneficiaryAcNum"]}
+                                onChange={(e) => { setData({ ...data, beneficiaryAcNum: e.target.value }) }}
                                 placeholder="Beneficiary Account Number" />
                         </div>
                     </div>
@@ -45,8 +90,8 @@ export default function NEFTComponent() {
                         <label for="inputPassword3" class="col-sm-2 col-form-label">ISFC code </label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control neftInps" placeholder="ISFC code of beneficiary" id="inputPassword3"
-                                value={data["ISFC"]}
-                                onChange={(e) => { setData({ ...data, ISFC: e.target.value }) }}
+                                value={data["ifscCode"]}
+                                onChange={(e) => { setData({ ...data, ifscCode: e.target.value }) }}
                             />
                         </div>
                     </div>
@@ -69,10 +114,22 @@ export default function NEFTComponent() {
                         </div>
                     </div>
                     <div class="row custCol mb-3">
-                        <button className="custBtn1">Transfer Amount</button>
+                        <button onClick={handleOnSubmit} className="custBtn1">Transfer Amount</button>
                     </div>
                 </form>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
 
         </div>
     )

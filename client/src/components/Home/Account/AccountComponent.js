@@ -9,6 +9,7 @@ import RED_UP_ARROW_LOGO from '../Asset/red_up_arrow_for_transaction.svg'
 import TransactionTable from '../Transaction/TransactionTable'
 import LineChart from '../Chart_test_comp'
 import useFetch from '../Utility/General/Usefetch'
+import makeTransactionData from '../Utility/AccountHandling/TransactionData'
 
 
 export default function AccountComponent() {
@@ -171,15 +172,16 @@ export default function AccountComponent() {
     ]
     const left_data = {
         "header": "Income Expense Chart",
-        "quote": "Spend as much as you have!",
+        "quote": "Spend as much as you have! - John Mckinzey",
         "ul_header": "Insights",
         "ul_data": [
-            "Your Credits are: 3000$",
-            "Your Debits are: 4000$",
-            "Your net Income is: -1000$",
-            "Overall Profile Rating (OPR):Poor"
+            "Try increasing your credit score",
+            "You are in a lot of debt",
+            "You could apply for Bankers exclusive loan",
+            "Overall Profile Rating (OPR): Average"
         ]
     }
+
 
 
     const capitalize = (str) => {
@@ -210,6 +212,7 @@ export default function AccountComponent() {
     const expiryDate = loading ? "cancel" : data["cardData"]["expiryDate"];
     const expiryMonth = String((new Date(expiryDate)).getMonth()).length == 1 ? " 0" + String((new Date(expiryDate)).getMonth()) : (new Date(expiryDate)).getMonth();
     const expiryYear = String((new Date(expiryDate)).getFullYear()).slice(2, 4);
+    makeTransactionData(loading ? [] : data["transaction"], slug["pathname"].split("/")[2])
     return (
         <div className="Account-page-wrapper ">
             <div className="col bord">
@@ -258,12 +261,13 @@ export default function AccountComponent() {
                 <br />
 
                 <div className="row">
-                    <LineChart data={[{ name: 'Jan', income: 400, expense: 600 },
+                    <LineChart data={loading ? [{ name: 'Jan', income: 400, expense: 600 },
                     { name: 'Feb', income: 400, expense: 200 },
                     { name: 'Mar', income: 600, expense: 700 },
                     { name: 'Apr', income: 900, expense: 400 },
                     { name: 'May', income: 1200, expense: 900 },
-                    { name: 'Jun', income: 500, expense: 700 }]} prop={left_data}
+                    { name: 'Jun', income: 500, expense: 700 }] :
+                        makeTransactionData(loading ? [] : data["transaction"], slug["pathname"].split("/")[2])} prop={left_data}
                     />
                 </div>
 

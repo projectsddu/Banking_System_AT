@@ -1,10 +1,163 @@
 import React from 'react'
-import './CarLoan.css'
+import './CarLoan1.css'
 import calculatePayments from '../../Utility/Loan/CarLoan/CarLoanCalc'
 export default function CarLoan() {
 
     return (
         <>
+
+            <div>
+                <h1 className="carLoanHeader">Apply For Now</h1>
+                <hr className="carLoanHeader" />
+            </div>
+
+            <div>
+                <form className="text-light carLoanForm mt-4">
+
+                    {/* <div class="left-home-loan-form"> */}
+
+
+                    <div className="row mb-3 ">
+                        <label for="fullName" className="col-sm-2 col-form-label">Full Name
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-male"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="fullname"
+                                placeholder="Full Name" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="email" className="col-sm-2 col-form-label">Email
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-envelope-o"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="email" className="form-control carLoanInps" id="email"
+                                placeholder="Email" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="occupation" className="col-sm-2 col-form-label">Occupation
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-user"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="occupation"
+                                placeholder="Occupation" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="cmpname" className="col-sm-2 col-form-label">Company Name
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="far fa-building"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="cmpname"
+                                placeholder="Company Name" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="monthlyincome" className="col-sm-2 col-form-label">Monthy Income
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fas fa-rupee-sign"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="monthlyincome"
+                                placeholder="Monthy Income" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="loanamount" className="col-sm-2 col-form-label">Loan Amount
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fas fa-rupee-sign"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="loanamount"
+                                placeholder="Loan Amount" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="loantenure" className="col-sm-2 col-form-label">Loan Tenure
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-info"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="loantenure"
+                                placeholder="Loan Tenure" required />
+                        </div>
+                    </div>
+
+
+                    {/* </div> */}
+
+                    {/* <div class="right-home-loan-form"> */}
+
+                    <div className="row mb-3 ">
+                        <label for="address" className="col-sm-2 col-form-label">Address
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-location-arrow"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="address"
+                                placeholder="Address" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="postal" className="col-sm-2 col-form-label">Postcode
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-map-marker"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="postal"
+                                placeholder="Postcode" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="ville" className="col-sm-2 col-form-label">City
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-building-o"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="postal"
+                                placeholder="City" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="phone" className="col-sm-2 col-form-label">Phone Number
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-phone"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="phone"
+                                placeholder="Phone Number" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="subject" className="col-sm-2 col-form-label">Subject
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-comment-o"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="subject"
+                                placeholder="Subject" required />
+                        </div>
+                    </div>
+
+                    <div className="row mb-3 ">
+                        <label for="message" className="col-sm-2 col-form-label">Message
+                            <span className="home-loan-form-span"> * </span></label>
+                        {/* <span class="home-loan-form-icon-case"><i class="fa fa-comments-o"></i></span> */}
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control carLoanInps" id="message"
+                                placeholder="Message" required />
+                        </div>
+                    </div>
+                    {/* </div> */}
+
+                    <button type="submit" className="carLoancustBtn1">Send</button>
+
+                </form>
+            </div>
+
             <div className="col-md-12 carLoanPaymentCalc">
 
                 <div className="col-md-6">
@@ -62,119 +215,6 @@ export default function CarLoan() {
 
                     </div>
                 </div>
-            </div>
-
-
-            <div>
-                <form class="car-loan-form">
-                    <h1 class="car-loan-form-h1">If you have any questions, please do not hesitate to contact us : 1860 6161 6161
-                    </h1>
-
-                    <div class="car-loan-contact-form">
-                        {/* <!-- <div id="sendmessage"> Your message has been sent successfully. Thank you. </div> --> */}
-
-                        <div class="left-car-loan-form">
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Full Name<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-male"></i></span>
-                                <input class="car-loan-form-input" type="text" name="nom" id="nom" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">E-mail <span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-envelope-o"></i></span>
-                                <input class="car-loan-form-input" type="email" name="email" id="email" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Occupation<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-user"></i></span>
-                                <input class="car-loan-form-input" type="text" name="occupation" id="occupation" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Company Name<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="far fa-building"></i></span>
-                                <input class="car-loan-form-input" type="text" name="cmpname" id="cmpname" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Monthy Income<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fas fa-rupee-sign"></i></span>
-                                <input class="car-loan-form-input" type="text" name="monthlyincome" id="monthlyincome" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Loan Amount<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fas fa-rupee-sign"></i></span>
-                                <input class="car-loan-form-input" type="text" name="loanamount" id="loanamount" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Loan Tenure<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-info"></i></span>
-                                <input class="car-loan-form-input" type="text" name="loantenure" id="loantenure" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                        </div>
-
-                        <div class="right-car-loan-form">
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Address<span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-location-arrow"></i></span>
-                                <input class="car-loan-form-input" type="text" name="address" id="address" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Postcode <span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-map-marker"></i></span>
-                                <input class="car-loan-form-input" type="text" name="postal" id="postal" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">City <span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-building-o"></i></span>
-                                <input class="car-loan-form-input" type="text" name="ville" id="ville" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Phone number <span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-phone"></i></span>
-                                <input class="car-loan-form-input" type="text" name="phone" id="phone" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Subject <span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-comment-o"></i></span>
-                                <input class="car-loan-form-input" type="text" name="sujet" id="sujet" required />
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-
-                            <div class="car-loan-form-group">
-                                <p class="car-loan-form-p">Message <span class="car-loan-form-span">*</span></p>
-                                <span class="car-loan-form-icon-case"><i class="fa fa-comments-o"></i></span>
-                                <textarea class="car-loan-form-textarea" name="message" rows="14" required></textarea>
-                                {/* <!-- <div class="validation"></div> --> */}
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="car-loan-form-btn">Send</button>
-
-                </form>
             </div>
         </>
     )

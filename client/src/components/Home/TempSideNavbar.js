@@ -117,6 +117,25 @@ function TempSideNavbar() {
       ]
     },
     {
+      "id": "yourLoans",
+      "text": "Your Loans",
+      "vector-asset": E_CARD_SVG,
+      "vector-asset-color": "#ccff00",
+      "background-color": "purple",
+      "text-color": "purpleText",
+      "href": "",
+      "is_drop": true,
+      "dropdown_menu": [
+        {
+          "text": "Loan 3344",
+          "vector-asset": "",
+          "text-color": "green",
+          "background-color": "purple",
+          "href": "/yourLoans/3344"
+        },
+      ]
+    },
+    {
       "id": "assistance",
       "text": "24 X 7 Assistance",
       "vector-asset": H_ASSIT,

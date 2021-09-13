@@ -1,54 +1,23 @@
-#depositTypeErr{
-    margin-left: 1%;
-    color: red;
-}
 
-#amtErr{
-    color: red;
-}
-
-#yearsErr{
-    color: red;
-}
-
-#rateErr{
-    color: red;
-}
-
-#freqErr{
-    color: red;
-}
-
-/* css for custom dropdown menu starts */
-.selectTagFixedDeposit{
-    color: white;
-    background-color: rgb(58, 55, 58);
-    border-color: rgb(112, 112, 112);
-    border: none;
-    padding: 1%;
-    margin: 0;
-    width: 20%;
-}
-/* css for custom dropdown menu ends */  
-
-.fixedDepositHeaderHRL{
+.yourloansHeader{
     color:var(--bBlue)
 }
-
-.fixedDepositLabel{
-    display: inline;
+.li-item{
+    color:var(--green1);
+    font-size: 1.2em;
 }
-
-.fixedDepositCalcRadioBtns{
-    margin-left:2%;
-    margin-right:1%;
+.leading-li{
+    color: var(--bBlue);
+    font-weight: 550;
 }
-
-.fixedDepositHeader{
+.li-heads{
+    color:var(--green2)
+}
+.neftHeader{
     /* color:rgb(255, 0, 128) */
     color:var(--bBlue)
 }
-.fixedDepositCustBtn1{
+.custBtn1{
     width: 20%;
     padding: 1%;
     margin-top:2% ;
@@ -58,34 +27,35 @@
     border: 0px;
     border-radius: 3px;
     color:rgb(22, 20, 20)
+
 }
 .custCol{
     display: flex;
     justify-content: center;
 }
-.fixedDepositInps{
+.neftInps{
     background-color: rgb(58, 55, 58);
     border:3px solid rgb(112, 112, 112);
     color: white;
 }
-.fixedDepositInps :focus{
+.neftInps :focus{
 
     background-color: rgb(10, 10, 10);
     border:3px solid rgb(117, 117, 117);
     color:var(--bBlue)
 }
-.fixedDepositForm input[type=text]:focus{
+.neftForm input[type=text]:focus{
     background-color: rgb(77, 76, 76);
     border:3px solid rgb(117, 117, 117);
     color:var(--bBlue)
 }
-.fixedDepositForm input[type=number]:focus{
+.neftForm input[type=number]:focus{
     background-color: rgb(77, 76, 76);
     border:3px solid rgb(117, 117, 117);
     color:var(--bBlue)
 }
 
-/* .fixedDepositForm input[type=text]:{
+/* .neftForm input[type=text]:{
  background-color: rgb(10, 10, 10);
     border:3px solid rgb(117, 117, 117);
     color:yellow

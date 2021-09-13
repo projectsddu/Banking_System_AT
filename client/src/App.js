@@ -7,6 +7,7 @@ import HomeComponent from './components/Home/HomeComponent';
 import CardComponent from './components/Home/CardComponent';
 import RightComponent from './components/Home/RightComponent';
 import TempSideNavbar from './components/Home/TempSideNavbar';
+import YourLoans from './components/Home/YourLoans/YourLoans';
 import { injectStyle } from "react-toastify/dist/inject-style";
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
 
         </Route>
         <Route path="/transaction">
+          <TempSideNavbar></TempSideNavbar>
+        </Route>
+        <Route path="/yourLoans">
           <TempSideNavbar></TempSideNavbar>
         </Route>
         <Route path="/quickTransfer">
@@ -129,6 +133,9 @@ function App() {
         </Route>
         <Route path="/NEFT">
           <RightComponent component_name="NEFT"></RightComponent>
+        </Route>
+        <Route path="/yourLoans">
+          <RightComponent component_name="yourLoans"></RightComponent>
         </Route>
       </div>
     </>
