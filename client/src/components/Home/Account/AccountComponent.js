@@ -186,6 +186,15 @@ export default function AccountComponent() {
 
         return str[0].toUpperCase() + str.slice(1, str.lengh)
     }
+    const parseCardnum = (data) => {
+        data = String(data)
+        let str1 = ""
+        str1 += data.substring(0, 4) + "-"
+        str1 += data.substring(4, 8) + "-"
+        str1 += data.substring(8, 12) + "-"
+        str1 += data.substring(12, 16)
+        return str1
+    }
 
 
     let slug = useLocation()
@@ -196,14 +205,19 @@ export default function AccountComponent() {
     let make_rtgs_payment_req_url = "/RTGS/" + slug["pathname"].split("/")[2];
     console.log(loading ? "....." : data)
     console.log(make_payment_req_url);
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    const expiryDate = loading ? "cancel" : data["cardData"]["expiryDate"];
+    const expiryMonth = String((new Date(expiryDate)).getMonth()).length == 1 ? " 0" + String((new Date(expiryDate)).getMonth()) : (new Date(expiryDate)).getMonth();
+    const expiryYear = String((new Date(expiryDate)).getFullYear()).slice(2, 4);
     return (
         <div className="Account-page-wrapper ">
             <div className="col bord">
                 <div className="row topDetails">
                     <div className="col-7 ">
-                        <DebitCardComponent cvv="588" className="col-6" type_card="credit" valid_thru="06/21" name={loading ? <div className="spinner-border text-warning" role="status">
+                        <DebitCardComponent cvv={loading ? "" : data["cardData"]["cvvNumber"]} className="col-6" type_card="credit" valid_thru={loading ? "" : expiryMonth + "/" + expiryYear} name={loading ? <div className="spinner-border text-warning" role="status">
                             <span className="sr-only">Loading...</span>
-                        </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])} cardnumber="1234-5555-2234-9900"></DebitCardComponent>
+                        </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])} cardnumber={loading ? "1234-5555-2234-9900" : parseCardnum(data["cardData"]["cardNumber"])}></DebitCardComponent>
                     </div>
                     <div className="col-5 leftDetails ">
                         <div className="detailsHeader ">

@@ -1,4 +1,4 @@
-function cal() {
+function cal(e) {
     if (!checkAll())
         return;
 
@@ -39,7 +39,8 @@ function checkAll() {
     else
         return false;
 }
-function checkType() {
+function checkType(e) {
+    console.log("jksndkjsndksndksndksndksndksn")
     if (document.f1.depositType.value.length == 0) {
         document.getElementById("depositTypeErr").innerText = "* Select a deposit type";
         return false;
@@ -88,3 +89,4 @@ function checkFreq() {
         return true;
     }
 }
+export default { cal, checkFreq, checkRate, checkType }

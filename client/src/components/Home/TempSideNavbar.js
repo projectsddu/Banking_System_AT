@@ -41,7 +41,7 @@ function TempSideNavbar() {
     //   ]
     // },
     {
-      "id": "ACDetails",
+      "id": "SavingsAc",
       "text": "Your Current Accounts",
       "vector-asset": ACD_SVG,
       "vector-asset-color": "#ccff00",
@@ -52,7 +52,7 @@ function TempSideNavbar() {
       "dropdown_menu": []
     },
     {
-      "id": "SavingsAc",
+      "id": "ACDetails",
       "text": "Your Saving Accounts",
       "vector-asset": ACD_SVG,
       "vector-asset-color": "#ccff00",

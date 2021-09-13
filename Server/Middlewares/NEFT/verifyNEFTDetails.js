@@ -34,3 +34,5 @@ const verifyNEFTDetails = async function (req, res, next) {
         return res.json({ "Error:": e.toString() })
     }
 }
+
+module.exports = verifyNEFTDetails

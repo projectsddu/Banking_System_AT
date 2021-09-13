@@ -16,6 +16,7 @@ const Account = require("../Collections/AccountModel")
 const AccountType = require("../Collections/AccountTypeModel")
 const User = require("../Collections/UserModel")
 const Transaction = require("../Collections/TransactionModel")
+const DebitCard = require("../Collections/DebitCardModel")
 const authenticate = require("../Middlewares/Authenticate")
 const createACMiddleware = require("../Middlewares/Account/CreateAccount")
 // const AccountType = require("../Collections/AccountTypeModel")
@@ -194,11 +195,9 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                     ]
                 }).sort({ "date": "descending" })
 
-                const respppp = await axios({ url: "/cards/getUserDebitCards/" + acnum, method: "post" })
-                console.log("jenil")
-                console.log(await respppp.body)
-                console.log("Keval")
-                return res.json({ "data": ac, "transaction": transactions, "Success": true, "userList": req.current_user });
+
+                const cardData = await DebitCard.findOne({ accountAttached: acnum })
+                return res.json({ "cardData": cardData, "data": ac, "transaction": transactions, "Success": true, "userList": req.current_user });
             }
         }
         else {

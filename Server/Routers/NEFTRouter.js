@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const authenticate = require("../Middlewares/Authenticate");
 const verifyNEFTDetails = require("../Middlewares/NEFT/verifyNEFTDetails");
+const Transaction = require("../Collections/TransactionModel")
+const User = require("../Collections/UserModel")
 
 router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req, res) => {
     try {
@@ -24,6 +26,25 @@ router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req,
 
             let st1 = await req.beneficiaryAc.save();
             let st2 = await req.current_ac.save();
+
+            const trxObj = await Transaction({
+                sender: req.current_user,
+                senderAc: req.current_ac,
+                receiverAc: req.beneficiaryAc,
+                receiver: beneficiaryUser,
+                amount: amount,
+                transactionDateTime: Date.now(),
+                mode: "NEFT",
+                reason: reason,
+                isPending: false
+
+            })
+
+            let st3 = await trxObj.save()
+            if (!st1 || !st2 || !st3) {
+                throw "Error saving your data"
+            }
+            return res.json({ "Success:": true });
         }
 
     }
@@ -32,3 +53,5 @@ router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req,
         return res.json({ "Success:": false })
     }
 })
+
+module.exports = router;
