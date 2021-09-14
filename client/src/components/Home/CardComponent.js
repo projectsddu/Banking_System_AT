@@ -4,7 +4,7 @@ import './CardComponent.css'
 function CardComponent(props) {
 
 
-    return (
+    return (    
         <div class="gen_card  illustration ">
             <div class="card-body p-0 d-flex flex-fill">
                 <div class="row g-0 w-100">

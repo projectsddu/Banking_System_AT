@@ -30,7 +30,8 @@ export default function HomeLoan() {
         const msg = verifyLoanInquiry(userDetails).then((e) => {
             if (e == "Your Details are verified please be patient while we process your request") {
                 toast.info(e);
-                // saveData();
+                console.log("before save data");
+                saveData();
             }
             else {
 
@@ -39,12 +40,37 @@ export default function HomeLoan() {
         })
     }
 
+
+    const saveData = async function () {
+        // console.log("save data");
+        fetch('/verifyLoanInquiryDetails', {
+            method: 'POST',
+            body: JSON.stringify(userDetails),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        }).then(function (response) {
+            console.log(response);
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then(function (data) {
+            if (data.hasOwnProperty("Success:")) {
+                toast.success("Your Loan inquiry was successful!!");
+                // history.goBack()
+            }
+        }).catch(function (error) {
+            toast.dark("Something went wrong!");
+        });
+    }
+
     return (
         <>
 
             <div>
-                <h1 className="carLoanHeader">Apply For Now</h1>
-                <hr className="carLoanHeader" />
+                <h1 className="homeLoanHeader">Apply For Loan Now</h1>
+                <hr className="homeLoanHeader" />
             </div>
 
             <div>
@@ -229,8 +255,10 @@ export default function HomeLoan() {
                             <span className="home-loan-form-span"> * </span></label>
                         {/* <span class="home-loan-form-icon-case"><i class="fa fa-comments-o"></i></span> */}
                         <div className="col-sm-10">
-                            <select class="loanTypeSelectDropDown" name="freq" required>
-                                <option value="">Select</option>
+                            <select class="loanTypeSelectDropDown" name="freq" 
+                                onChange={e => setUserDetails({ ...userDetails, loanType: e.target.value })}
+                                required>
+                                <option value={''}>Select</option>
                                 <option value={'homeLoan'}>Home Loan</option>
                                 <option value={'carLoan'}>Car Loan</option>
                                 <option value={'studentLoan'}>Stduent Loan</option>
@@ -256,49 +284,50 @@ export default function HomeLoan() {
                 draggable
                 pauseOnHover
             />
-            <div >
+            <br/>
+            <br/>
+            <div>
                 <h1 className="loanPaymentHeader">Calculate your Home Loan Payment</h1>
                 <hr className="loanPaymentHeaderHRL" />
             </div>
                 <div>
-                    <h2>Calculate your Home Loan Payment</h2>
-                    <form className="text-light neftForm mt-4">
+                    <form className="text-light fixedDepositForm mt-4">
                         <div class="row mb-3 ">
-                            <label for="homePrice">Home Price</label>
+                            <label className="col-sm-2 col-form-label" for="homePrice">Home Price</label>
                             <div class="col-sm-10">
-                                <input className="homeLoanInput" type="text"
+                                <input className="form-control homeLoanInps" type="text"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
                                     id="homePrice" placeholder="Home Price" />
                             </div>
                         </div>
                         <div class="row mb-3 ">
-                            <label for="downPayment">Down Payment</label>
+                            <label className="col-sm-2 col-form-label" for="downPayment">Down Payment</label>
                             <div class="col-sm-10">
-                                <input className="homeLoanInput" type="text"
+                                <input className="form-control homeLoanInps" type="text"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
                                     id="downPayment" placeholder="Down Payment" />
                             </div>
                         </div>
                         <div class="row mb-3 ">
-                            <label for="tradeValue">Trade In Value</label>
+                            <label className="col-sm-2 col-form-label" for="tradeValue">Trade In Value</label>
                             <div class="col-sm-10">
-                                <input className="homeLoanInput" type="text"
+                                <input className="form-control homeLoanInps" type="text"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
                                     id="tradeValue" placeholder="Trade In Value" /*value="0"*/ />
                             </div>
                         </div>
                         <div class="row mb-3 ">
-                            <label for="intRate">Interest Rate</label>
+                            <label className="col-sm-2 col-form-label" for="intRate">Interest Rate</label>
                             <div class="col-sm-10">
-                                <input className="homeLoanInput" type="text"
+                                <input className="form-control homeLoanInps" type="text"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
                                     id="intRate" placeholder="Interest Rate" />
                             </div>
                         </div>
                         <div class="row mb-3 ">
-                            <label for="loanTerm">Loan Term</label>
+                            <label className="col-sm-2 col-form-label" for="loanTerm">Loan Term</label>
                             <div class="col-sm-10">
-                                <input className="homeLoanInput" type="text"
+                                <input className="form-control homeLoanInps" type="text"
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '1');" className="form-control"
                                     id="loanTerm" placeholder="Loan Term (ex: 36 Months)" />
                             </div>

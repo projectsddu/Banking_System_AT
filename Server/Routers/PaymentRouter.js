@@ -86,5 +86,9 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
     }
 })
 
+router.post("/verifyLoanInquiryDetails/testing", async (req, res) => {
+    res.send("Success from now")
+})
+
 //For NEFT
 module.exports = router;

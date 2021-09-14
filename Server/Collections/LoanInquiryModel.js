@@ -1,8 +1,9 @@
 const mongoose = require("mongoose")
 
 const LoanInquiry = mongoose.Schema({
-    fullName: {
-        type: String,
+    userAccount: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AccountModel",
         required: true
     },
     email: {
@@ -46,6 +47,10 @@ const LoanInquiry = mongoose.Schema({
         required: true
     },
     userQueries: {
+        type: String,
+        required: true
+    },
+    loanType: {
         type: String,
         required: true
     }

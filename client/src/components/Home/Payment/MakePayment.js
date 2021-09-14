@@ -65,8 +65,6 @@ function MakePayment() {
 
 
     const saveData = async function () {
-
-
         fetch('/payment/debit/' + slug["pathname"].split("/")[2], {
             method: 'POST',
             body: JSON.stringify(userDetails),
@@ -86,8 +84,6 @@ function MakePayment() {
         }).catch(function (error) {
             toast.dark("Something went wrong!");
         });
-
-
     }
     // const Loading... = <><h1>Jenil</h1></>
     return (

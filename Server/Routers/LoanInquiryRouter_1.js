@@ -1,6 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const authenticate = require("../Middlewares/Authenticate");
+const express = require('express')
+const router = express.Router()
+const authenticate = require("../Middlewares/Authenticate")
 const LoanInquiry = require("../Collections/LoanInquiryModel")
 
 router.post("/verifyLoanInquiryDetails", [authenticate], async (req, res) => {

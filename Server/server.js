@@ -8,6 +8,8 @@ const CardRouter = require("./Routers/CardRouter")
 const PaymentRouter = require("./Routers/PaymentRouter")
 const RTGSRouter = require("./Routers/RTGSRouter")
 const NEFTRouter = require("./Routers/NEFTRouter")
+const LoanInquiryRouter = require("./Routers/LoanInquiryRouter")
+// const LoanInquiryRouter = require("./Routers/LoanInquiryRouter_1")
 
 require("./Database/connect")
 const HOST = '127.0.0.1';
@@ -26,8 +28,10 @@ app.get("/testing", (req, res) => {
 
 app.use(express.json())
 app.use(cookieParser())
-
+ 
 //Routers defined here
+app.use(require('./Routers/LoanInquiryRouter.js'));
+// app.use(require('./Routers/LoanInquiryRouter_1.js'));
 app.use(require('./Routers/HomeRouter.js'));
 app.use(require('./Routers/UserRouter.js'));
 app.use(require('./Routers/AccountRouter.js'));
@@ -35,5 +39,6 @@ app.use(require('./Routers/PaymentRouter.js'));
 app.use(require('./Routers/CardRouter.js'));
 app.use(require('./Routers/RTGSRouter.js'));
 app.use(require('./Routers/NEFTRouter.js'));
+app.use(require('./Routers/LoanRouter.js'));
 
 

@@ -55,6 +55,8 @@ function calculatePayments(e) {
     results.innerHTML = (calc < 0) || (annInterest <= 0) ? '<h1 style="text-align:center">Well you can buy yourself you dont need loan</h1>' : '<h1 style="text-align:center">Estimated Monthly Payment is:<br/></h1>' + '<h3 style="text-align:center">₹ ' + calc + '/Month</h3>';
 
     homeLoanPaymentResults.append(results);
+
+    document.getElementById("homeLoanPaymentResults").style.border = "thick dashed #00d2f7";
 }
 
 module.exports = calculatePayments
