@@ -68,7 +68,7 @@ function App() {
         <Route path="/loan/carLoan">
           <TempSideNavbar></TempSideNavbar>
         </Route>
-        <Route path="/loan/homeLoan">
+        <Route path="/loan">
           <TempSideNavbar></TempSideNavbar>
         </Route>
         <Route path="/viewfixedDeposits">
@@ -116,8 +116,8 @@ function App() {
         <Route path="/loan/carLoan">
           <RightComponent component_name="carLoan"></RightComponent>
         </Route>
-        <Route path="/loan/homeLoan">
-          <RightComponent component_name="homeLoan"></RightComponent>
+        <Route path="/loan/loanInquiry">
+          <RightComponent component_name="loanInquiry"></RightComponent>
         </Route>
         <Route path="/viewfixedDeposits">
           <RightComponent component_name="viewfixedDeposits"></RightComponent>

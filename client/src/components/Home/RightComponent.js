@@ -28,7 +28,7 @@ function RightComponent({ component_name }) {
         "makePayment": <MakePayement></MakePayement>,
         "quickTransfer": <QuickTransfer></QuickTransfer>,
         "carLoan": <CarLoan></CarLoan>,
-        "homeLoan": <HomeLoan></HomeLoan>,
+        "loanInquiry": <HomeLoan></HomeLoan>,
         "viewfixedDeposits": <ViewFixedDeposits></ViewFixedDeposits>,
         "applyfixedDeposits": <ApplyFixedDeposits></ApplyFixedDeposits>,
         "assistance": <TFAssistanceComponent />,

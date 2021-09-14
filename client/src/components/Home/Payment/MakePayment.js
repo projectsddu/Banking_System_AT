@@ -30,9 +30,6 @@ function MakePayment() {
                 toast.error(e);
             }
         })
-
-
-
     }
     // function that used to display string in formatted method
     const capitalize = (str) => {

@@ -101,14 +101,14 @@ function TempSideNavbar() {
       "is_drop": true,
       "dropdown_menu": [
         {
-          "text": "Home Loan",
+          "text": "Loan Inquiry",
           "vector-asset": "",
           "text-color": "green",
           "background-color": "purple",
-          "href": "/loan/homeloan"
+          "href": "/loan/loanInquiry"
         },
         {
-          "text": "Car Loan",
+          "text": "Offers for Loan",
           "vector-asset": "",
           "text-color": "green",
           "background-color": "purple",
