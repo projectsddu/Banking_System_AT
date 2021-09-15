@@ -65,14 +65,15 @@ export default function NEFTComponent() {
         <div>
 
             <div >
-                <h1 className="neftHeader">Transfer Via RTGS</h1>
+                <h1 className="rtgsHeader">Transfer Via RTGS</h1>
+                <hr className="rtgsHeader" />
             </div>
             <div>
-                <form className="text-light neftForm mt-4">
+                <form className="text-light rtgsForm mt-5">
                     <div class="row mb-3 ">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Beneficiary Name</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label"><b>Beneficiary Name</b><span className="home-loan-form-span"> * </span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control neftInps" id="inputEmail3"
+                            <input type="text" class="form-control rtgsInps" id="inputEmail3"
                                 value={data["beneficiaryName"]}
                                 onChange={(e) => { setData({ ...data, beneficiaryName: e.target.value }) }}
                                 // setUserDetails()
@@ -80,43 +81,44 @@ export default function NEFTComponent() {
                         </div>
                     </div>
                     <div class="row mb-3 ">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Beneficiary A/C</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label"><b>Beneficiary A/C</b><span className="home-loan-form-span"> * </span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control neftInps" id="inputEmail3"
+                            <input type="text" class="form-control rtgsInps" id="inputEmail3"
                                 value={data["beneficiaryAcNum"]}
                                 onChange={(e) => { setData({ ...data, beneficiaryAcNum: e.target.value }) }}
                                 placeholder="Beneficiary Account Number" />
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">ISFC code </label>
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><b>ISFC code</b><span className="home-loan-form-span"> * </span></label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control neftInps" placeholder="ISFC code of beneficiary" id="inputPassword3"
+                            <input type="text" class="form-control rtgsInps" placeholder="ISFC code of beneficiary" id="inputPassword3"
                                 value={data["ifscCode"]}
                                 onChange={(e) => { setData({ ...data, ifscCode: e.target.value }) }}
                             />
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="reason" class="col-sm-2 col-form-label">Reason </label>
+                        <label for="reason" class="col-sm-2 col-form-label"><b>Reason</b>
+                            <span className="home-loan-form-span"> * </span> </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control neftInps" placeholder="Reason" id="reason"
+                            <input type="text" class="form-control rtgsInps" placeholder="Reason" id="reason"
                                 value={data["reason"]}
                                 onChange={(e) => { setData({ ...data, reason: e.target.value }) }}
                             />
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Amount </label>
+                        <label for="inputPassword3" class="col-sm-2 col-form-label"><b>Amount</b> <span className="home-loan-form-span"> * </span></label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control neftInps" placeholder="Amount" id="inputPassword3"
+                            <input type="number" class="form-control rtgsInps" placeholder="Amount" id="inputPassword3"
                                 value={data["amount"]}
                                 onChange={(e) => { setData({ ...data, amount: e.target.value }) }}
                             />
                         </div>
                     </div>
                     <div class="row custCol mb-3">
-                        <button onClick={handleOnSubmit} className="custBtn1">Transfer Amount</button>
+                        <button onClick={handleOnSubmit} className="custBtnRTGS">Transfer Amount</button>
                     </div>
                 </form>
             </div>

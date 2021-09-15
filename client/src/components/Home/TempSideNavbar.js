@@ -126,13 +126,7 @@ function TempSideNavbar() {
       "href": "",
       "is_drop": true,
       "dropdown_menu": [
-        {
-          "text": "Loan 3344",
-          "vector-asset": "",
-          "text-color": "green",
-          "background-color": "purple",
-          "href": "/yourLoans/3344"
-        },
+
       ]
     },
     {
@@ -150,7 +144,45 @@ function TempSideNavbar() {
   ]);
   const history = useHistory()
   const uri = "/user/getACDetails/-1"
-  const useFetch = url => {
+
+
+  const callBack1 = data => {
+    console.log("jenijknjknjnjbndsjbsjdbfjsdbfjsdbfjsdbfj")
+    const tplist = []
+    for (var i = 0; i < data["data"].length; i++) {
+      var obj1 = data["data"][i]
+      data["data"][i]["text"] = data["ulist"][i]
+      data["data"][i]["href"] = "/Account/" + obj1["_id"]
+    }
+    navlist[1]["dropdown_menu"] = data["data"]
+    // navlist[1]["dropdown_menu"]["data"]["link"] = "/Account/"
+
+    setNavlist(navlist)
+    // console.log(navlist)
+    // console.log(data)
+  }
+
+  const callBack2 = data => {
+    console.log("ohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+    console.log("ohh", data["metaData"])
+
+    if (data["metaData"]) {
+      for (let i = 0; i < data["metaData"].length; i++) {
+        console.log("ohh", data["metaData"][i].summary)
+        const dat = data["metaData"][i].summary
+        const link = data["metaData"][i].lId
+        const dat1 = { "text": dat, "href": "/yourLoans/" + link }
+        console.log("ohh1", dat1)
+        console.log("ohh2", navlist[4]["dropdown_menu"])
+        const dat2 = navlist[4]["dropdown_menu"]
+        dat2.push(dat1)
+      }
+    }
+
+
+  }
+
+  const useFetch = (url, callBack) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -161,26 +193,25 @@ function TempSideNavbar() {
       const data = await response.json();
       setData(data);
       // console.log(data)
-      const tplist = []
-      for (var i = 0; i < data["data"].length; i++) {
-        var obj1 = data["data"][i]
-        data["data"][i]["text"] = data["ulist"][i]
-        data["data"][i]["href"] = "/Account/" + obj1["_id"]
+      if (callBack != null) {
+        callBack(data)
       }
-      navlist[1]["dropdown_menu"] = data["data"]
-      // navlist[1]["dropdown_menu"]["data"]["link"] = "/Account/"
-
-      setNavlist(navlist)
-      console.log(navlist)
-      console.log(data)
       setLoading(false);
     }, []);
 
     return { data, loading };
   };
-  const { data, loading } = useFetch(uri)
+  const loansUri = "/loans/getAllUserLoans"
+  const { data, loading } = useFetch(uri, callBack1)
+  const { data1, loading1 } = useFetch(loansUri, callBack2)
   // console.log(loading ? "" : data)
   // const [loading, setLoading] = useState(true);
+
+
+
+
+
+
 
 
 

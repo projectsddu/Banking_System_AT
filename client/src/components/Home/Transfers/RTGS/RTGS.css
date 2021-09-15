@@ -1,40 +1,47 @@
-.neftHeader{
+.rtgsHeader{
     /* color:rgb(255, 0, 128) */
     color:var(--bBlue)
 }
-.custBtn1{
-    width: 20%;
+.custBtnRTGS{
+    width: 17%;
     padding: 1%;
     margin-top:2% ;
-    /* background-color: rgb(40, 139, 226); */
     background-color: var(--bBlue);
-    font-weight: 500;
+    font-weight: bold;
     border: 0px;
     border-radius: 3px;
-    color:rgb(22, 20, 20)
+    color:rgb(22, 20, 20);
+    font-size: 17px;
+    box-sizing: border-box;
+    margin-left: -80%;
 
+}
+.custBtnRTGS:hover {
+    background-color: #636363;
+    box-sizing: border-box;
+    color: white;
 }
 .custCol{
     display: flex;
     justify-content: center;
 }
-.neftInps{
+.rtgsInps{
     background-color: rgb(58, 55, 58);
     border:3px solid rgb(112, 112, 112);
     color: white;
 }
-.neftInps :focus{
+.rtgsInps :focus{
 
     background-color: rgb(10, 10, 10);
     border:3px solid rgb(117, 117, 117);
     color:var(--bBlue)
 }
-.neftForm input[type=text]:focus{
+.rtgsForm input[type=text]:focus{
     background-color: rgb(77, 76, 76);
     border:3px solid rgb(117, 117, 117);
     color:var(--bBlue)
 }
-.neftForm input[type=number]:focus{
+.rtgsForm input[type=number]:focus{
     background-color: rgb(77, 76, 76);
     border:3px solid rgb(117, 117, 117);
     color:var(--bBlue)

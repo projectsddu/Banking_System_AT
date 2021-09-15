@@ -88,26 +88,27 @@ function MakePayment() {
     // const Loading... = <><h1>Jenil</h1></>
     return (
         <>
-            <div class="make-payment-row">
-                <div class="make-payment-col-75 ">
-                    <div class="make-payment-container make-payment-wrapper">
-                        <form>
-                            <div class="make-payment-row">
-                                <div class="make-payment-col-50">
-                                    <h3 style={{ "color": "#ffffff" }} class="make-payment-sender-details">
-                                        <b>Sender Details</b>
-                                    </h3>
-                                    <br />
-                                    <label class="make-payment-label" for="fname">
-                                        <i class="fa fa-user"></i> Full Name
-                                    </label>
+            <div>
+                {/* <div class="make-payment-col-75 "> */}
+                {/* <div class="make-payment-container make-payment-wrapper"> */}
+                <form>
+                    <div class="make-payment-row">
+                        <div class="make-payment-col-50">
+                            <h1 className="make-payment-sender-details">
+                                Sender Details
+                            </h1>
+                            <hr className="make-payment-sender-details" />
+                            <br />
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="fname">
+                                    <i class="fa fa-user"></i> Full Name
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         disabled
                                         class="make-payment-input"
                                         type="text"
                                         id="fname"
-                                        name="firstname"
-                                        placeholder="Rikin Chauhan"
                                         value={
                                             loading ? (
                                                 "Loading..."
@@ -116,9 +117,14 @@ function MakePayment() {
                                             )
                                         }
                                     />
-                                    <label class="make-payment-label" for="ccnum">
-                                        <i class="fa fa-address-card-o"></i> Debit card number{" "}
-                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="ccnum">
+                                    <i class="fa fa-address-card-o"></i> Debit card number{" "}
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         disabled
                                         class="make-payment-input"
@@ -132,49 +138,55 @@ function MakePayment() {
                                                 : parseCardnum(data["data"][0]["cardNumber"])
                                         }
                                     />
+                                </div>
+                            </div>
 
-                                    <div class="make-payment-row">
-                                        <div class="make-payment-col-50">
-                                            <label class="make-payment-label" for="expmonth">
-                                                Expiry Month
-                                            </label>
-                                            <input
-                                                style={{ "margin-left": "-20px" }}
-                                                disabled
-                                                class="make-payment-input"
-                                                type="text"
-                                                id="expmonth"
-                                                name="expmonth"
-                                                placeholder="September"
-                                                value={
-                                                    loading
-                                                        ? "Loading..."
-                                                        : expiryMonth
-                                                }
-                                            />
-                                        </div>
-                                        <div class="make-payment-col-50">
-                                            <label class="make-payment-label" for="expyear">
-                                                Expiry Year
-                                            </label>
-                                            <input
-                                                disabled
-                                                class="make-payment-input"
-                                                type="text"
-                                                id="expyear"
-                                                name="expyear"
-                                                placeholder="2018"
-                                                value={
-                                                    loading
-                                                        ? "Loading..."
-                                                        : expiryYear
-                                                }
-                                            />
-                                        </div>
-                                    </div>
-                                    <label class="make-payment-label" for="cvv">
-                                        CVV
+                            <div className="row mb-4">
+                                <div className="col-sm-5">
+                                    <label class="make-payment-label" for="expmonth">
+                                        Expiry Month
                                     </label>
+                                    <input
+                                        disabled
+                                        class="make-payment-input"
+                                        type="text"
+                                        id="expmonth"
+                                        name="expmonth"
+                                        placeholder="September"
+                                        value={
+                                            loading
+                                                ? "Loading..."
+                                                : expiryMonth
+                                        }
+                                    />
+                                </div>
+
+                                <div className="col-sm-5">
+                                    <label class="make-payment-label" for="expyear">
+                                        Expiry Year
+                                    </label>
+                                    <input
+                                        disabled
+                                        class="make-payment-input"
+                                        type="text"
+                                        id="expyear"
+                                        name="expyear"
+                                        placeholder="2018"
+                                        value={
+                                            loading
+                                                ? "Loading..."
+                                                : expiryYear
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="cvv">
+                                    CVV
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         disabled
                                         class="make-payment-input"
@@ -184,9 +196,14 @@ function MakePayment() {
                                         placeholder="352"
                                         value={loading ? "Loading..." : data["data"][0]["cvvNumber"]}
                                     />
-                                    <label class="make-payment-label" for="acnum">
-                                        Your Balance:
-                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="acnum">
+                                    Your Balance:
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         disabled
                                         class="make-payment-input"
@@ -196,17 +213,25 @@ function MakePayment() {
                                         value={loading ? "Loading..." : data["acDetails"][0]["accountBalance"]}
                                     />
                                 </div>
+                            </div>
 
-                                {/* Reciever's part */}
+                        </div>
 
-                                <div class="make-payment-col-50">
-                                    <h3 style={{ "color": "#ffffff" }} class="make-payment-receiver-details">
-                                        Receiver Details
-                                    </h3>
-                                    <br />
-                                    <label class="make-payment-label" for="fname">
-                                        <i class="fa fa-user"></i> Full Name
-                                    </label>
+                        {/* Reciever's part */}
+
+                        <div class="make-payment-col-50">
+                            <h1 className="make-payment-receiver-details">
+                                Receiver Details
+                            </h1>
+                            <hr className="make-payment-receiver-details" />
+                            <br />
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="fname">
+                                    <i class="fa fa-user"></i> Full Name
+                                    <span className="home-loan-form-span"> * </span>
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         class="make-payment-input"
                                         type="text"
@@ -216,9 +241,15 @@ function MakePayment() {
                                         placeholder="Jenil Gandhi"
                                         onChange={e => setUserDetails({ ...userDetails, fullName: e.target.value })}
                                     />
-                                    <label class="make-payment-label" for="acnum">
-                                        <i class="fa fa-address-card-o"></i> Account Number
-                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="acnum">
+                                    <i class="fa fa-address-card-o"></i> Account Number
+                                    <span className="home-loan-form-span"> * </span>
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         class="make-payment-input"
                                         type="text"
@@ -230,14 +261,17 @@ function MakePayment() {
                                         placeholder="24 Digits"
                                         onChange={(e) => {
                                             setUserDetails({ ...userDetails, acNumber: e.target.value })
-                                        }
-                                        }
-
-
+                                        }}
                                     />
-                                    <label class="make-payment-label" for="email">
-                                        <i class="fa fa-envelope"></i> Email
-                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="email">
+                                    <i class="fa fa-envelope"></i> Email
+                                    <span className="home-loan-form-span"> * </span>
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         class="make-payment-input"
                                         type="email"
@@ -248,9 +282,14 @@ function MakePayment() {
                                         placeholder="jenil@gmail.com"
                                         onChange={e => setUserDetails({ ...userDetails, email: e.target.value })}
                                     />
-                                    <label class="make-payment-label" for="amount">
-                                        Amount
-                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="amount">
+                                    Amount<span className="home-loan-form-span"> * </span>
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         class="make-payment-input"
                                         type="number"
@@ -260,9 +299,14 @@ function MakePayment() {
                                         placeholder="1000"
                                         onChange={e => setUserDetails({ ...userDetails, amount: e.target.value })}
                                     />
-                                    <label class="make-payment-label" for="reason">
-                                        Reason
-                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="row mb-4">
+                                <label class="make-payment-label" for="reason">
+                                    Reason<span className="home-loan-form-span"> * </span>
+                                </label>
+                                <div className="col-sm-11">
                                     <input
                                         class="make-payment-input"
                                         type="text"
@@ -274,16 +318,18 @@ function MakePayment() {
                                     />
                                 </div>
                             </div>
-                            <button onClick={handleOnSubmit} type="button" class="make-payment-btn">Send Money</button>
-                            {/* <input
+                        </div>
+                    </div>
+                    <button onClick={handleOnSubmit} type="button" class="make-payment-btn">Send Money</button>
+                    {/* <input
 
                                 type="submit"
                                 value="Make Payment"
                                 class="make-payment-btn"
                             /> */}
-                        </form>
-                    </div>
-                </div>
+                </form>
+                {/* </div> */}
+                {/* </div> */}
             </div>
             <ToastContainer
                 position="top-right"

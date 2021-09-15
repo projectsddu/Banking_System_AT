@@ -107,7 +107,7 @@ export default function ApplyFixedDeposits() {
             </div>
             <form className="text-light fixedDepositForm mt-4" name="f1">
                 <div class="row mb-3 ">
-                    <label class="col-sm-2 col-form-label">Type of deposit</label>
+                    <label class="col-sm-2 col-form-label"><b>Type of deposit</b></label>
                     <div class="col-sm-10">
                         <label class="fixedDepositLabel"><input class="fixedDepositCalcRadioBtns" type="radio" name="depositType" value="fd" onClick={(e) => checkType()} />Fixed deposit</label>
                         <label class="fixedDepositLabel"><input class="fixedDepositCalcRadioBtns" type="radio" name="depositType" value="rd" onClick={(e) => checkType()} />Recurring deposit</label>
@@ -115,28 +115,28 @@ export default function ApplyFixedDeposits() {
                     </div>
                 </div>
                 <div class="row mb-3 ">
-                    <label class="col-sm-2 col-form-label">Principal Amount</label>
+                    <label class="col-sm-2 col-form-label"><b>Principal Amount</b></label>
                     <div class="col-sm-10">
                         <input class="form-control fixedDepositInps" type="text" name="amt" placeholder="Principal Amount" onKeyUp={(e) => checkAmt()} onChange={(e) => checkAmt()} required />
                         <span id="amtErr"> * required</span>
                     </div>
                 </div>
                 <div class="row mb-3 ">
-                    <label class="col-sm-2 col-form-label">Number of Years</label>
+                    <label class="col-sm-2 col-form-label"><b>Number of Years</b></label>
                     <div class="col-sm-10">
                         <input class="form-control fixedDepositInps" type="text" name="years" placeholder="Number of Years" onKeyUp={(e) => checkYears()} onChange={(e) => checkYears()} required />
                         <span id="yearsErr"> * required</span>
                     </div>
                 </div>
                 <div class="row mb-3 ">
-                    <label class="col-sm-2 col-form-label">Rate of Interest</label>
+                    <label class="col-sm-2 col-form-label"><b>Rate of Interest</b></label>
                     <div class="col-sm-10">
                         <input class="form-control fixedDepositInps" type="text" name="rate" placeholder="Rate of Interest" onKeyUp={(e) => checkRate()} onChange={(e) => checkRate()} required />
                         <span id="rateErr"> * required</span>
                     </div>
                 </div>
                 <div class="row mb-3 ">
-                    <label class="col-sm-2 col-form-label">Compounding frequency</label>
+                    <label class="col-sm-2 col-form-label"><b>Compounding frequency</b></label>
                     <div class="col-sm-10">
                         <select class="selectTagFixedDeposit" name="freq" onKeyUp={(e) => checkFreq()} onChange={(e) => checkFreq()} required>
                             <option value="">Select</option>
@@ -149,7 +149,7 @@ export default function ApplyFixedDeposits() {
                     </div>
                 </div >
                 <div class="row mb-3 ">
-                    <label class="col-sm-2 col-form-label">Maturity Amount</label>
+                    <label class="col-sm-2 col-form-label"><b>Maturity Amount</b></label>
                     <div class="col-sm-10">
                         <b>Rs. </b><b id="maturity"></b>
                     </div>

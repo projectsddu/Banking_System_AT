@@ -1,16 +1,35 @@
 .neftHeader{
     color:var(--bBlue)
 }
-.custBtn1{
-    width: 20%;
+.custBtnNEFT{
+
+    width: 17%;
+    padding: 1%;
+    margin-top:2% ;
+    background-color: var(--bBlue);
+    font-weight: bold;
+    border: 0px;
+    border-radius: 3px;
+    color:rgb(22, 20, 20);
+    font-size: 17px;
+    box-sizing: border-box;
+    margin-left: -80%;
+    /* width: 20%;
     padding: 1%;
     margin-top:2% ;
     background-color: var(--bBlue);
     border: 0px;
     border-radius: 3px;
-    color:rgb(20, 15, 15)
+    color:rgb(20, 15, 15) */
 
 }
+
+.custBtnNEFT:hover {
+    background-color: #636363;
+    box-sizing: border-box;
+    color: white;
+}
+
 .custCol{
     display: flex;
     justify-content: center;

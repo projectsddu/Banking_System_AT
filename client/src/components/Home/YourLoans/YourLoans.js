@@ -6,8 +6,29 @@ import React from "react";
 import { useState } from "react";
 import "./YourLoans.css";
 import { useLocation } from "react-router";
+import { useEffect } from "react";
+// import { useFetch } from "../Utility/General/Usefetch"
+// import { useLocation } from "react-router-dom"
 
 export default function YourLoans() {
+  const useFetch = url => {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(async () => {
+      const response = await fetch(url, { method: "POST" });
+      const data = await response.json();
+      setData(data);
+      console.log("jenilo:" + data)
+      setLoading(false);
+    }, []);
+
+    return { data, loading };
+  };
+  const lId = useLocation().pathname.split("/")[2]
+  const { data, loading } = useFetch("/loan/getLoanDetails/" + lId)
+  console.log(loading ? "Loading....." : data)
+  // console.log("lid", lId)
   const [refinance, setRefinance] = useState({
     email: "",
     sponsor: "",
@@ -39,11 +60,10 @@ export default function YourLoans() {
                 611e8dd6fb5f5152fc2c5860.
               </li>
               <li className="li-item">
-                <b className="leading-li">Loan Amount:</b> $10,000
+                <b className="leading-li">Loan Amount:</b> ${loading ? "" : data["Data"]["amount"]}
               </li>
               <li className="li-item">
-                <b className="leading-li">Remarks:</b> Loan for studying abroad
-                for kid
+                <b className="leading-li">Remarks:</b> {loading ? "" : data["Data"]["remarks"]}
               </li>
               <li className="li-item">
                 <b className="leading-li">Loan Duration:</b> 36 months
