@@ -19,7 +19,7 @@ export default function YourLoans() {
       const response = await fetch(url, { method: "POST" });
       const data = await response.json();
       setData(data);
-      console.log("jenilo:" + data)
+      console.log( data)
       setLoading(false);
     }, []);
 
@@ -27,8 +27,31 @@ export default function YourLoans() {
   };
   const lId = useLocation().pathname.split("/")[2]
   const { data, loading } = useFetch("/loan/getLoanDetails/" + lId)
-  console.log(loading ? "Loading....." : data)
-  // console.log("lid", lId)
+  // const endingDate = loading?"":new Date(data["Data"][""])
+  const giveTime = function()
+  {
+    let startDate = new Date(data["Data"]["endingDateTime"])
+    let endDate = new Date(data["Data"]["sanctionedDateTime"]);
+    let totalMonths = (startDate.getFullYear()-endDate.getFullYear() )*12;
+    totalMonths+=(endDate.getMonth()-startDate.getMonth());
+    console.log(totalMonths)
+    return totalMonths
+  }
+  const timeCompleted = function()
+  {
+    let startDate = new Date(data["Data"]["sanctionedDateTime"]);
+    let curDate = new Date()
+    return ((curDate.getMonth() + 1) - (startDate.getMonth()+1));
+
+  }
+  const amountCalculator = function()
+  {
+    let initAmount = data["Data"]["amount"];
+    let interestAmount = data["Data"]["interestRate"]/12;
+    let totalInterest = (giveTime()*interestAmount)/100;
+    let finalAmount = initAmount+initAmount*totalInterest
+    return finalAmount.toFixed(2)
+  }
   const [refinance, setRefinance] = useState({
     email: "",
     sponsor: "",
@@ -60,22 +83,33 @@ export default function YourLoans() {
                 611e8dd6fb5f5152fc2c5860.
               </li>
               <li className="li-item">
-                <b className="leading-li">Loan Amount:</b> ${loading ? "" : data["Data"]["amount"]}
+                <b className="leading-li">Loan Amount:</b> $
+                {loading ? "" : data["Data"]["amount"]}
               </li>
               <li className="li-item">
-                <b className="leading-li">Remarks:</b> {loading ? "" : data["Data"]["remarks"]}
+                <b className="leading-li">Interest Rate:</b> $
+                {loading ? "" : data["Data"]["interestRate"].toFixed(2)}
+              </li>
+
+              <li className="li-item">
+                <b className="leading-li">Loan Duration:</b>{" "}
+                {loading ? "abcd" : giveTime()} months
               </li>
               <li className="li-item">
-                <b className="leading-li">Loan Duration:</b> 36 months
+                <b className="leading-li">Months Completed:</b>{" "}
+                {loading ? "0" : timeCompleted()} months
               </li>
               <li className="li-item">
-                <b className="leading-li">Months Completed:</b> 00 months
+                <b className="leading-li">Amount to be paid:</b> $
+                {loading ? "0" : amountCalculator()}
               </li>
               <li className="li-item">
-                <b className="leading-li">Amount to be paid:</b> $13500
+                <b className="leading-li">Amount paid till now:</b> $
+                {loading ? "0" : data["Data"]["paymentDone"]}
               </li>
               <li className="li-item">
-                <b className="leading-li">Amount paid till now:</b> 00$
+                <b className="leading-li">Remarks:</b>{" "}
+                {loading ? "" : data["Data"]["remarks"]}
               </li>
             </ul>
           </div>

@@ -9,6 +9,7 @@ const PaymentRouter = require("./Routers/PaymentRouter")
 const RTGSRouter = require("./Routers/RTGSRouter")
 const NEFTRouter = require("./Routers/NEFTRouter")
 const LoanInquiryRouter = require("./Routers/LoanInquiryRouter")
+const DepositRouter = require("./Routers/DepositRouter")
 // const LoanInquiryRouter = require("./Routers/LoanInquiryRouter_1")
 
 require("./Database/connect")
@@ -40,5 +41,6 @@ app.use(require('./Routers/CardRouter.js'));
 app.use(require('./Routers/RTGSRouter.js'));
 app.use(require('./Routers/NEFTRouter.js'));
 app.use(require('./Routers/LoanRouter.js'));
+app.use(require('./Routers/DepositRouter.js'));
 
 
