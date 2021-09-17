@@ -12,6 +12,7 @@
     margin-left: 15px;
     padding: 1.1%;
     background-color: var(--navBlack);
+    border-radius:5px;
 }
 .topDetails .leftDetails{
    

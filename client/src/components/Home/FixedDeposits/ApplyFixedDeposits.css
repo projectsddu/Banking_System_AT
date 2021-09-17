@@ -48,6 +48,27 @@
     /* color:rgb(255, 0, 128) */
     color:var(--bBlue)
 }
+
+.applyDepositBtn {
+    width: 17%;
+    padding: 1%;
+    margin-top:2%;
+    margin-left: 2%;
+    background-color: var(--bBlue);
+    font-weight: bold;
+    border: 0px;
+    border-radius: 3px;
+    color:rgb(22, 20, 20);
+    font-size: 17px;
+    box-sizing: border-box;
+}
+
+.applyDepositBtn:hover {
+    background-color: #636363;
+    box-sizing: border-box;
+    color: white;
+}
+
 .fixedDepositCustBtn1{
     width: 17%;
     padding: 1%;
@@ -96,3 +117,13 @@
     border:3px solid rgb(117, 117, 117);
     color:yellow
 } */
+
+.depositTypeSelectDropDown {
+    color: white;
+    background-color: rgb(58, 55, 58);
+    border-color: rgb(112, 112, 112);
+    border: none;
+    padding: 1%;
+    margin: 0;
+    width: 20%;
+}

@@ -8,17 +8,18 @@ const RecurringDeposit = require("../Collections/RecurringDepositModel")
 
 router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
-    try{
-        if(req.is_authenticated && req.accountAttchedWithUser) {
-            const {principleAmount, maturity, acNumber, isRecurring} = req.body;
+    try {
+        if (req.is_authenticated && req.accountAttchedWithUser) {
+            console.log("from deposit router");
+            const { principleAmount, maturity, acNumber, depositType, recurringAmount } = req.body;
 
-            if(!principleAmount || !maturity || !acNumber || !isRecurring) {
-                return res.status(422).json({ Error: "All fields are required!!" });
+            if (!principleAmount || !maturity || !acNumber || !depositType) {
+                throw "All fields are required!!";
             }
 
             const curDate = new Date();
             const maturityDate = new Date(
-                curDate.getFullYear() + maturity,
+                curDate.getFullYear() + Number(maturity),
                 curDate.getMonth(),
                 curDate.getDate(),
                 curDate.getHours(),
@@ -35,16 +36,20 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
             const depositStatus = await depositobj.save();
 
-            if(!depositStatus) {
+            if (!depositStatus) {
                 throw "Error while creating Deposit Object";
             }
 
-            if(isRecurring) {
+            if (depositType === "recurringDeposit") {
+
+                if (!recurringAmount) {
+                    throw "Please provide recurring amount";
+                }
 
                 // create RecurringDeposit object
 
-                const recurringAmount = req.body.recurringAmount
-                
+                // const recurringAmount = req.body.recurringAmount
+
                 const recurObj = await RecurringDeposit({
                     deposit: depositobj,
                     recurringDepositAmount: recurringAmount
@@ -52,7 +57,7 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
                 const recurringStatus = await recurObj.save();
 
-                if(!recurringStatus) {
+                if (!recurringStatus) {
                     throw "Error while creating RecurringObject!!";
                 }
             }
@@ -65,15 +70,27 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
                 const fixedStatus = await fixedObj.save();
 
-                if(!fixedStatus) {
+                if (!fixedStatus) {
                     throw "Error while creating FixedDeposit Object!!";
                 }
             }
+
+            return res.json({ "Success:": true });
         }
     }
-    catch(e) {
+    catch (e) {
         console.log(e.toString())
-        return res.json({ "Success:": false })
+        return res.json({ "Error": e.toString(), "Success:": false })
+    }
+})
+
+router.post("/fd/getFDDetails", [authenticate], async (req, res) => {
+    try {
+
+    }
+    catch (e) {
+        console.log(e.toString())
+        return res.json({ "Error": e.toString(), "Success:": false })
     }
 })
 

@@ -189,8 +189,8 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                 })
                 const transactions = await Transaction.find({
                     $or: [
-                        { sender: req.current_user },
-                        { receiver: req.current_user },
+                        { senderAc: ac },
+                        { receiverAc: ac },
 
                     ]
                 }).sort({ "date": "descending" })
@@ -209,6 +209,53 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
     }
 })
 
+router.post("/account/addCash/:acNumber", [authenticate], async (req, res) => {
+    try {
+        if (req.is_authenticated) {
+            // logic to add cash 
+            // here it is kept as a request but this mustbe only done by admin
+            const cashAmount = req.body.cash;
+
+            // create a transaction
+            const adminModel = await User.findOne({
+                firstName: "admin",
+                middleName: "admin",
+                lastName: "admin"
+            })
+            const adminAc = await Account.findOne({
+                _id: "6144c3dc86c0cc08d848aefb"
+            })
+            const userAc = await Account.findOne({
+                _id: req.params.acNumber
+            })
+            const trx = await Transaction({
+                sender: adminModel,
+                senderAc: adminAc,
+                receiver: req.current_user,
+                receiverAc: userAc,
+                amount: cashAmount,
+                transactionDateTime: new Date(),
+                mode: "CASH",
+                reason: "CASH",
+                isPending: false
+            }).save()
+            userAc.accountBalance += cashAmount
+            userAc.save()
+            adminAc.accountBalance -= cashAmount
+            adminAc.save()
+            if (trx) {
+                return res.json({ "Success:": true, "Message": "Money was deposited successfully!" })
+            }
+        }
+        else {
+            throw "You must be authenticated"
+        }
+    }
+    catch (e) {
+        console.log("Error: addcash " + e.toString())
+        return res.json({ "Error:": "Something went seriously wrong!!" })
+    }
+})
 
 // // This is to be used by the admin.
 // router.post("/account/createAccount", async (req, res) => {

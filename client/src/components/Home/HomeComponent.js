@@ -53,8 +53,8 @@ export default function HomeComponent() {
         "quote": "Spend as much as you have!",
         "ul_header": "Insights",
         "ul_data": [
-            "Your Credits are: 3000$",
-            "Your Debits are: 4000$",
+            "Your Credits are: $",
+            "Your Debits are: $",
             "Your net Income is: -1000$",
             "Overall Profile Rating (OPR):Poor"
         ]
@@ -71,18 +71,19 @@ export default function HomeComponent() {
             width={355}
             height={110}
             datakey={"income"}
-            data={[{ name: 'Jan', income: 400, expense: 600 },
-            { name: 'Feb', income: 400, expense: 200 },
-            { name: 'Mar', income: 600, expense: 700 },
-            { name: 'Apr', income: 900, expense: 400 },
-            { name: 'May', income: 1200, expense: 900 },
-            { name: 'Jun', income: 500, expense: 700 }]}
+            // data={[{ name: 'Jan', income: 400, expense: 600 },
+            // { name: 'Feb', income: 400, expense: 200 },
+            // { name: 'Mar', income: 600, expense: 700 },
+            // { name: 'Apr', income: 900, expense: 400 },
+            // { name: 'May', income: 1200, expense: 900 },
+            // { name: 'Jun', income: 500, expense: 700 }]}
+            data={loading ? [] : data["userData"]["graphData"]}
         ></HeadLineChartComponent>
 
     </>
     const topJSX1 = <>
         <h1><b>Income</b></h1>
-        <h3><b>$13500</b></h3>
+        <h3><b>${loading ? "" : data["userData"]["headerData"]["credit"]}</b></h3>
     </>
 
     // Data for Card 3
@@ -91,18 +92,19 @@ export default function HomeComponent() {
             width={355}
             height={110}
             datakey={"expense"}
-            data={[{ name: 'Jan', income: 400, expense: 600 },
-            { name: 'Feb', income: 400, expense: 200 },
-            { name: 'Mar', income: 600, expense: 700 },
-            { name: 'Apr', income: 900, expense: 400 },
-            { name: 'May', income: 1200, expense: 900 },
-            { name: 'Jun', income: 500, expense: 700 }]}
+            // data={[{ name: 'Jan', income: 400, expense: 600 },
+            // { name: 'Feb', income: 400, expense: 200 },
+            // { name: 'Mar', income: 600, expense: 700 },
+            // { name: 'Apr', income: 900, expense: 400 },
+            // { name: 'May', income: 1200, expense: 900 },
+            // { name: 'Jun', income: 500, expense: 700 }]}
+            data={loading ? [] : data["userData"]["graphData"]}
         ></HeadLineChartComponent>
 
     </>
     const topJSX2 = <>
         <h1><b>Expense</b></h1>
-        <h3><b>$26000</b></h3>
+        <h3><b>${loading ? "" : data["userData"]["headerData"]["debit"]}</b></h3>
     </>
     return (<>
         <div className="row mt-3">
@@ -123,12 +125,15 @@ export default function HomeComponent() {
 
         </div>
         <div className="row">
-            <LineChart data={[{ name: 'Jan', income: 400, expense: 600 },
-            { name: 'Feb', income: 400, expense: 200 },
-            { name: 'Mar', income: 600, expense: 700 },
-            { name: 'Apr', income: 900, expense: 400 },
-            { name: 'May', income: 1200, expense: 900 },
-            { name: 'Jun', income: 500, expense: 700 }]} prop={left_data}
+            <LineChart
+                // data={[{ name: 'Jan', income: 400, expense: 600 },
+                // { name: 'Feb', income: 400, expense: 200 },
+                // { name: 'Mar', income: 600, expense: 700 },
+                // { name: 'Apr', income: 900, expense: 400 },
+                // { name: 'May', income: 1200, expense: 900 },
+                // { name: 'Jun', income: 500, expense: 700 }]}
+                data={loading ? [] : data["userData"]["graphData"]}
+                prop={left_data}
             />
         </div>
         {/* <TestComponent></TestComponent> */}

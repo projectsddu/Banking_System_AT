@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './ApplyFixedDeposits.css'
+import { ToastContainer, toast } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
 // import cal from '../Utility/FixedDeposit/FixedDepositCalc'
 // import checkAll from '../Utility/FixedDeposit/FixedDepositCalc'
 // import checkType from '../Utility/FixedDeposit/FixedDepositCalc'
@@ -99,9 +101,153 @@ function checkFreq(e) {
     }
 }
 export default function ApplyFixedDeposits() {
+
+
+    const [data, setData] = useState({
+        principleAmount: 0,
+        maturity: 0,
+        acNumber: '',
+        depositType: '',
+        recurringAmount: 0
+    })
+
+    function handleOnSubmit(e) {
+        e.preventDefault();
+        saveData();
+    }
+
+    const saveData = async function () {
+        fetch('/fd/addNewFD', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        }).then(function (response) {
+            console.log(response);
+            if (response.ok) {
+                response.json()
+                    .then(e => {
+                        console.log(e)
+                        console.log("Here!")
+                        if (e["Success:"]) {
+                            toast.success("Your Application was successful!!");
+                            // history.goBack()
+                        }
+                        else {
+                            console.log("Here pan")
+                            toast.dark(e["Error"]);
+                        }
+
+                    })
+                return response.json();
+            }
+            return Promise.reject(response);
+        }).then(function (data) {
+            console.log("Data:", data)
+            if (data["Success:"]) {
+                toast.success("Your Application was successful!!");
+                // history.goBack()
+            }
+            else {
+                toast.dark(data["Error"]);
+            }
+        }).catch(function (error) {
+            // toast.dark("Something went wrong!");
+        });
+    }
+
     return (
         <>
-            <div >
+
+            <div>
+                <div>
+                    <h1 className="fixedDepositHeader">Apply for Deposit</h1>
+                    <hr className="fixedDepositHeader" />
+                </div>
+
+                <div>
+                    <form className="text-light fixedDepositForm mt-5">
+                        <div class="row mb-3 ">
+                            <label for="pricipleAmount" class="col-sm-2 col-form-label"><b>Principle Amount</b><span className="home-loan-form-span"> * </span></label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control fixedDepositInps" id="pricipleAmount"
+                                    value={data.principleAmount}
+                                    onChange={e => setData({ ...data, principleAmount: e.target.value })}
+                                    // setUserDetails()
+                                    placeholder="Principle Amount." />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ">
+                            <label for="maturity" class="col-sm-2 col-form-label"><b>Maturity</b><span className="home-loan-form-span"> * </span></label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control fixedDepositInps" id="maturity"
+                                    value={data.maturity}
+                                    onChange={e => setData({ ...data, maturity: e.target.value })}
+                                    // setUserDetails()
+                                    placeholder="Enter maturity time in years." />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ">
+                            <label for="acNumber" class="col-sm-2 col-form-label"><b>Account Number</b><span className="home-loan-form-span"> * </span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control fixedDepositInps" id="acNumber"
+                                    value={data.acNumber}
+                                    onChange={e => setData({ ...data, acNumber: e.target.value })}
+                                    // setUserDetails()
+                                    placeholder="Provide the account in or from which you want transfer." />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ">
+                            <label for="depositType" class="col-sm-2 col-form-label"><b>Deposit Type</b><span className="home-loan-form-span"> * </span></label>
+                            <div class="col-sm-10">
+                                <select class="depositTypeSelectDropDown" name="freq"
+                                    onChange={e => setData({ ...data, depositType: e.target.value })}
+                                >
+                                    <option value={''}>Select</option>
+                                    <option value={'fixedDeposit'}>Fixed Deposit</option>
+                                    <option value={'recurringDeposit'}>Recurring Deposit</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 ">
+                            <label for="recurringAmount" class="col-sm-2 col-form-label"><b>Recurring Amount</b></label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control fixedDepositInps" id="recurringAmount"
+                                    value={data.recurringAmount}
+                                    onChange={e => setData({ ...data, recurringAmount: e.target.value })}
+                                    // setUserDetails()
+                                    placeholder="Applied only in case of you have selected recurring deposit option." />
+                            </div>
+                        </div>
+
+
+                        <button type="submit" onClick={handleOnSubmit} className="applyDepositBtn">Apply</button>
+                    </form>
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
+
+            <div>
                 <h1 className="fixedDepositHeader">Fixed Deposit Calculator</h1>
                 <hr className="fixedDepositHeaderHRL" />
             </div>
