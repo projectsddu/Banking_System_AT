@@ -116,7 +116,20 @@ router.post("/fd/getFDDetails", [authenticate], async (req, res) => {
     try {
         // current user fid all deposit object
         // make a list of deposit objects
-        // 
+        const allDeposits = await Deposit.find({
+            depositOwner: req.current_user
+        })
+
+        const username = {
+            "firstName": req.current_user.firstName,
+            "lastName": req.current_user.lastName
+        }
+
+        return res.json({"depositData": allDeposits, "username": username,"Success:": true});
+
+        // console.log(allDeposits);
+
+        // return res.json("Success:", true)
     }
     catch (e) {
         console.log(e.toString())

@@ -1,40 +1,96 @@
 import React from "react";
 import './ViewFixedDeposits.css'
+import useFetch from '../Utility/General/Usefetch'
 export default function FixedDeposits() {
+
+  const capitalize = function (str) {
+    var str1 = str[0].toUpperCase()
+    str1 += str.slice(1, str.length);
+    return str1
+  }
+
+  const { data, loading } = useFetch("/fd/getFDDetails");
+
+  // console.log(data["depositData"][0]["principleAmount"]);
+
+  const setDepositDetails = function(depositData) {
+    if(depositData) {
+      const deposits = depositData["depositData"];
+      const allJsx = []
+      const userFirstName = capitalize(depositData["username"]["firstName"])
+      const userLastName = capitalize(depositData["username"]["lastName"])
+      // console.log(deposits);
+      for(let deposit in deposits) {
+        deposit = deposits[deposit];
+        console.log(deposit);
+        let depositJsx = <>
+          <div class="col-sm-6">
+            <div class="card" style={{ width: "103%" }}>
+              <div class="card-body">
+                <h3 class="card-title">{userFirstName} {userLastName}</h3>
+                <label>Deposit Number: {deposit._id}</label><br />
+                <label>Deposit Amount: {deposit.principleAmount}</label><br />
+                <label>Interest Rate: {deposit.interestRate}</label><br />
+                <label>Maturity Date: {deposit.maturityDate}</label><br />
+                <label>Maturity Amount: 106000.00 remaining</label><br />
+                <button type="button" className="applyDepositBtn">View Full FD</button>
+              </div>
+            </div>
+          </div>
+        </>
+
+        allJsx.push(depositJsx);
+
+      }
+
+      return allJsx;
+    }
+  }
+
+  // setDepositDetails(data);
+
   return (
     <>
+
       <div class="row">
-        <div class="col-sm-6">
-          <div class="card" style={{ width: "103%" }}>
-            <div class="card-body">
-              <h5 class="card-title">Jenil J Gandhi</h5>
-              <label>Deposit Number: FD12345</label><br />
-              <label>Deposit Amount: 100000</label><br />
-              <label>Interest Rate: 6</label><br />
-              <label>Maturity Date: 16-MAR-2025</label><br />
-              <label>Maturity Amount: 106000.00</label><br />
-              <a href="#" class="btn btn-primary" style={{ width: "50%", marginLeft: "25%", padding: "2%" }}>
-                View Full FD
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card" style={{ width: "103%" }}>
-            <div class="card-body">
-              <h5 class="card-title">Jenil J Gandhi</h5>
-              <label>Deposit Number: FD12345</label><br />
-              <label>Deposit Amount: 100000</label><br />
-              <label>Interest Rate: 6</label><br />
-              <label>Maturity Date: 16-MAR-2025</label><br />
-              <label>Maturity Amount: 106000.00</label><br />
-              <a href="#" class="btn btn-primary" style={{ width: "50%", marginLeft: "25%", padding: "2%" }}>
-                View Full FD
-              </a>
-            </div>
-          </div>
-        </div>
+        {loading ? "loading..." :
+          (setDepositDetails(data)).map((e) => { return e})
+        }
+
       </div>
+
+      {/* <div class="row">
+        <div class="col-sm-6">
+          <div class="card" style={{ width: "103%" }}>
+            <div class="card-body">
+              <h5 class="card-title">Jenil J Gandhi</h5>
+              <label>Deposit Number: FD12345</label><br />
+              <label>Deposit Amount: 100000</label><br />
+              <label>Interest Rate: 6</label><br />
+              <label>Maturity Date: 16-MAR-2025</label><br />
+              <label>Maturity Amount: 106000.00</label><br />
+              <a href="#" class="btn btn-primary" style={{ width: "50%", marginLeft: "25%", padding: "2%" }}>
+                View Full FD
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card" style={{ width: "103%" }}>
+            <div class="card-body">
+              <h5 class="card-title">Jenil J Gandhi</h5>
+              <label>Deposit Number: FD12345</label><br />
+              <label>Deposit Amount: 100000</label><br />
+              <label>Interest Rate: 6</label><br />
+              <label>Maturity Date: 16-MAR-2025</label><br />
+              <label>Maturity Amount: 106000.00</label><br />
+              <a href="#" class="btn btn-primary" style={{ width: "50%", marginLeft: "25%", padding: "2%" }}>
+                View Full FD
+              </a>
+            </div>
+          </div>
+        </div>
+      </div> */}
 
 
 
