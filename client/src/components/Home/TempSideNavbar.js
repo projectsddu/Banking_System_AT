@@ -42,7 +42,7 @@ function TempSideNavbar() {
     // },
     {
       "id": "SavingsAc",
-      "text": "Your Current Accounts",
+      "text": "Your saving Accounts",
       "vector-asset": ACD_SVG,
       "vector-asset-color": "#ccff00",
       "background-color": "blue",
@@ -51,17 +51,17 @@ function TempSideNavbar() {
       "is_drop": true,
       "dropdown_menu": []
     },
-    {
-      "id": "ACDetails",
-      "text": "Your Saving Accounts",
-      "vector-asset": ACD_SVG,
-      "vector-asset-color": "#ccff00",
-      "background-color": "blue",
-      "text-color": "blueText",
-      "href": "",
-      "is_drop": true,
-      "dropdown_menu": []
-    },
+    // {
+    //   "id": "ACDetails",
+    //   "text": "Your Saving Accounts",
+    //   "vector-asset": ACD_SVG,
+    //   "vector-asset-color": "#ccff00",
+    //   "background-color": "blue",
+    //   "text-color": "blueText",
+    //   "href": "",
+    //   "is_drop": true,
+    //   "dropdown_menu": []
+    // },
     {
       "id": "TermDeposit",
       "text": "Fixed Deposits",
@@ -154,9 +154,9 @@ function TempSideNavbar() {
       data["data"][i]["text"] = data["ulist"][i]
       data["data"][i]["href"] = "/Account/" + obj1["_id"]
     }
-    navlist[1]["dropdown_menu"] = data["data"]
+    navlist[0]["dropdown_menu"] = data["data"]
     // navlist[1]["dropdown_menu"]["data"]["link"] = "/Account/"
-
+    console.log("Data", data)
     setNavlist(navlist)
     // console.log(navlist)
     // console.log(data)
@@ -174,7 +174,7 @@ function TempSideNavbar() {
         const dat1 = { "text": dat, "href": "/yourLoans/" + link }
         console.log("ohh1", dat1)
         console.log("ohh2", navlist[4]["dropdown_menu"])
-        const dat2 = navlist[4]["dropdown_menu"]
+        const dat2 = navlist[3]["dropdown_menu"]
         dat2.push(dat1)
       }
     }
@@ -282,7 +282,25 @@ function TempSideNavbar() {
                   aria-controls="flush-collapseOne"
                   style={styles["accordian"]}
                 >
-                  <Link to={e["href"]} style={{ "font-size": "1.1em" }}>
+                  {e["is_drop"] ?
+
+                    <>
+                      <Link style={{ "font-size": "1.1em" }}>
+                        {e["text"]}
+
+                        <i
+                          class="fas fa-chevron-down float-right"
+                          style={styles["dropbtn"]}
+                        ></i>
+                      </Link>
+
+
+                    </>
+                    : <Link to={e["href"]} style={{ "font-size": "1.1em" }}>
+                      {e["text"]}
+
+                    </Link>}
+                  {/* <Link to={e["href"]} style={{ "font-size": "1.1em" }}>
                     {e["text"]}
                     {e["is_drop"] ?
                       <i
@@ -290,7 +308,7 @@ function TempSideNavbar() {
                         style={styles["dropbtn"]}
                       ></i> : ""
                     }
-                  </Link>
+                  </Link> */}
                 </button>
 
               </h3>
@@ -305,7 +323,7 @@ function TempSideNavbar() {
                 <div class="accordion-body">
                   {e["dropdown_menu"].map((e1) => {
                     return (<>
-                      {e.id == "ACDetails" ?
+                      {e.id == "SavingsAc" ?
                         <a href={loading ? "" : e1["href"]}>
 
                           <div className="partition">
@@ -330,7 +348,7 @@ function TempSideNavbar() {
           </div>);
       })}
       {/* <a href="#contact">Search</a> */}
-    </div>
+    </div >
   );
 }
 

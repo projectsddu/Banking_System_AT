@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeComponent from './HomeComponent'
-import QuickTransfer from './QuickTransfer/QuickTransfer'
+// import QuickTransfer from './QuickTransfer/QuickTransfer'
 import TopNavbarComponent from './TopNavbarComponent'
 import EcardsComponent from './EcardsComponent'
 import DebitCardComponent from '../Home/DebitCard/DebitCardComponent'
@@ -26,7 +26,7 @@ function RightComponent({ component_name }) {
         "balance": <BalanceComponent></BalanceComponent>,
         "account": <AccountComponent></AccountComponent>,
         "makePayment": <MakePayement></MakePayement>,
-        "quickTransfer": <QuickTransfer></QuickTransfer>,
+        // "quickTransfer": <QuickTransfer></QuickTransfer>,
         "carLoan": <CarLoan></CarLoan>,
         "loanInquiry": <HomeLoan></HomeLoan>,
         "viewfixedDeposits": <ViewFixedDeposits></ViewFixedDeposits>,

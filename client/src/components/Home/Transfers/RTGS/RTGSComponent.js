@@ -51,12 +51,12 @@ export default function NEFTComponent() {
                 // history.goBack()
             }
             else {
-                toast.dark("Something went wrong!");
+                toast.error("Something went wrong!");
                 console.log(data.body)
             }
         }).catch(function (error) {
             console.log(error.body)
-            toast.dark("Something went wrong!");
+            toast.error("Something went wrong!");
         });
 
     }

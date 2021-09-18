@@ -61,7 +61,7 @@ export default function HomeLoan() {
                 // history.goBack()
             }
         }).catch(function (error) {
-            toast.dark("Something went wrong!");
+            toast.error("Something went wrong!");
         });
     }
 

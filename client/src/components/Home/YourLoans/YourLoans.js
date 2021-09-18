@@ -19,7 +19,7 @@ export default function YourLoans() {
       const response = await fetch(url, { method: "POST" });
       const data = await response.json();
       setData(data);
-      console.log( data)
+      console.log(data)
       setLoading(false);
     }, []);
 
@@ -28,28 +28,25 @@ export default function YourLoans() {
   const lId = useLocation().pathname.split("/")[2]
   const { data, loading } = useFetch("/loan/getLoanDetails/" + lId)
   // const endingDate = loading?"":new Date(data["Data"][""])
-  const giveTime = function()
-  {
+  const giveTime = function () {
     let startDate = new Date(data["Data"]["endingDateTime"])
     let endDate = new Date(data["Data"]["sanctionedDateTime"]);
-    let totalMonths = (startDate.getFullYear()-endDate.getFullYear() )*12;
-    totalMonths+=(endDate.getMonth()-startDate.getMonth());
+    let totalMonths = (startDate.getFullYear() - endDate.getFullYear()) * 12;
+    totalMonths += (endDate.getMonth() - startDate.getMonth());
     console.log(totalMonths)
     return totalMonths
   }
-  const timeCompleted = function()
-  {
+  const timeCompleted = function () {
     let startDate = new Date(data["Data"]["sanctionedDateTime"]);
     let curDate = new Date()
-    return ((curDate.getMonth() + 1) - (startDate.getMonth()+1));
+    return ((curDate.getMonth() + 1) - (startDate.getMonth() + 1));
 
   }
-  const amountCalculator = function()
-  {
+  const amountCalculator = function () {
     let initAmount = data["Data"]["amount"];
-    let interestAmount = data["Data"]["interestRate"]/12;
-    let totalInterest = (giveTime()*interestAmount)/100;
-    let finalAmount = initAmount+initAmount*totalInterest
+    let interestAmount = data["Data"]["interestRate"] / 12;
+    let totalInterest = (giveTime() * interestAmount) / 100;
+    let finalAmount = initAmount + initAmount * totalInterest
     return finalAmount.toFixed(2)
   }
   const [refinance, setRefinance] = useState({
@@ -66,6 +63,7 @@ export default function YourLoans() {
       <div className="row mt-4">
         <div className="col-6">
           <h2 className="li-heads">Loan Details</h2>
+          <br />
           <div>
             <ul>
               <li className="li-item">
@@ -116,7 +114,7 @@ export default function YourLoans() {
         </div>
         <div className="col-6">
           <h2 className="li-heads">Refinance Loan</h2>
-
+          <br />
           <form className="refinance-form">
             <div class="row mb-3">
               <label for="inputEmail3" class="col-sm-2 col-form-label">

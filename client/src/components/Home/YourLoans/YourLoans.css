@@ -3,11 +3,13 @@
     color:var(--bBlue)
 }
 .li-item{
-    color:var(--green1);
+    /* color:var(--green1); */
+    color: var(--bBlue);
     font-size: 1.2em;
 }
 .leading-li{
-    color: var(--bBlue);
+    /* color: var(--bBlue); */
+    color: white;
     font-weight: 550;
 }
 .li-heads{
@@ -99,7 +101,8 @@
     color:var(--bBlue)
 }
 .refinance-form label{
-    color:var(--bBlue);
+    /* color:var(--bBlue); */
+    color: white;
     font-weight:400;
     font-size:1.2em;
 }

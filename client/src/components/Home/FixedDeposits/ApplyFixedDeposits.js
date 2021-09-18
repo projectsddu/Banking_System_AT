@@ -156,8 +156,8 @@ export default function ApplyFixedDeposits() {
                             // history.goBack()
                         }
                         else {
-                            console.log("Here pan")
-                            toast.dark(e["Error"]);
+                            // console.log("Here pan")
+                            toast.error(e["Error"]);
                         }
 
                     })

@@ -82,7 +82,7 @@ function MakePayment() {
                 // history.goBack()
             }
         }).catch(function (error) {
-            toast.dark("Something went wrong!");
+            toast.error("Something went wrong!");
         });
     }
     // const Loading... = <><h1>Jenil</h1></>
