@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './ApplyFixedDeposits.css'
 import { ToastContainer, toast } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
+import useFetch from '../Utility/General/Usefetch'
 // import cal from '../Utility/FixedDeposit/FixedDepositCalc'
 // import checkAll from '../Utility/FixedDeposit/FixedDepositCalc'
 // import checkType from '../Utility/FixedDeposit/FixedDepositCalc'
@@ -102,8 +103,22 @@ function checkFreq(e) {
 }
 export default function ApplyFixedDeposits() {
 
+    const setUserAccounts = function (userData) {
+        if (userData) {
+            const accounts = userData["data"]
+            const allJsx = []
+            for (let account in accounts) {
+                console.log(account);
+                account = accounts[account]
+                let acJsx = <><option value={account._id}>{account["_id"]}, Balance: {account.accountBalance}</option></>
+                allJsx.push(acJsx);
+            }
 
-    const [data, setData] = useState({
+            return allJsx;
+        }
+    }
+
+    const [depositDetails, setDepositDetails] = useState({
         principleAmount: 0,
         maturity: 0,
         acNumber: '',
@@ -111,15 +126,21 @@ export default function ApplyFixedDeposits() {
         recurringAmount: 0
     })
 
+    // let final_request = "/account/" + slug["pathname"].split("/")[2];
+    const { data, loading } = useFetch("/user/getACDetails/-1");
+    console.log(loading ? "loading..." : data);
+
     function handleOnSubmit(e) {
         e.preventDefault();
         saveData();
     }
 
+
+
     const saveData = async function () {
         fetch('/fd/addNewFD', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(depositDetails),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8'
             }
@@ -143,14 +164,14 @@ export default function ApplyFixedDeposits() {
                 return response.json();
             }
             return Promise.reject(response);
-        }).then(function (data) {
-            console.log("Data:", data)
-            if (data["Success:"]) {
+        }).then(function (depositDetails) {
+            console.log("Data:", depositDetails)
+            if (depositDetails["Success:"]) {
                 toast.success("Your Application was successful!!");
                 // history.goBack()
             }
             else {
-                toast.dark(data["Error"]);
+                toast.dark(depositDetails["Error"]);
             }
         }).catch(function (error) {
             // toast.dark("Something went wrong!");
@@ -162,7 +183,7 @@ export default function ApplyFixedDeposits() {
 
             <div>
                 <div>
-                    <h1 className="fixedDepositHeader">Apply for Deposit</h1>
+                    <h1 className="fixedDepositHeader">Make Deposit</h1>
                     <hr className="fixedDepositHeader" />
                 </div>
 
@@ -172,8 +193,8 @@ export default function ApplyFixedDeposits() {
                             <label for="pricipleAmount" class="col-sm-2 col-form-label"><b>Principle Amount</b><span className="home-loan-form-span"> * </span></label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control fixedDepositInps" id="pricipleAmount"
-                                    value={data.principleAmount}
-                                    onChange={e => setData({ ...data, principleAmount: e.target.value })}
+                                    value={depositDetails.principleAmount}
+                                    onChange={e => setDepositDetails({ ...depositDetails, principleAmount: e.target.value })}
                                     // setUserDetails()
                                     placeholder="Principle Amount." />
                             </div>
@@ -183,8 +204,8 @@ export default function ApplyFixedDeposits() {
                             <label for="maturity" class="col-sm-2 col-form-label"><b>Maturity</b><span className="home-loan-form-span"> * </span></label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control fixedDepositInps" id="maturity"
-                                    value={data.maturity}
-                                    onChange={e => setData({ ...data, maturity: e.target.value })}
+                                    value={depositDetails.maturity}
+                                    onChange={e => setDepositDetails({ ...depositDetails, maturity: e.target.value })}
                                     // setUserDetails()
                                     placeholder="Enter maturity time in years." />
                             </div>
@@ -193,11 +214,17 @@ export default function ApplyFixedDeposits() {
                         <div class="row mb-3 ">
                             <label for="acNumber" class="col-sm-2 col-form-label"><b>Account Number</b><span className="home-loan-form-span"> * </span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control fixedDepositInps" id="acNumber"
-                                    value={data.acNumber}
-                                    onChange={e => setData({ ...data, acNumber: e.target.value })}
-                                    // setUserDetails()
-                                    placeholder="Provide the account in or from which you want transfer." />
+                                <select class="depositTypeSelectDropDown" name="freq"
+                                    onChange={e => setDepositDetails({ ...depositDetails, acNumber: e.target.value })}
+                                >
+                                    <option value={''}>Select</option>
+                                    {loading ? "loading..." :
+                                        (setUserAccounts(data)).map((e) => {
+                                            return e
+                                        })
+                                    }
+
+                                </select>
                             </div>
                         </div>
 
@@ -205,7 +232,7 @@ export default function ApplyFixedDeposits() {
                             <label for="depositType" class="col-sm-2 col-form-label"><b>Deposit Type</b><span className="home-loan-form-span"> * </span></label>
                             <div class="col-sm-10">
                                 <select class="depositTypeSelectDropDown" name="freq"
-                                    onChange={e => setData({ ...data, depositType: e.target.value })}
+                                    onChange={e => setDepositDetails({ ...depositDetails, depositType: e.target.value })}
                                 >
                                     <option value={''}>Select</option>
                                     <option value={'fixedDeposit'}>Fixed Deposit</option>
@@ -218,8 +245,8 @@ export default function ApplyFixedDeposits() {
                             <label for="recurringAmount" class="col-sm-2 col-form-label"><b>Recurring Amount</b></label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control fixedDepositInps" id="recurringAmount"
-                                    value={data.recurringAmount}
-                                    onChange={e => setData({ ...data, recurringAmount: e.target.value })}
+                                    value={depositDetails.recurringAmount}
+                                    onChange={e => setDepositDetails({ ...depositDetails, recurringAmount: e.target.value })}
                                     // setUserDetails()
                                     placeholder="Applied only in case of you have selected recurring deposit option." />
                             </div>

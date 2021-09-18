@@ -38,7 +38,7 @@ export default function FixedDeposits() {
 
 
 
-      <div class="container1">
+      {/* <div class="container1">
         <div class="container2">
           <div class="row">
             <div class="col-sm-6">
@@ -94,7 +94,7 @@ export default function FixedDeposits() {
             </div>
           </div>
         </div>
-      </div >
+      </div > */}
 
     </>
   );

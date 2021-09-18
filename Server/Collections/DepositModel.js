@@ -16,6 +16,16 @@ const Deposit = mongoose.Schema({
     principleAmount: {
         type: Number,
         required: true
+    },
+    depositOwner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserModel',
+        required: true
+    },
+    referenceAccount: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'AccountModel',
+        required: true
     }
 
 })

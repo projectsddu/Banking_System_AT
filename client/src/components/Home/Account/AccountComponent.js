@@ -16,17 +16,7 @@ export default function AccountComponent() {
     const location = useLocation()
     const [uril, setUril] = useState(null)
 
-    const left_data = {
-        "header": "Income Expense Chart",
-        "quote": "Spend as much as you have! - John Mckinzey",
-        "ul_header": "Insights",
-        "ul_data": [
-            "Try increasing your credit score",
-            "You are in a lot of debt",
-            "You could apply for Bankers exclusive loan",
-            "Overall Profile Rating (OPR): Average"
-        ]
-    }
+
 
 
 
@@ -59,6 +49,17 @@ export default function AccountComponent() {
     const expiryMonth = String((new Date(expiryDate)).getMonth()).length == 1 ? " 0" + String((new Date(expiryDate)).getMonth()) : (new Date(expiryDate)).getMonth();
     const expiryYear = String((new Date(expiryDate)).getFullYear()).slice(2, 4);
     makeTransactionData(loading ? [] : data["transaction"], slug["pathname"].split("/")[2])
+    const left_data = {
+        "header": "Income Expense Chart",
+        "quote": "Spend as much as you have! - John Mckinzey",
+        "ul_header": "Insights",
+        "ul_data": [
+            "Try increasing your credit score",
+            "You are in a lot of debt",
+            "You could apply for Bankers exclusive loan",
+            "Overall Profile Rating (OPR): Average"
+        ]
+    }
     return (
         <div className="Account-page-wrapper ">
             <div className="col bord">

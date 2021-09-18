@@ -47,14 +47,19 @@ function sortByDate(transactions) {
     // setTransactions(transactions.map((e) => { return e }));
 }
 const isDebit = function (e, curAc) {
-
-    if (e["sender"] == curAc) {
+    console.log(
+        e["sender"]._id, curAc._id
+    )
+    if (String(e["sender"]._id) == String(curAc._id) && (String(e["receiver"]._id) != String(curAc._id))) {
         console.log(
-            "called"
+            "called true"
         )
         return true
     }
     else {
+        console.log(
+            "called false"
+        )
         return false
     }
 }
@@ -63,7 +68,7 @@ function makeTransactionData(transaction_data, curAc) {
     var returnArray = []
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
-    console.log(transaction_data)
+    // console.log(transaction_data)
 
     // Logic is we keep adding for a particular month 
     // until it is changed
@@ -85,9 +90,6 @@ function makeTransactionData(transaction_data, curAc) {
         else {
             takenMonth[key][mode] += amount
         }
-
-        // const expiryMonth = String((new Date(expiryDate)).getMonth()).length == 1 ? " 0" + String((new Date(expiryDate)).getMonth()) : (new Date(expiryDate)).getMonth();
-        // const expiryYear = String((new Date(expiryDate)).getFullYear()).slice(2, 4);
         returnArray.push({ Amount: transaction_data[i]["amount"] })
 
     }
@@ -101,8 +103,8 @@ function makeTransactionData(transaction_data, curAc) {
         let mnth = (6 - len);
         let temp = []
         for (let j = 0; j < mnth; j++) {
-            console.log("knsknskdn")
-            console.log(mnth)
+            // console.log("knsknskdn")
+            // console.log(mnth)
             temp.push({ "name": "N/A", "income": 0, "expense": 0 })
         }
         // finalReturnData.concat(temp)
@@ -113,7 +115,7 @@ function makeTransactionData(transaction_data, curAc) {
     else {
         console.log("in here")
     }
-    console.log(finalReturnData)
+    // console.log(finalReturnData)
     return finalReturnData
 
 }
@@ -138,8 +140,9 @@ const getTransactionData = async function (current_user) {
     x = getPastTransactionsAnalytics(transactions, current_user)
     // console.log(x)
     const graphData = makeTransactionData(transactions, current_user)
+    console.log({ "graphData": graphData, "headerData": x })
     return { "graphData": graphData, "headerData": x }
-    // Now we take data of past 6 months
+
 
 }
 module.exports = getTransactionData

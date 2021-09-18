@@ -47,16 +47,30 @@ export default function HomeComponent() {
         return str1
     }
     //set user data
+    const evaluateProfile = function (amount) {
+        if (amount < 0) {
+            return "Poor"
+        }
+        else if (amount >= 0 && amount <= 5000) {
+            return "Average"
+        }
+        else if (amount > 5000 && amount <= 100000) {
+            return "Good"
+        }
+        else {
+            return "Excellent!"
+        }
+    }
 
     const left_data = {
         "header": "Income Expense Chart",
         "quote": "Spend as much as you have!",
         "ul_header": "Insights",
         "ul_data": [
-            "Your Credits are: $",
-            "Your Debits are: $",
-            "Your net Income is: -1000$",
-            "Overall Profile Rating (OPR):Poor"
+            "Your Credits are: $" + (loading ? "Loading..." : data["userData"]["headerData"]["credit"]),
+            "Your Debits are: $" + (loading ? "Loading..." : data["userData"]["headerData"]["debit"]),
+            "Your net Income is: $" + (loading ? "Loading..." : data["userData"]["headerData"]["netAcBal"]),
+            "Overall Profile Rating (OPR):" + (loading ? "Loading..." : evaluateProfile(data["userData"]["headerData"]["netAcBal"]))
         ]
     }
 
@@ -71,12 +85,6 @@ export default function HomeComponent() {
             width={355}
             height={110}
             datakey={"income"}
-            // data={[{ name: 'Jan', income: 400, expense: 600 },
-            // { name: 'Feb', income: 400, expense: 200 },
-            // { name: 'Mar', income: 600, expense: 700 },
-            // { name: 'Apr', income: 900, expense: 400 },
-            // { name: 'May', income: 1200, expense: 900 },
-            // { name: 'Jun', income: 500, expense: 700 }]}
             data={loading ? [] : data["userData"]["graphData"]}
         ></HeadLineChartComponent>
 
@@ -92,12 +100,6 @@ export default function HomeComponent() {
             width={355}
             height={110}
             datakey={"expense"}
-            // data={[{ name: 'Jan', income: 400, expense: 600 },
-            // { name: 'Feb', income: 400, expense: 200 },
-            // { name: 'Mar', income: 600, expense: 700 },
-            // { name: 'Apr', income: 900, expense: 400 },
-            // { name: 'May', income: 1200, expense: 900 },
-            // { name: 'Jun', income: 500, expense: 700 }]}
             data={loading ? [] : data["userData"]["graphData"]}
         ></HeadLineChartComponent>
 

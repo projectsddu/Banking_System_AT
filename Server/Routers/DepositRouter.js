@@ -5,6 +5,7 @@ const verifyDeposit = require("../Middlewares/Deposit/verifyDeposit");
 const Deposit = require("../Collections/DepositModel");
 const FixedDeposit = require("../Collections/FixedDepositModel")
 const RecurringDeposit = require("../Collections/RecurringDepositModel")
+const Transaction = require("../Collections/TransactionModel")
 
 router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
@@ -27,11 +28,20 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
                 curDate.getSeconds()
             );
 
+            // check validation related to recurring amount
+            if (depositType === "recurringDeposit") {
+                if (!recurringAmount) {
+                    throw "Please provide recurring amount";
+                }
+            }
+
             const depositobj = await Deposit({
                 dateOfIssue: new Date(),
                 maturityDate: maturityDate,
                 interestRate: 8,
-                principleAmount: principleAmount
+                principleAmount: principleAmount,
+                depositOwner: req.current_user,
+                referenceAccount: req.current_ac
             })
 
             const depositStatus = await depositobj.save();
@@ -39,16 +49,33 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
             if (!depositStatus) {
                 throw "Error while creating Deposit Object";
             }
+            else {
+                req.current_ac.accountBalance -= principleAmount;
+                req.current_ac.save();
+                const trxObj = await Transaction({
+                    sender: req.current_user,
+                    senderAc: req.current_ac,
+                    receiverAc: req.admin_account,
+                    receiver: req.admin_user,
+                    amount: principleAmount,
+                    transactionDateTime: Date.now(),
+                    mode: "FD",
+                    reason: "FD:" + String(depositobj._id).substr(21, 24),
+                    isPending: false
+
+                })
+
+                const trxStatus = await trxObj.save();
+
+                if (!trxStatus) {
+                    throw "Error while saving data!!"
+                }
+
+            }
 
             if (depositType === "recurringDeposit") {
 
-                if (!recurringAmount) {
-                    throw "Please provide recurring amount";
-                }
-
                 // create RecurringDeposit object
-
-                // const recurringAmount = req.body.recurringAmount
 
                 const recurObj = await RecurringDeposit({
                     deposit: depositobj,
@@ -60,6 +87,7 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
                 if (!recurringStatus) {
                     throw "Error while creating RecurringObject!!";
                 }
+
             }
             else {
                 // create FixedDeposit object
@@ -86,7 +114,9 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
 router.post("/fd/getFDDetails", [authenticate], async (req, res) => {
     try {
-
+        // current user fid all deposit object
+        // make a list of deposit objects
+        // 
     }
     catch (e) {
         console.log(e.toString())
