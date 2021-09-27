@@ -324,6 +324,11 @@ tbody tr td .fa-long-arrow-down {
     float: right;
 }
 .print-passbook{
-    font-weight: 700;
-    background-color: var(--bBlue);
+    font-weight: 500;
+    color: white;
+    background-color: var(--pressedBlue);
+}
+.print-passbook:hover{
+    color:white;
+    background-color: var(--dbBlue);
 }

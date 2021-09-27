@@ -10,6 +10,8 @@
   --bodyBlack:#18191A;
   --green1:#6CF5B0;
   --green3:#00ffb3;
+  --pressedBlue:#229ae7;
+  --pressedBlackBlue:#355767
 }
 body {
   margin: 0;

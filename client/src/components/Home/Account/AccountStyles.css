@@ -31,7 +31,9 @@
     /* background-image: linear-gradient(125deg,var(--dbBlue),rgb(2, 175, 255)); */
     /* background-image: linear-gradient(125deg,#B5FA8A,var(--dbBlue)00%); */
     /* background-color: var(--dbBlue); */
-    background-color: #0daaf3;
+    /* background-color: #0daaf3; */
+    background-color: var(--pressedBlackBlue);
+
     color:#ffffff;
     font-family: cursive;
     font-size: 1.5em;
@@ -61,15 +63,15 @@
     /* padding: 2%; */
     height:90%;
     font-weight: 500;
-    color:rgb(32, 32, 32);
+    color:rgb(255, 255, 255);
     /* background-color: #E93B81; */
     /* background-color: var(--green3); */
-    background-color: var(--green2);
+    background-color: var(--pressedBlue);
     /* background-image: linear-gradient(125deg,rgb(141, 4, 253),#ff006a); */
 }
 .payment:hover{
-    color: rgb(53, 53, 53);
-    background-image: linear-gradient(270deg,var(--green1),var(--green3));
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(270deg,var(--dbBlue),var(--dbBlue));
 
 }
 .paymentButton{

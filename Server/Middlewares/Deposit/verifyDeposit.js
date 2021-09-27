@@ -21,7 +21,7 @@ const verifyDeposit = async function (req, res, next) {
             req.accountAttchedWithUser = true;
             console.log("account balance: ", req.current_ac.accountBalance)
             console.log("principle amount: ", req.body.principleAmount)
-            if (req.body.principleAmount > req.current_ac.accountBalance && req.body.principleAmount < 0) {
+            if (req.body.principleAmount > req.current_ac.accountBalance || req.body.principleAmount < 0) {
                 throw "Insufficient account balance!!"
             }
 

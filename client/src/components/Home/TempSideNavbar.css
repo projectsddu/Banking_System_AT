@@ -17,7 +17,7 @@
   /* background-color: rgb(253, 10, 144); */
   /* background-color: #2f7ff7; */
   /* background-color: #00DDF3; */
-  background-color: var(--bBlue);
+  background-color: var(--pressedBlue);
   /* FF3D68 */
   /* background-image: linear-gradient(215deg,#C3073F,#950740,#6f2232); */
   margin-bottom: 3%;
@@ -26,7 +26,13 @@
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  color:#252525;
+  color:#ffffff;
+}
+
+.partition:hover{
+  /* background-color: var(--dbBlue); */
+  background-color: #0377fc;
+  color:rgb(255, 255, 255)
 }
 /* .accordian-button {
   background-color: #ccff00;

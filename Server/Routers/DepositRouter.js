@@ -6,6 +6,8 @@ const Deposit = require("../Collections/DepositModel");
 const FixedDeposit = require("../Collections/FixedDepositModel")
 const RecurringDeposit = require("../Collections/RecurringDepositModel")
 const Transaction = require("../Collections/TransactionModel")
+const ReccuringDeposit = require("../Collections/RecurringDepositModel")
+const hasExipredDeposit = require("../Utilies/Deposit/hasExipredDeposits")
 
 router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
@@ -116,16 +118,35 @@ router.post("/fd/getFDDetails", [authenticate], async (req, res) => {
     try {
         // current user fid all deposit object
         // make a list of deposit objects
+
+        var status = await hasExipredDeposit(req.current_user, req.admin_user, req.admin_account)
+        console.log("status" + status)
         const allDeposits = await Deposit.find({
             depositOwner: req.current_user
         })
 
+
+        rcr = []
+        // Now iterate through all user Deposits and find if any of it is recuuring.
+        for (var depo in allDeposits) {
+            // console.log(depo)
+            const recur = await ReccuringDeposit.findOne({
+                deposit: allDeposits[depo]
+            })
+            if (recur == null) {
+                rcr.push(false)
+            }
+            else {
+                rcr.push(recur)
+            }
+        }
+        // console.log(rcr)
         const username = {
             "firstName": req.current_user.firstName,
             "lastName": req.current_user.lastName
         }
-
-        return res.json({"depositData": allDeposits, "username": username,"Success:": true});
+        // console.log({ "depositData": allDeposits, "username": username, "Success:": true })
+        return res.json({ "depositData": allDeposits, "username": username, "Success:": true, "recurringData": rcr });
 
         // console.log(allDeposits);
 
