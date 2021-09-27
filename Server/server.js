@@ -10,6 +10,7 @@ const RTGSRouter = require("./Routers/RTGSRouter")
 const NEFTRouter = require("./Routers/NEFTRouter")
 const LoanInquiryRouter = require("./Routers/LoanInquiryRouter")
 const DepositRouter = require("./Routers/DepositRouter")
+const DepositModel = require("./Collections/DepositModel")
 // const LoanInquiryRouter = require("./Routers/LoanInquiryRouter_1")
 
 require("./Database/connect")
@@ -27,9 +28,10 @@ app.get("/testing", (req, res) => {
     res.send("Hello world");
 })
 
+
 app.use(express.json())
 app.use(cookieParser())
- 
+
 //Routers defined here
 app.use(require('./Routers/LoanInquiryRouter.js'));
 // app.use(require('./Routers/LoanInquiryRouter_1.js'));
