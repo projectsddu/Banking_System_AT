@@ -74,7 +74,6 @@ export default function LoginComponent({ data }) {
                                 <input id="username"
                                     type="text"
                                     value={userDetails.username}
-                                    // onChange = {e=>setUserDetails(userDetails[id]=)}
                                     onChange={e => setUserDetails({ ...userDetails, username: e.target.value })}
                                     required
                                 />

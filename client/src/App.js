@@ -9,7 +9,9 @@ import RightComponent from './components/Home/RightComponent';
 import TempSideNavbar from './components/Home/TempSideNavbar';
 import YourLoans from './components/Home/YourLoans/YourLoans';
 import AdminLogin from './components/Admin/Login/AdminLogin';
+import BodyComp from "./components/Admin/Body/BodyComp"
 import { injectStyle } from "react-toastify/dist/inject-style";
+
 
 function App() {
   if (typeof window !== "undefined") {
@@ -24,6 +26,21 @@ function App() {
       <Route path="/admin/login">
         <AdminLogin></AdminLogin>
       </Route>
+      <Route path="/admin/home">
+        <BodyComp name="home" />
+      </Route>
+      <Route path="/admin/createUser">
+        <BodyComp name="createUser" />
+      </Route>
+      <Route path="/admin/createUserAccount">
+        <BodyComp name="createUserAccount" />
+      </Route>
+      <Route path="/admin/blockUserAccount">
+        <BodyComp name="blockUserAccount" />
+      </Route>
+
+
+
       <div class="row">
         <div className="col-2">
           <Route path="/home">

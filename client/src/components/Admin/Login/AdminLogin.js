@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
 import { useState, useEffect } from 'react'
@@ -9,6 +10,37 @@ export default function AdminLogin() {
         username: '',
         pinNo: ''
     });
+
+    const history = useHistory()
+    const saveData = async function (e) {
+        e.preventDefault()
+        var data = JSON.stringify(userDetails)
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = data
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("/admin/loginAdmin", requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+
+                if (result === "Success") {
+                    history.push("/admin/home")
+                }
+                else {
+                    console.log(result)
+                }
+            }
+            ).catch(error => console.log('error', error));
+
+    }
+
     return (
         <>
             <div className="adminLoginWrapper">
@@ -37,7 +69,7 @@ export default function AdminLogin() {
                                             required
                                         />
                                         <div class="underline"></div>
-                                        <label>User ID / Account Number</label>
+                                        <label>Admin Id</label>
                                     </div>
                                     <div class="input-data m-4">
                                         <input id="pinNo"
@@ -47,9 +79,11 @@ export default function AdminLogin() {
                                             required
                                         />
                                         <div class="underline"></div>
-                                        <label>IPIN / Password</label>
+                                        <label>Password</label>
                                     </div>
-                                    <button type="submit" class="  loginbtn">Login</button>
+                                    <button type="submit" class="loginbtn"
+                                        onClick={(e) => saveData(e)}
+                                    >Login</button>
                                 </div>
                             </form>
                         </div>
