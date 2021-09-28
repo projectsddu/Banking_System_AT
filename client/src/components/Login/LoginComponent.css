@@ -25,7 +25,7 @@
 
 .login input[type="password"] {
     padding: 10px 10px 10px 10px;
-    width: 60%;
+    width: 100%;
     margin: 2px 2px 2px 2px;
     border-top: 1px solid white !important;
     border-left: 1px solid white !important;

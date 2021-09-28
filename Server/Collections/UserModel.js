@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
-// const bcrypt = require('bcrypt');
-// var SHA256 = require("crypto-js/sha256");
+const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 const User = mongoose.Schema({
     firstName: {
@@ -16,7 +15,7 @@ const User = mongoose.Schema({
         required: true
     },
     pinNo: {
-        type: Number,
+        type: String,
         required: true
     },
     address: {
@@ -84,6 +83,16 @@ User.methods.generateAuthToken = async function () {
 //     }
 //     next();
 // })
+
+
+// hashing the password
+// User.pre('save', async function (next) {
+//     if (this.isModified('pinNo')) {
+//         this.pinNo = bcrypt.hash(this.pinNo, 12);
+//     }
+//     next();
+// })
+
 
 
 const UserModel = mongoose.model("USER", User)
