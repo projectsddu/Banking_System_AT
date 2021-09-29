@@ -3,6 +3,8 @@ const router = express.Router()
 const authenticate = require("../Middlewares/Admin/authenticateAdmin")
 const verifyAdminDetails = require("../Middlewares/Admin/verifyAdminDetails")
 const Admin = require("../Collections/AdminModel")
+const User = require("../Collections/UserModel")
+const Account = require("../Collections/AccountModel")
 
 
 router.post("/admin/create_admin", [verifyAdminDetails], async (req, res) => {
@@ -78,4 +80,112 @@ router.post("/admin/loginAdmin", async (req, res) => {
         return res.json({ "Error:": e.toString() })
     }
 })
+
+router.post("/admin/get_all_users/:search_string", [authenticate], async (req, res) => {
+
+    try {
+        const search_string = String(req.params.search_string).toLowerCase()
+        const allUsers = await User.find({
+            $or: [
+                { middleName: { $regex: search_string } },
+                { firstName: { $regex: search_string } },
+                { lastName: { $regex: search_string } }
+
+            ]
+        });
+        // console.log(search_string)
+        // console.log(allUsers)
+        if (allUsers) {
+
+            return res.json({ "allUsers": allUsers.length > 5 ? allUsers.slice(0, 5) : allUsers })
+        }
+        else {
+            throw "Error Connecting!"
+        }
+    }
+    catch (e) {
+        console.log(e)
+        return res.json({ "Error:": e.toString() })
+    }
+})
+
+router.post("/admin/block_user", [authenticate], async (req, res) => {
+    try {
+        const { username, pinNo } = req.body;
+
+        const fullName = String(username).split("_")
+        let firstName = fullName[0].toLowerCase();
+        let middleName = fullName[1].toLowerCase();
+        let lastName = fullName[2].toLowerCase();
+        // console.log("11111111")
+
+        const userExist = await User.findOne({
+            firstName: firstName,
+            middleName: middleName,
+            lastName: lastName
+        })
+        if (!userExist) {
+            return res.json({ "Error:": "User not Exist!!!" })
+        }
+        // console.log("32222222")
+        if (req.current_admin.pinNo == pinNo) {
+            const sts = await User.deleteOne({
+                firstName: firstName,
+                middleName: middleName,
+                lastName: lastName
+            })
+            // console.log("3333333333")
+            if (!sts) {
+                return res.json({ "Error:": "Error while blocking User!!!" })
+            }
+
+            return res.json({ "Success": "Success" })
+        }
+
+        else {
+            return res.json({ "Error:": "Wrong Pin Number of Admin!!!" })
+        }
+
+
+    }
+    catch (e) {
+        console.log(e)
+        return res.json({ "Error:": e.toString() })
+    }
+})
+
+// TEST ME
+router.post("/admin/createUserAccount", [authenticate], async (req, res) => {
+    try {
+        const { username, balance } = req.body
+        const usernames = String(username).split(" ")
+        const firstName = usernames[0]
+        const middleName = usernames[1]
+        const lastName = usernames[2]
+        const user = await User.findOne({ firstName, middleName, lastName })
+        if (!user) {
+            throw "user does not exists!!"
+        }
+        else {
+            const acType = await AccountType.findOne({
+                accountTypeName: "joint"
+            })
+            const ac = await Account({
+                accountOwner: user,
+                accountType: acType,
+                accountBalance: balance,
+                isEcardIssued: false
+            })
+        }
+    }
+    catch (e) {
+
+    }
+})
+
+
+
+
+
 module.exports = router;
+

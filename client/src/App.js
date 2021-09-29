@@ -38,6 +38,15 @@ function App() {
       <Route path="/admin/blockUserAccount">
         <BodyComp name="blockUserAccount" />
       </Route>
+      <Route path="/admin/viewLoanRequest">
+        <BodyComp name="viewLoanRequest" />
+      </Route>
+      <Route path="/admin/sanctionLoan">
+        <BodyComp name="sanctionLoan" />
+      </Route>
+      <Route path="/admin/addCashToUser">
+        <BodyComp name="addCashToUser" />
+      </Route>
 
 
 

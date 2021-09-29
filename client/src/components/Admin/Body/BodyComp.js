@@ -3,6 +3,9 @@ import AdminHome from "../Home/AdminHome"
 import CreateUser from '../User/CreateUser';
 import BlockUserComp from '../User/BlockUserComp';
 import CreateUserAccount from '../User/CreateUserAccount'
+import SanctionLoan from '../Loan/SanctionLoan';
+import ViewLoanRequest from '../Loan/ViewLoanRequest';
+import AddCashToUser from '../Cash/AddCashToUser';
 import "./Body.css"
 import { NavLink } from 'react-router-dom';
 
@@ -12,7 +15,10 @@ export default function BodyComp(props) {
         "home": <AdminHome />,
         "createUser": <CreateUser />,
         "createUserAccount": <CreateUserAccount />,
-        "blockUserAccount": <BlockUserComp />
+        "blockUserAccount": <BlockUserComp />,
+        "viewLoanRequest": <ViewLoanRequest />,
+        "sanctionLoan": <SanctionLoan />,
+        "addCashToUser": <AddCashToUser />
     }
     return (
         <>
@@ -45,9 +51,9 @@ export default function BodyComp(props) {
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                <li><a class="dropdown-item" href="#">View Loan Requests</a></li>
+                                <li><NavLink class="dropdown-item" to="/admin/viewLoanRequest">View Loan Requests</NavLink></li>
                                 {/* <li><hr class="dropdown-divider" /></li> */}
-                                <li><a class="dropdown-item" href="#">Sanction Loan</a></li>
+                                <li><NavLink class="dropdown-item" to="/admin/sanctionLoan">Sanction Loan</NavLink></li>
                             </ul>
                         </li>
                     </ul>
@@ -57,7 +63,7 @@ export default function BodyComp(props) {
                                 Admin
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Add Cash to Users AC</a></li>
+                                <li><NavLink class="dropdown-item" to="/admin/addCashToUser">Add Cash to Users AC</NavLink></li>
                                 <li><a class="dropdown-item" href="#">Add Cash to Admin AC</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>

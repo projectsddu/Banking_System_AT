@@ -18,7 +18,7 @@
     border-top: 1px solid white !important;
     border-left: 1px solid white !important;
     border-right: 1px solid white !important;
-    border-bottom: 3px solid rgb(241, 101, 234);
+    border-bottom: 5px solid rgb(241, 101, 234);
 
 }
 
@@ -30,7 +30,7 @@
     border-top: 1px solid white !important;
     border-left: 1px solid white !important;
     border-right: 1px solid white !important;
-    border-bottom: 3px solid rgb(241, 101, 234);
+    border-bottom: 5px solid rgb(241, 101, 234);
 
 }
 input{
@@ -44,7 +44,7 @@ input{
     border-top: 1px solid white !important;
     border-right: 1px solid white !important;
     border-left: 1px solid white !important;
-    border-bottom: 4px solid rgb(241, 101, 234);
+    border-bottom: 5px solid rgb(241, 101, 234);
 }
 .login input[type="text"]:focus
 {
@@ -52,7 +52,7 @@ input{
     border-top: 1px solid white !important;
     border-right: 1px solid white !important;
     border-left: 1px solid white !important;
-    border-bottom: 4px solid rgb(241, 101, 234);
+    border-bottom: 5px solid rgb(241, 101, 234);
 }
 .login input[type="password"]::placeholder{
     color: #969595;

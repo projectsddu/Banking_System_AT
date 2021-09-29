@@ -1,9 +1,9 @@
-.create-user-account-form-wrapper{
+.add-cash-form-wrapper{
     font-family:  "SF Pro Display","SF Pro Icons",Helvetica "Neue",Helvetica,Arial,sans-serif;
     display: flex;
     justify-content: center;
 }
-.create-user-account-input{
+.add-cash-input{
   padding-left : 1.2em;
   width: 100%;
   /* margin-left: 500px; */
@@ -12,16 +12,16 @@
   border:1px solid #d6d6d6;
 
 }
-.create-user-account-input::placeholder{
+.add-cash-input::placeholder{
   color:#919190;
   padding-left: 0.4em;
 }
-.create-user-account-input:focus{
+.add-cash-input:focus{
   padding-left : 1.2em;
   outline: none;
   border:2px solid #0070c9;
 }
-.create-user-account-form-wrapper p{
+.add-cash-form-wrapper p{
   /* margin-left: 300px; */
   font-weight: 400;
   font-size: 2em;
@@ -29,26 +29,9 @@
   letter-spacing: 0.011em;
   color:#494949;
 }
-.create-user-account-form-wrapper .craete-user-account-subBtn{
+.add-cash-form-wrapper .add-cash-subBtn{
     width: 100%;
     font-family:  "SF Pro Display","SF Pro Icons",Helvetica "Neue",Helvetica,Arial,sans-serif;
     font-weight: 500;
     padding: 1%;
-}
-.showsUserData{
-  border:2px solid rgb(133, 131, 131);
-  border-radius: 6px;
-  padding: 4%;
-  list-style-type: none;
-}
-.showUsersLi{
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  margin:3%;
-  padding: 2%;
-  border-radius:7px;
-  border: 2px solid #0070c9;
-  /* font-weight:bold */
-  font-size: 1.1em;
 }

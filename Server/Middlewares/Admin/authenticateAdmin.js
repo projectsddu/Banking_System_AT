@@ -21,6 +21,7 @@ const authenticateAdmin = async function (req, res, next) {
         next();
     }
     catch (e) {
+        console.log(e);
         return res.json({ "Error:": "Error authenticating user" })
     }
 }
