@@ -28,7 +28,7 @@ function CreateUserAccount() {
                         </li>
                     </ul>
 
-                    <input className="create-user-account-input my-2" placeholder="Enter Account Balance" />
+                    <input type="Number" className="create-user-account-input my-2" placeholder="Enter Account Balance" />
 
                     <button type="submit" className="btn btn-primary craete-user-account-subBtn">Add User Account</button>
                 </div>
