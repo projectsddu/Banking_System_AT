@@ -47,6 +47,12 @@ function App() {
       <Route path="/admin/addCashToUser">
         <BodyComp name="addCashToUser" />
       </Route>
+      <Route path="/admin/addAnotherAdmin">
+        <BodyComp name="addAnotherAdmin" />
+      </Route>
+      <Route path="/admin/viewProfile">
+        <BodyComp name="viewProfile" />
+      </Route>
 
 
 

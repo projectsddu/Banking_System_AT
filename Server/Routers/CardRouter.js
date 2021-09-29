@@ -10,7 +10,7 @@ const creditCardAuthenticate = require("../Middlewares/Account/CreateDebitCard")
 const generateDebitCardDetails = require("../Utilies/Account/DebitCardGenerator")
 const generateCreditCardDetails = require("../Utilies/Account/CreditCardGenerator")
 const DebitCardModel = require("../Collections/DebitCardModel")
-
+const adminAuthenticate = require("../Middlewares/Admin/authenticateAdmin");
 
 router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
     try {

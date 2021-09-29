@@ -196,7 +196,11 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                 }).sort({ "date": "descending" })
 
 
-                const cardData = await DebitCard.findOne({ accountAttached: acnum })
+                var cardData = await DebitCard.findOne({ accountAttached: acnum })
+                if(!cardData)
+                {
+                    cardData = -1
+                }
                 return res.json({ "cardData": cardData, "data": ac, "transaction": transactions, "Success": true, "userList": req.current_user });
             }
         }

@@ -61,65 +61,158 @@ export default function AccountComponent() {
         ]
     }
     return (
-        <div className="Account-page-wrapper ">
-            <div className="col bord">
-                <div className="row topDetails">
-                    <div className="col-7 ">
-                        <DebitCardComponent cvv={loading ? "" : data["cardData"]["cvvNumber"]} className="col-6" type_card="credit" valid_thru={loading ? "" : expiryMonth + "/" + expiryYear} name={loading ? <div className="spinner-border text-warning" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])} cardnumber={loading ? "1234-5555-2234-9900" : parseCardnum(data["cardData"]["cardNumber"])}></DebitCardComponent>
-                    </div>
-                    <div className="col-5 leftDetails ">
-                        <div className="detailsHeader ">
-                            <h1 className="name-header">{loading ? <div className="spinner-border text-warning" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </div> : capitalize(data["userList"]["firstName"]) + " " + capitalize(data["userList"]["lastName"])}</h1>
-                        </div>
-                        <div className="acDetails">
-                            <h2 className="left-money"> Balance:<span className="money"> ${loading ? <div className="spinner-border text-warning" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </div> : data["data"]["accountBalance"]}</span></h2>
-
-                        </div>
-                        <div className="acDetails">
-                            <div className="row">
-                                <h2 className="left-money col">Holders:</h2>
-                                <span className="holder col"> {loading ? <div className="spinner-border text-warning" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div> : capitalize(data["userList"]["firstName"])}</span>
-                            </div>
-                        </div>
-                        <div className="row mt-4">
-                            <NavLink className="col-5 mr-1" style={{ "margin-left": "-13px", }} to={make_payment_req_url}><button className="btn  payment">Card Transfer</button></NavLink><br />
-                            <NavLink className="col-3 mr-1" to={make_rtgs_payment_req_url}><button className=" btn payment ">RTGS</button></NavLink><br />
-                            <NavLink className="col-3 " style={{ "padding": "0px", }} to={make_neft_payment_req_url}><button className=" btn payment ">NEFT</button></NavLink><br />
-
-                            {/* <NavLink className="col-3 " to={make_neft_payment_req_url}><button className="btn payment ">NEFT</button></NavLink> */}
-                        </div>
-                    </div>
-
+      <div className="Account-page-wrapper ">
+        <div className="col bord">
+          <div className="row topDetails">
+            <div className="col-7 ">
+              {loading ? (
+                ""
+              ) : data["cardData"]==-1 ? (
+                <div style={{"display":"flex","justify-content":"center","align-items":"center","border":"1px solid white","height":"300px"}}>
+                    <h2 style={{"color":"white"}}>Request for Debit Card</h2>
                 </div>
-                <br />
-                <div className="row">
-                    {loading ? "" :
-                        <TransactionTable heading="Latest Transactions" lowerheading="transactions for ac no : 123456789" curAc={slug["pathname"].split("/")[2]} trxdata={data["transaction"]}></TransactionTable>
-                    }
-                </div>
-                <br />
-
-                <div className="row">
-                    <LineChart data={loading ? [{ name: 'Jan', income: 400, expense: 600 },
-                    { name: 'Feb', income: 400, expense: 200 },
-                    { name: 'Mar', income: 600, expense: 700 },
-                    { name: 'Apr', income: 900, expense: 400 },
-                    { name: 'May', income: 1200, expense: 900 },
-                    { name: 'Jun', income: 500, expense: 700 }] :
-                        makeTransactionData(loading ? [] : data["transaction"], slug["pathname"].split("/")[2])} prop={left_data}
-                    />
-                </div>
-
+              ) : (
+                <DebitCardComponent
+                  cvv={loading ? "" : data["cardData"]["cvvNumber"]}
+                  className="col-6"
+                  type_card="credit"
+                  valid_thru={loading ? "" : expiryMonth + "/" + expiryYear}
+                  name={
+                    loading ? (
+                      <div
+                        className="spinner-border text-warning"
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    ) : (
+                      capitalize(data["userList"]["firstName"]) +
+                      " " +
+                      capitalize(data["userList"]["lastName"])
+                    )
+                  }
+                  cardnumber={
+                    loading
+                      ? "1234-5555-2234-9900"
+                      : parseCardnum(data["cardData"]["cardNumber"])
+                  }
+                ></DebitCardComponent>
+              )}
             </div>
-        </div>
+            <div className="col-5 leftDetails ">
+              <div className="detailsHeader ">
+                <h1 className="name-header">
+                  {loading ? (
+                    <div className="spinner-border text-warning" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  ) : (
+                    capitalize(data["userList"]["firstName"]) +
+                    " " +
+                    capitalize(data["userList"]["lastName"])
+                  )}
+                </h1>
+              </div>
+              <div className="acDetails">
+                <h2 className="left-money">
+                  {" "}
+                  Balance:
+                  <span className="money">
+                    {" "}
+                    $
+                    {loading ? (
+                      <div
+                        className="spinner-border text-warning"
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    ) : (
+                      data["data"]["accountBalance"]
+                    )}
+                  </span>
+                </h2>
+              </div>
+              <div className="acDetails">
+                <div className="row">
+                  <h2 className="left-money col">Holders:</h2>
+                  <span className="holder col">
+                    {" "}
+                    {loading ? (
+                      <div
+                        className="spinner-border text-warning"
+                        role="status"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    ) : (
+                      capitalize(data["userList"]["firstName"])
+                    )}
+                  </span>
+                </div>
+              </div>
+              <div className="row mt-4">
+                {loading?"":data["cardData"]==-1?"":<NavLink
+                  className="col-5 mr-1"
+                  style={{ "margin-left": "-13px" }}
+                  to={make_payment_req_url}
+                >
+                  <button className="btn  payment">Card Transfer</button>
+                </NavLink>}
+                <br />
+                <NavLink className="col-3 mr-1" to={make_rtgs_payment_req_url}>
+                  <button className=" btn payment ">RTGS</button>
+                </NavLink>
+                <br />
+                <NavLink
+                  className="col-3 "
+                  style={{ padding: "0px" }}
+                  to={make_neft_payment_req_url}
+                >
+                  <button className=" btn payment ">NEFT</button>
+                </NavLink>
+                <br />
 
-    )
+                {/* <NavLink className="col-3 " to={make_neft_payment_req_url}><button className="btn payment ">NEFT</button></NavLink> */}
+              </div>
+            </div>
+          </div>
+          <br />
+          <div className="row">
+            {loading ? (
+              ""
+            ) : (
+              <TransactionTable
+                heading="Latest Transactions"
+                lowerheading="transactions for ac no : 123456789"
+                curAc={slug["pathname"].split("/")[2]}
+                trxdata={data["transaction"]}
+              ></TransactionTable>
+            )}
+          </div>
+          <br />
+
+          <div className="row">
+            <LineChart
+              data={
+                loading
+                  ? [
+                      { name: "Jan", income: 400, expense: 600 },
+                      { name: "Feb", income: 400, expense: 200 },
+                      { name: "Mar", income: 600, expense: 700 },
+                      { name: "Apr", income: 900, expense: 400 },
+                      { name: "May", income: 1200, expense: 900 },
+                      { name: "Jun", income: 500, expense: 700 },
+                    ]
+                  : makeTransactionData(
+                      loading ? [] : data["transaction"],
+                      slug["pathname"].split("/")[2]
+                    )
+              }
+              prop={left_data}
+            />
+          </div>
+        </div>
+      </div>
+    );
 }

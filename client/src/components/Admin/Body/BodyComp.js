@@ -6,6 +6,8 @@ import CreateUserAccount from '../User/CreateUserAccount'
 import SanctionLoan from '../Loan/SanctionLoan';
 import ViewLoanRequest from '../Loan/ViewLoanRequest';
 import AddCashToUser from '../Cash/AddCashToUser';
+import AddAnotherAdmin from '../AddAdmin/addAnotherAdmin';
+import ViewProfile from '../Profile/ViewProfile';
 import "./Body.css"
 import { NavLink } from 'react-router-dom';
 
@@ -18,7 +20,9 @@ export default function BodyComp(props) {
         "blockUserAccount": <BlockUserComp />,
         "viewLoanRequest": <ViewLoanRequest />,
         "sanctionLoan": <SanctionLoan />,
-        "addCashToUser": <AddCashToUser />
+        "addCashToUser": <AddCashToUser />,
+        "addAnotherAdmin": <AddAnotherAdmin/>,
+        "viewProfile": <ViewProfile />
     }
     return (
         <>
@@ -64,10 +68,11 @@ export default function BodyComp(props) {
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><NavLink class="dropdown-item" to="/admin/addCashToUser">Add Cash to Users AC</NavLink></li>
-                                <li><a class="dropdown-item" href="#">Add Cash to Admin AC</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Add Another Admin</a></li>
+                                
+                                {/* <li><hr class="dropdown-divider" /></li> */}
+                                <li><NavLink class="dropdown-item" to="/admin/viewProfile">View Profile</NavLink></li>
+                                <li><NavLink class="dropdown-item" to="/admin/addAnotherAdmin">Add Another Admin</NavLink></li>
+                                
                             </ul>
                         </li>
                     </ul>

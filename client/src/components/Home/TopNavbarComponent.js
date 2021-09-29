@@ -44,7 +44,7 @@ export default function TopNavbarComponent({ property_name }) {
             <nav class="navbar ">
                 <div class="container topnav">
                     <p className="navText">{capitalize(property_name)}</p>
-                    <p className="float-left">img {loading ? spinJSX : capitalize(data["data"]["firstName"])}</p>
+                    <p className="float-left">Welcome, {loading ? spinJSX : capitalize(data["data"]["firstName"])}</p>
                 </div>
 
             </nav>
