@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom';
 import './TopNavbarComponent.css'
 // import Cookies from 'universal-cookie';
 import Cookies from 'js-cookie';
@@ -44,7 +45,14 @@ export default function TopNavbarComponent({ property_name }) {
             <nav class="navbar ">
                 <div class="container topnav">
                     <p className="navText">{capitalize(property_name)}</p>
-                    <p className="float-left">Welcome, {loading ? spinJSX : capitalize(data["data"]["firstName"])}</p>
+                    <p className="float-left" style={{ "margin-right":"-50%" }}>Welcome, {loading ? spinJSX : capitalize(data["data"]["firstName"])}</p>
+                    <NavLink to="/logout" style={{ "text-decoration": "none", "display": "flex", "justify-content": "center", "align-items": "center", "width": "14%", "margin-top": "-20px"}}>
+                        
+                            <button class="btn btn-danger" style={{"height":"40px"}}>
+                                Log Out
+                            </button>
+                    
+                    </NavLink>
                 </div>
 
             </nav>

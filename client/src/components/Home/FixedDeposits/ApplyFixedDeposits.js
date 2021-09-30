@@ -21,9 +21,10 @@ function cal(e) {
         var rate = parseFloat(document.f1.rate.value);
         var year = parseInt(document.f1.years.value);
         var freq = parseInt(document.f1.freq.value);
-
         var maturity = amt * Math.pow((1 + ((rate / 100) / freq)), freq * year);
-        document.getElementById("maturity").innerText = maturity.toFixed(2);
+        console.log(maturity);
+        // console.log(document.getElementById("maturity-1"))
+        document.getElementById("maturityAmt").innerText = maturity.toFixed(2);
     } else if (depositType == "rd" && document.f1.freq.value.length != 0) {
         var amt = parseFloat(document.f1.amt.value);
         var rate = parseFloat(document.f1.rate.value);
@@ -40,7 +41,8 @@ function cal(e) {
             console.log(((months - i + 1) / 12));
             console.log(maturity);
         }
-        document.getElementById("maturity").innerText = (maturity).toFixed(2);
+        // console.log(maturity-1);
+        document.getElementById("maturityAmt").innerText = (maturity).toFixed(2);
     } else {
         alert("Select all dropdowns");
     }
@@ -324,7 +326,7 @@ export default function ApplyFixedDeposits() {
                 <div class="row mb-3 ">
                     <label class="col-sm-2 col-form-label"><b>Maturity Amount</b></label>
                     <div class="col-sm-10">
-                        <b>Rs. </b><b id="maturity"></b>
+                        <b>Rs. </b><b id="maturityAmt"></b>
                     </div>
                 </div>
                 <div class="row custCol mb-3">

@@ -4,6 +4,7 @@ const authenticate = require("../Middlewares/Authenticate");
 const verifyNEFTDetails = require("../Middlewares/NEFT/verifyNEFTDetails");
 const Transaction = require("../Collections/TransactionModel")
 const User = require("../Collections/UserModel")
+const  OTP = require("../Collections/OTPModel")
 
 router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req, res) => {
     try {
@@ -39,12 +40,16 @@ router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req,
                 isPending: false
 
             })
-
+            const otpNumber = Math.floor(100000 + Math.random() * 900000)
+            const st4 = OTP({
+                transaction: trxObj,
+                OTP: otpNumber
+            }).save()
             let st3 = await trxObj.save()
-            if (!st1 || !st2 || !st3) {
+            if (!st1 || !st2 || !st3||!st4) {
                 throw "Error saving your data"
             }
-            return res.json({ "Success:": true });
+            return res.json({ "Success:": true,"data":trxObj });
         }
 
     }

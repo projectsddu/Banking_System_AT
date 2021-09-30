@@ -61,11 +61,11 @@
     /* margin: 10px; */
     font-size: 1.3em;
     /* padding: 2%; */
+     /* background-color: #E93B81; */
+    /* background-color: var(--green3); */
     height:90%;
     font-weight: 500;
     color:rgb(255, 255, 255);
-    /* background-color: #E93B81; */
-    /* background-color: var(--green3); */
     background-color: var(--pressedBlue);
     /* background-image: linear-gradient(125deg,rgb(141, 4, 253),#ff006a); */
 }

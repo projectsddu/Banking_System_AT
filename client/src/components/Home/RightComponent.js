@@ -16,6 +16,8 @@ import TFAssistanceComponent from '../Home/TFAssistance/TFAssistanceComponent'
 import NEFTComponent from './Transfers/NEFT/NEFTComponent'
 import RTGSComponent from './Transfers/RTGS/RTGSComponent'
 import YourLoans from './YourLoans/YourLoans'
+import OTPComponent from "../OTP/OTPComponent"
+import LogoutComponent from './LogoutComponent/LogoutComponent'
 
 function RightComponent({ component_name }) {
     const component_mapping = {
@@ -34,7 +36,9 @@ function RightComponent({ component_name }) {
         "assistance": <TFAssistanceComponent />,
         "NEFT": <NEFTComponent />,
         "RTGS": <RTGSComponent />,
-        "yourLoans": <YourLoans />
+        "yourLoans": <YourLoans />,
+        "otp":<OTPComponent/>,
+        "logout": <LogoutComponent/>
     }
     return (
         <div className="col">

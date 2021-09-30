@@ -43,7 +43,9 @@ app.use(require('./Routers/CardRouter.js'));
 app.use(require('./Routers/RTGSRouter.js'));
 app.use(require('./Routers/NEFTRouter.js'));
 app.use(require('./Routers/LoanRouter.js'));
+app.use(require('./Routers/LogoutRouter.js'));
 app.use(require('./Routers/DepositRouter.js'));
 app.use(require("./AdminRouters/AdminRouter.js"))
+app.use(require("./AdminRouters/LogoutRouter.js"))
 
 

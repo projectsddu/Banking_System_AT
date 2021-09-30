@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react'
+import { NavLink } from 'react-router-dom'
 import img from "../Assets/admin.jpg"
 import $ from "jquery"
 import "./ViewProfile.css"
@@ -38,9 +39,13 @@ export default function ViewProfile() {
                 {/* <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                     <span class="IdViewProfile">ID: 978512365</span>
                 </div> */}
+                <NavLink to="/admin/logout" style={{"textDecoration":"none"}}>
                 <div class=" d-flex mt-2">
                     <button class="btn1 btn-dark logOutBtnViewProfile">Log Out</button>
                 </div>
+                </NavLink>
+
+                
                 {/* <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
                     <span><i class="fa fa-twitter"></i></span>
                     <span><i class="fa fa-facebook-f"></i></span>

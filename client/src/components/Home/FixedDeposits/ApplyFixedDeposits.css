@@ -54,37 +54,45 @@
     padding: 1%;
     margin-top:2%;
     margin-left: 2%;
-    background-color: var(--bBlue);
+    /* background-color: var(--bBlue); */
     font-weight: bold;
     border: 0px;
     border-radius: 3px;
-    color:rgb(22, 20, 20);
+    /* color:rgb(22, 20, 20); */
+    color:rgb(255, 255, 255);
+    background-color: var(--pressedBlue);
     font-size: 17px;
     box-sizing: border-box;
 }
 
 .applyDepositBtn:hover {
-    background-color: #636363;
     box-sizing: border-box;
-    color: white;
+    /* background-color: #636363;
+    color: white; */
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(270deg,var(--dbBlue),var(--dbBlue));
 }
 
 .fixedDepositCustBtn1{
     width: 17%;
     padding: 1%;
     margin-top:2% ;
-    background-color: var(--bBlue);
+    /* background-color: var(--bBlue); */
+    background-color: var(--pressedBlue);
     font-weight: bold;
     border: 0px;
     border-radius: 3px;
-    color:rgb(22, 20, 20);
+    /* color:rgb(22, 20, 20); */
+    color:rgb(255, 255, 255);
     font-size: 17px;
     box-sizing: border-box;
 }
 .fixedDepositCustBtn1:hover {
-    background-color: #636363;
+    /* background-color: #636363; */
     box-sizing: border-box;
-    color: white;
+    /* color: white; */
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(270deg,var(--dbBlue),var(--dbBlue));
 }
 .custCol{
     display: flex;

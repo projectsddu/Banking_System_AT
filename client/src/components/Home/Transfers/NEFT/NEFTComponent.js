@@ -1,12 +1,14 @@
 import React from 'react'
 import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { injectStyle } from "react-toastify/dist/inject-style";
+import { useHistory } from "react-router"
 import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from "react-toastify";
 import './NEFT.css'
 
 export default function NEFTComponent() {
 
+    const history = useHistory()
     const [data, setData] = useState({
         beneficiaryName: "",
         beneficiaryAcNum: "",
@@ -45,7 +47,9 @@ export default function NEFTComponent() {
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success:")) {
-                // console.log(data)
+                console.log(data)
+                const tid = data["data"]["_id"]
+                history.push("/otp/"+tid)
                 toast.success("Your payment was a success");
                 // history.goBack()
             }

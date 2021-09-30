@@ -53,6 +53,9 @@ function App() {
       <Route path="/admin/viewProfile">
         <BodyComp name="viewProfile" />
       </Route>
+      <Route path="/admin/logout">
+        <BodyComp name="logout" />
+      </Route>
 
 
 
@@ -64,6 +67,9 @@ function App() {
 
           </Route>
           <Route path="/transaction">
+            <TempSideNavbar></TempSideNavbar>
+          </Route>
+          <Route path="/otp">
             <TempSideNavbar></TempSideNavbar>
           </Route>
           <Route path="/yourLoans">
@@ -112,6 +118,9 @@ function App() {
           <Route path="/home">
             <RightComponent component_name="home"></RightComponent>
           </Route>
+          <Route path="/otp">
+            <RightComponent component_name="otp"></RightComponent>
+          </Route>
           <Route path="/transaction">
             <RightComponent component_name="transaction"></RightComponent>
           </Route>
@@ -156,6 +165,9 @@ function App() {
           </Route>
           <Route path="/yourLoans">
             <RightComponent component_name="yourLoans"></RightComponent>
+          </Route>
+          <Route path="/logout">
+            <RightComponent component_name="logout"></RightComponent>
           </Route>
         </div>
       </div>

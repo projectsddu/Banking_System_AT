@@ -13,7 +13,8 @@
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5",
-    "nodemon": "^2.0.12"
+    "nodemailer": "^6.6.5",
+    "nodemon": "^2.0.13"
   },
   "devDependencies": {},
   "scripts": {

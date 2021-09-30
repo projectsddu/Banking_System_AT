@@ -5,13 +5,13 @@ const Account = require("../Collections/AccountModel")
 const Transaction = require("../Collections/TransactionModel")
 const User = require("../Collections/UserModel")
 const verifyDebitCardTransaction = require('../Middlewares/Payment/VerifyDebitCardTransactions')
+const OTP = require("../Collections/OTPModel")
+var nodemailer = require('nodemailer');
 
 router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransaction], async (req, res) => {
     try {
         console.log(await req.body)
         if (req.is_authenticated) {
-            // const acNum = req.params.acNumber;
-
             // verify receiver details
             const { fullName, acNumber, email, amount, reason } = req.body;
 
@@ -58,14 +58,38 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
                                 transactionDateTime: Date.now(),
                                 mode: "CARD",
                                 reason: reason,
-                                isPending: false
+                                isPending: true
                             })
-
+                            const otpNumber = Math.floor(100000 + Math.random() * 900000)
+                            const st4 = OTP({
+                                transaction : trxObj,
+                                OTP:otpNumber
+                            }).save()
                             let st3 = await trxObj.save()
-                            if (!st1 || !st2 || !st3) {
+                            var transporter = nodemailer.createTransport({
+                                service: 'gmail',
+                                auth: {
+                                    user: 'jenilgandhitest@gmail.com',
+                                    pass: 'Jenil@2001'
+                                }
+                            });
+                            var mailOptions = {
+                                from: 'jenilgandhitest@gmail.com',
+                                to: 'gandeviakeval05@gmail.com',
+                                subject: 'Your OTP for Banker Transaction',
+                                html: '<h1>' + otpNumber+'</h1>'
+                            }
+                            transporter.sendMail(mailOptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log('Email sent: ' + info.response);
+                                }
+                            });
+                            if (!st1 || !st2 || !st3||!st4) {
                                 throw "Error saving your data"
                             }
-                            return res.json({ "Success:": true });
+                            return res.json({ "Success:": true,"data":trxObj._id });
                         }
                     }
                 }
@@ -90,5 +114,42 @@ router.post("/verifyLoanInquiryDetails/testing", async (req, res) => {
     res.send("Success from now")
 })
 
-//For NEFT
+router.post("/verifyOtp",[authenticate],async(req,res)=>{
+    try{
+        const {otp,tid} = req.body
+        const trx = await Transaction.findOne({
+            _id:tid
+        })
+        const otpObj = await OTP.findOne({
+            transaction:trx
+        })
+        if (trx==null || otpObj==null)
+        {
+            throw "Transaction has been redeemed!!!"
+        }
+        if(otp == otpObj.OTP)
+        {
+            trx.isPending = false
+            const st1 = await trx.save()
+            const st2 = await OTP.deleteOne({
+                transaction: trx
+            })
+            if(!st1||!st2)
+            {
+                return res.json({"Error:":"Error saving transaction and deleting otp!"})
+            }
+            return res.json({"Success:":true,"message":"Your transaction is a success!"})
+        }
+        else
+        {
+            throw "OTP is wrong please try again"
+        }
+    }
+    catch(e)
+    {
+        console.log(e.toString())
+        return res.json({"Error:":false,"message":e.toString()})
+    }
+})
+
 module.exports = router;

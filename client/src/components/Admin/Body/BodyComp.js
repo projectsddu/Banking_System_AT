@@ -67,10 +67,10 @@ export default function BodyComp(props) {
                                 Admin
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><NavLink class="dropdown-item" to="/admin/viewProfile">View Profile</NavLink></li>
                                 <li><NavLink class="dropdown-item" to="/admin/addCashToUser">Add Cash to Users AC</NavLink></li>
                                 
                                 {/* <li><hr class="dropdown-divider" /></li> */}
-                                <li><NavLink class="dropdown-item" to="/admin/viewProfile">View Profile</NavLink></li>
                                 <li><NavLink class="dropdown-item" to="/admin/addAnotherAdmin">Add Another Admin</NavLink></li>
                                 
                             </ul>

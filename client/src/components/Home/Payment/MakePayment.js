@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import './MakePayment.css'
 import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { ToastContainer, toast } from "react-toastify";
+import { useHistory } from 'react-router';
 import { injectStyle } from "react-toastify/dist/inject-style";
 import verifyPayment from '../Utility/VerifyPayment'
 import useFetch from '../Utility/General/Usefetch';
 
 function MakePayment() {
+    const history = useHistory()
 
     const [userDetails, setUserDetails] = useState({
         fullName: '',
@@ -78,7 +80,9 @@ function MakePayment() {
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success:")) {
-                toast.success("Your payment was a success");
+                console.log(data.data)
+                history.push("/otp/"+data.data)
+                toast.success("Your Transaction has been initiated!");
                 // history.goBack()
             }
         }).catch(function (error) {
