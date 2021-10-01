@@ -5,6 +5,7 @@ const authenticate = require("../Middlewares/Authenticate")
 const User = require("../Collections/UserModel")
 const test = require("../Middlewares/Test")
 var SHA256 = require("crypto-js/sha256")
+const logger = require("../logger")
 
 router.post("/user/add_user", verifyDetails, async (req, res) => {
     console.log(req.create_user)
@@ -47,6 +48,7 @@ router.post("/user/login_user", async (req, res) => {
             // console.log(user1)
             // console.log("Name:"+user_names[0] + user_names[1] + user_names[2]);
             if (!user) {
+                logger.add_log("Username: " + username + " not found", "ERROR")
                 return res.json({ "Error:": "No user found" })
             }
             else {
@@ -65,12 +67,13 @@ router.post("/user/login_user", async (req, res) => {
                     httpOnly: true,
                 });
                 // End of saving session.post
-
+                logger.add_log("User logged in name: " + username, "INFO")
                 res.send("Success")
             }
         }
     }
     catch (e) {
+        logger.add_log(e.toString(), "ERROR")
         console.log("Error:" + e.toString())
     }
 
