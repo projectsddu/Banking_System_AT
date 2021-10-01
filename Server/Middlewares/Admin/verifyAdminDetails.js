@@ -1,4 +1,5 @@
 const Admin = require("../../Collections/AdminModel")
+const logger = require("../../logger")
 const verifyAdminDetails = async function (req, res, next) {
     try {
 
@@ -20,6 +21,7 @@ const verifyAdminDetails = async function (req, res, next) {
         next();
     }
     catch (e) {
+        logger.add_log("Problem in verifyAdminDetails " + e.toString(), "ERROR")
         console.log(e.toString())
         return res.send({ "Error:": e.toString() })
     }

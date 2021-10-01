@@ -203,7 +203,7 @@ export default function ApplyFixedDeposits() {
                         </div>
 
                         <div class="row mb-3 ">
-                            <label for="maturity" class="col-sm-2 col-form-label"><b>Maturity</b><span className="home-loan-form-span"> * </span></label>
+                            <label for="maturity" class="col-sm-2 col-form-label"><b>Maturity Year</b><span className="home-loan-form-span"> * </span></label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control fixedDepositInps" id="maturity"
                                     value={depositDetails.maturity}

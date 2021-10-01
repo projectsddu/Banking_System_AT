@@ -1,4 +1,5 @@
 const Account = require("../../Collections/AccountModel")
+const logger = require("../../logger")
 const createDebitCardMiddleware = async function (req, res, next) {
     try {
 
@@ -25,6 +26,7 @@ const createDebitCardMiddleware = async function (req, res, next) {
         next()
     }
     catch (e) {
+        logger.add_log("Problem in create debit card! " + e.toString(), "ERROR")
         return res.json({ "Error:": "In Create Debit Card middleware" + e.toString() })
     }
 }

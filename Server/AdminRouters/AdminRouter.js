@@ -7,6 +7,7 @@ const User = require("../Collections/UserModel");
 const Account = require("../Collections/AccountModel");
 const Transaction = require("../Collections/TransactionModel");
 const AccountType = require("../Collections/AccountTypeModel")
+const logger = require("../logger")
 
 router.post("/admin/create_admin", [verifyAdminDetails], async (req, res) => {
   try {
@@ -26,9 +27,10 @@ router.post("/admin/create_admin", [verifyAdminDetails], async (req, res) => {
     if (!adminSaved) {
       throw "Error creating admin!!!";
     }
-
+    logger.add_log("/admin/createadmin admin created (" + firstName + " " + lastName + " )", "SUCCESS")
     return res.json({ "Success:": true });
   } catch (e) {
+    logger.add_log("/admin/createadmin " + e.toString(), "ERROR")
     console.log(e.toString());
   }
 });
@@ -64,12 +66,14 @@ router.post("/admin/loginAdmin", async (req, res) => {
           expires: new Date(Date.now() + 2589200000),
           httpOnly: true,
         });
+        logger.add_log("/admin/loginAdmin admin logged in (" + username + ")", "SUCCESS")
         return res.send("Success");
       } else {
         throw "No such admin found!!";
       }
     }
   } catch (e) {
+    logger.add_log("/admin/loginadmin " + e.toString(), "ERROR")
     return res.json({ "Error:": e.toString() });
   }
 });
@@ -130,15 +134,18 @@ router.post("/admin/block_user", [authenticate], async (req, res) => {
       });
       // console.log("3333333333")
       if (!sts) {
+        logger.add_log("/admin/block_user error blocking user ...", "ERROR")
         return res.json({ "Error:": "Error while blocking User!!!" });
       }
-
+      logger.add_log("/admin/block_user blocking user " + username + "...", "SUCCESS")
       return res.json({ "Success": "Success" });
     } else {
+      logger.add_log("/admin/block_user Wrong Pin Number of Admin!!!", "ERROR")
       return res.json({ "Error:": "Wrong Pin Number of Admin!!!" });
     }
   } catch (e) {
     console.log(e);
+    logger.add_log("/admin.block_user " + e.toString(), "ERROR")
     return res.json({ "Error:": e.toString() });
   }
 });
@@ -162,19 +169,20 @@ router.post("/admin/createUserAccount", [authenticate], async (req, res) => {
         accountTypeName: "joint",
       });
       const ac = await Account({
-          accountOwner: user,
-          accountType: acType,
-          accountBalance: balance,
-          isEcardIssued: false
+        accountOwner: user,
+        accountType: acType,
+        accountBalance: balance,
+        isEcardIssued: false
       }).save()
-      if(!ac)
-      {
+      if (!ac) {
         throw "Error saving user!"
       }
-      return res.json({"Success:":true,"message":"account would be now visible in users dashboard!"})
+      logger.add_log("/create admin ac account would be now visible in users dashboard", "SUCCESS")
+      return res.json({ "Success:": true, "message": "account would be now visible in users dashboard!" })
     }
   } catch (e) {
-    return res.json({"Error:":e.toString()})
+    logger.add_log("/create admin ac " + e.toString(), "ERROR")
+    return res.json({ "Error:": e.toString() })
   }
 });
 
@@ -216,49 +224,52 @@ router.post("/admin/addCashToUser", [authenticate], async (req, res) => {
       if (!st1 || !st2 || !st3) {
         throw "Error saving your data";
       }
+      logger.add_log("/admin/addcashtouser added cash" + amount, "SUCCESS")
       return res.json({ "Success": true });
     }
   } catch (e) {
     console.log(e);
+    logger.add_log("/admin/addcashtouser " + e.toString(), "ERROR")
     return res.json({ "Error:": e.toString() });
   }
 });
 
 router.post("/admin/addAnotherAdmin", [authenticate], async (req, res) => {
-    try{
-        const {firstName, middleName, lastName, pinNo} = req.body;
+  try {
+    const { firstName, middleName, lastName, pinNo } = req.body;
 
-        const obj = await Admin({
-            firstName: firstName,
-            middleName: middleName,
-            lastName: lastName,
-            pinNo: pinNo
-        })
+    const obj = await Admin({
+      firstName: firstName,
+      middleName: middleName,
+      lastName: lastName,
+      pinNo: pinNo
+    })
 
-        let sts = await obj.save();
+    let sts = await obj.save();
 
-        if(!sts) {
-            throw "Error while saving data!!!"
-        }
-
-        return res.json({ "Success": true }); 
+    if (!sts) {
+      throw "Error while saving data!!!"
     }
-    catch(e) {
-        console.log(e);
-        return res.json({ "Error:": e.toString() });
-    }
+    logger.add_log("/admin/addanotheradmin admin added" + firstName + middleName + lastName, "SUCCESS")
+    return res.json({ "Success": true });
+  }
+  catch (e) {
+    logger.add_log("/admin/addanotheradmin " + e.toString(), "ERROR")
+    console.log(e);
+    return res.json({ "Error:": e.toString() });
+  }
 })
 
 router.post("/admin/viewProfile", [authenticate], async (req, res) => {
-    try {
-        
-        return res.json({ "Success": true, "userData": req.current_admin })
+  try {
 
-    }
-    catch(e) {
-        console.log(e);
-        return res.json({ "Error:": e.toString() });
-    }
+    return res.json({ "Success": true, "userData": req.current_admin })
+
+  }
+  catch (e) {
+    console.log(e);
+    return res.json({ "Error:": e.toString() });
+  }
 })
 
 module.exports = router;

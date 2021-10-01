@@ -1,5 +1,5 @@
 const Account = require("../../Collections/AccountModel");
-
+const logger = require("../../logger")
 const verifyRTGSDetails = async function (req, res, next) {
     try {
         console.log(req.body)
@@ -33,6 +33,7 @@ const verifyRTGSDetails = async function (req, res, next) {
         next();
     }
     catch (e) {
+        logger.add_log("Problem in verifyRTGS " + e.toString(), "ERROR")
         console.log(e.toString())
         return res.json({ "Error:": e.toString() })
     }

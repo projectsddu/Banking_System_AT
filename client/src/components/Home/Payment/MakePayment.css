@@ -90,8 +90,10 @@
   }
 
   .make-payment-btn {
-    background-color: var(--bBlue);
-    color:rgb(22, 20, 20);
+    /* background-color: var(--bBlue); */
+    /* color:rgb(22, 20, 20); */
+    color:rgb(255, 255, 255);
+    background-color: var(--pressedBlue);
     padding: 12px;
     margin-top: -40%;
     margin-bottom: 10%;
@@ -107,9 +109,11 @@
   }
 
   .make-payment-btn:hover {
-    background-color: #636363;
     box-sizing: border-box;
-    color: white;
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(270deg,var(--dbBlue),var(--dbBlue));
+    /* background-color: #636363;
+    color: white; */
   }
 
 /* input[type="text"] {

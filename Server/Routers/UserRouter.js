@@ -39,14 +39,6 @@ router.post("/user/login_user", async (req, res) => {
                 lastName: user_names[2],
                 pinNo: req.body.pinNo
             })
-            // const user1 = await User.findOne({
-            //     firstName: "keval",
-            //     middleName: "dharmesh",
-            //     lastName: "gandevia",
-
-            // })
-            // console.log(user1)
-            // console.log("Name:"+user_names[0] + user_names[1] + user_names[2]);
             if (!user) {
                 logger.add_log("Username: " + username + " not found", "ERROR")
                 return res.json({ "Error:": "No user found" })

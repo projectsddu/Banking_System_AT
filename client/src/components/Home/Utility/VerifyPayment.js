@@ -25,7 +25,7 @@ const verifyDetails = async function (data) {
     const email = data["email"];
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!email.match(mailformat)) {
-        return "You have entered an invalid email address!";
+        return "Please enter valid email address!";
     }
 
 

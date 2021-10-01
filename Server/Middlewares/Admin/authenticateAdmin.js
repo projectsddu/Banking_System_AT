@@ -2,6 +2,8 @@ const Admin = require("../../Collections/AdminModel");
 const Account = require("../../Collections/AccountModel");
 const User = require("../../Collections/UserModel");
 const jwt = require("jsonwebtoken");
+const logger = require("../../logger")
+
 
 const authenticateAdmin = async function (req, res, next) {
   try {
@@ -26,6 +28,7 @@ const authenticateAdmin = async function (req, res, next) {
 
     next();
   } catch (e) {
+    logger.add_log("Problem in admin authentication:" + e.toString(), "ERROR")
     console.log(e);
     return res.json({ "Error:": "Error authenticating user" });
   }

@@ -1,4 +1,5 @@
 const Account = require("../../Collections/AccountModel");
+const logger = require("../../logger")
 const createCreditCardMiddleware = async function (req, res, next) {
     try {
         const acNum = req.params.acNum
@@ -17,6 +18,7 @@ const createCreditCardMiddleware = async function (req, res, next) {
         }
         next()
     } catch (error) {
+        logger.add_log("Problem in creditcard middleware " + e.toString(), "ERROR")
         return res.json({ "Error:": "In Create Credit Card middleware" + error.toString() })
     }
 }

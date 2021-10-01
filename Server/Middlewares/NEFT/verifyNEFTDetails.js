@@ -1,5 +1,5 @@
 const Account = require("../../Collections/AccountModel");
-
+const logger = require("../../logger")
 const verifyNEFTDetails = async function (req, res, next) {
     try {
         const acNumber = req.params.acNum;
@@ -30,6 +30,7 @@ const verifyNEFTDetails = async function (req, res, next) {
     }
 
     catch (e) {
+        logger.add_log("Problem in verifyDebitCardTransaction middleware " + e.toString(), "ERROR")
         console.log(e.toString())
         return res.json({ "Error:": e.toString() })
     }

@@ -1,19 +1,29 @@
 const fs = require('fs')
-// const curDate = new Date().toString()
-// const serverFile = curDate + "_log.txt"
 
 function getCurTime() {
     const curTime = new Date()
     return curTime.getHours() + ":" + curTime.getMinutes() + ":" + curTime.getSeconds()
 }
 
+function checkMakeFile(fileName) {
+    if (fs.existsSync("./Logs/" + fileName + "_log.txt")) {
+        return "exists"
+    }
+    else {
+        fs.writeFile("./Logs/" + fileName + "_log.txt", "", (er) => {
+            console.log(er)
+        })
+        return "DNE"
+    }
+}
+
 function add_log(data, type = "SUCCESS") {
-    const curDate = new Date().toString()
-    const serverFile = "server" + "_log.txt"
+    const curDate = new Date()
+    const fileName = curDate.getDate() + "_" + curDate.getMonth() + "_" + curDate.getFullYear()
+    const serverFile = fileName + "_log.txt"
+    checkMakeFile(fileName)
     const writer = type + " " + getCurTime() + " : " + data + "\n"
-    console.log(writer)
     fs.appendFile("./Logs/" + serverFile, writer, (err) => {
-        console.log(err)
     })
 }
 

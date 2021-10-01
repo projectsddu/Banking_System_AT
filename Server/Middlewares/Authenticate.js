@@ -1,6 +1,7 @@
 const User = require("../Collections/UserModel")
 const Account = require("../Collections/AccountModel")
 const jwt = require("jsonwebtoken")
+const logger = require("../logger")
 const authenticate = async function (req, res, next) {
     console.log(req.body)
     try {
@@ -27,6 +28,7 @@ const authenticate = async function (req, res, next) {
 
     }
     catch (e) {
+        logger.add_log("Error in authentication middleware with uid:" + uid)
         return res.json({ "Error:": "Error authenticating user" })
     }
 

@@ -1,4 +1,5 @@
 const AccountType = require("../../Collections/AccountTypeModel")
+const logger = require("../../logger")
 const createACMiddleware = async function (req, res, next) {
     try {
         if (!(req.body.hasOwnProperty("isEcard")
@@ -30,6 +31,7 @@ const createACMiddleware = async function (req, res, next) {
         next()
     }
     catch (e) {
+        logger.add_log("Problem in createAccount " + e.toString(), "ERROR")
         return res.json({ "Error:": "In Create AC  middleware" + e.toString() })
     }
 }

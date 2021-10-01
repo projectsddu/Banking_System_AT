@@ -6,6 +6,7 @@ const Transaction = require("../Collections/TransactionModel")
 const User = require("../Collections/UserModel")
 const OTP = require("../Collections/OTPModel")
 var nodemailer = require('nodemailer');
+const logger = require("../logger")
 const sendMail = function (from, to, otp) {
     console.log("Transaporter")
     var transporter = nodemailer.createTransport({
@@ -30,6 +31,7 @@ const sendMail = function (from, to, otp) {
             console.log('Email sent: ' + info.response);
         }
     });
+    logger.add_log("Sent mail from:" + from + " to:" + to)
     return "Success"
 }
 router.post("/verifyRTGS/:acNum", [authenticate, verifyRTGSDetails], async (req, res) => {
@@ -37,13 +39,16 @@ router.post("/verifyRTGS/:acNum", [authenticate, verifyRTGSDetails], async (req,
         const { beneficiaryName, beneficiaryAcNum, ifscCode, amount, reason } = req.body;
 
         if (!beneficiaryName || !beneficiaryAcNum || !ifscCode || !amount || !reason) {
+            logger.add_log("RTGS all fields are required", "ERROR")
             return res.status(200).json({ Error: "All fields are required!!" });
         }
 
         if (req.current_ac.accountBalance < amount) {
+            logger.add_log("RTGS Not enough amount to do RTGS!!", "ERROR")
             return res.status(200).json({ Error: "Not enough amount to do RTGS!!" });
         }
-        else if(amount < 0) {
+        else if (amount < 0 || amount == 0) {
+            logger.add_log("RTGS Please enter valid amount to do RTGS!!", "ERROR")
             return res.status(200).json({ Error: "Please enter valid amount to do RTGS!!" });
 
         }
@@ -80,13 +85,15 @@ router.post("/verifyRTGS/:acNum", [authenticate, verifyRTGSDetails], async (req,
             }).save()
             let st3 = await trxObj.save()
             sendMail("abcxyz1814@gmail.com", String(req.current_user.emailId), otpNumber)
-            if (!st1 || !st2 || !st3 ||!st4) {
+            if (!st1 || !st2 || !st3 || !st4) {
                 throw "Error saving your data"
             }
+            logger.add_log("RTGS transaction initated otp sent", "SUCCESS")
             return res.json({ "Success:": true, "data": trxObj });
         }
     }
     catch (e) {
+        logger.add_log(e.toString(), "ERROR")
         console.log(e.toString())
         return res.json({ "Success:": false })
     }

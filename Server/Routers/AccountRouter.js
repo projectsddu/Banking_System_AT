@@ -19,6 +19,7 @@ const Transaction = require("../Collections/TransactionModel")
 const DebitCard = require("../Collections/DebitCardModel")
 const authenticate = require("../Middlewares/Authenticate")
 const createACMiddleware = require("../Middlewares/Account/CreateAccount")
+const logger = require("../logger")
 // const AccountType = require("../Collections/AccountTypeModel")
 
 
@@ -33,12 +34,12 @@ router.post("/user/checkExists/:acNumber", [authenticate], async (req, res) => {
             })
 
             if (accountExist) {
+
                 return res.json({ "Success:": true })
             }
             else {
                 return res.json({ "Success:": false })
             }
-            //Success :true
         }
         else {
 
@@ -72,6 +73,7 @@ router.post("/user/getACDetails/:acNumber", [authenticate], async (req, res) => 
                 })).then((e) => {
                     ulist = e
                     console.log(e)
+                    logger.add_log("/user/getACDetails/:acNumber Serving user details for " + req.current_user.firstName + " " + req.current_user.lastName, "INFO")
                     return res.json({ "data": allAc, "ulist": ulist, "Success": true });
                 })
 
@@ -79,12 +81,13 @@ router.post("/user/getACDetails/:acNumber", [authenticate], async (req, res) => 
             else {
                 // particular account details
                 if (acnum.length != 24) {
+                    logger.add_log("/user/getACDetails/:acNumber AC number error for user: " + req.current_user.firstName + " " + req.current_user.lastName, "ERROR")
                     return res.json({ "Error:": "Account number must be 24 characters long" })
                 }
                 const ac = await Account.findOne({
                     _id: acnum
                 })
-
+                logger.add_log("/user/getACDetails/:acNumber Served user: " + req.current_user.firstName + " " + req.current_user.lastName, "SUCCESS")
                 return res.json({ "data": ac, "Success": true });
 
             }
@@ -94,6 +97,7 @@ router.post("/user/getACDetails/:acNumber", [authenticate], async (req, res) => 
         }
     }
     catch (e) {
+        logger.add_log("/user/getAcDetails/:acNumber " + e.toString(), "ERROR")
         return res.json({ "Error:": e.toString() })
     }
 })
@@ -182,6 +186,7 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                 console.log(acnum)
                 console.log(String(acnum).length)
                 if (String(acnum).length != 24) {
+                    logger.add_log("/account/:acNum " + "Account number must be 24 characters long", "ERROR")
                     return res.json({ "Error:": "Account number must be 24 characters long" })
                 }
                 const ac = await Account.findOne({
@@ -202,6 +207,7 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                 if (!cardData) {
                     cardData = -1
                 }
+                logger.add_log("/account/:acNum Serving accounts page data for user" + req.current_user.firstName + " " + req.current_user.lastName, "SUCCESS")
                 return res.json({ "cardData": cardData, "data": ac, "transaction": transactions, "Success": true, "userList": req.current_user });
             }
         }
@@ -262,24 +268,6 @@ router.post("/account/addCash/:acNumber", [authenticate], async (req, res) => {
     }
 })
 
-// // This is to be used by the admin.
-// router.post("/account/createAccount", async (req, res) => {
-//     try {
-//         const user_obj = await User.findOne({ _id: req.body["user_id"] })
-//         const accountType = req.body["ac_type"]
-//         const accountBalance = req.body["ac_bal"]
-//         const account = await Account({
-//             accountOwner: user_obj,
-//             accountType,
-//             accountBalance,
-//             isEcardissued: false,
-//         })
-//     }
-//     catch (e) {
-//         console.log(e.toString())
-//         return res.JSON({ "Error:": "Sorry We could not create your account at this time" })
-//     }
-// })
 
 
 module.exports = router;

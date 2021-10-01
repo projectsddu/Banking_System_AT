@@ -33,7 +33,6 @@ app.get("/testing", (req, res) => {
 
 app.use(express.json())
 app.use(cookieParser())
-
 //Routers defined here
 app.use(require('./Routers/LoanInquiryRouter.js'));
 // app.use(require('./Routers/LoanInquiryRouter_1.js'));
