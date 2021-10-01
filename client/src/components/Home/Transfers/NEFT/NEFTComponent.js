@@ -54,7 +54,7 @@ export default function NEFTComponent() {
                 // history.goBack()
             }
             else {
-                toast.error("Something went wrong!");
+                toast.error(data["Error"]);
                 // console.log(data.body)
             }
         }).catch(function (error) {

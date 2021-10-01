@@ -8,6 +8,35 @@ const verifyDebitCardTransaction = require('../Middlewares/Payment/VerifyDebitCa
 const OTP = require("../Collections/OTPModel")
 var nodemailer = require('nodemailer');
 
+
+const sendMail = function(from,to,otp)
+{
+    console.log("Transaporter")
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'abcxyz1814@gmail.com',
+            pass: 'abcxyzpass'
+        }
+    });
+    console.log("mailOptions")
+    var mailOptions = {
+        from: from,
+        to: to,
+        subject: 'Your OTP for Banker Transaction',
+        html: '<h1>' + String(otp) + '</h1>'
+    }
+    console.log("sending mail")
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+    return "Success"
+}
+
 router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransaction], async (req, res) => {
     try {
         console.log(await req.body)
@@ -25,6 +54,10 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
                 const receiverAccount = await Account.findOne({
                     _id: acNumber
                 })
+                if(!receiverAccount)
+                {
+                    throw  "Account number is not valid!"
+                }
 
                 if (receiverAccount) {
                     if (parseInt(req.current_ac.accountBalance) < parseInt(amount)) {
@@ -66,29 +99,11 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
                                 OTP:otpNumber
                             }).save()
                             let st3 = await trxObj.save()
-                            var transporter = nodemailer.createTransport({
-                                service: 'gmail',
-                                auth: {
-                                    user: 'jenilgandhitest@gmail.com',
-                                    pass: 'Jenil@2001'
-                                }
-                            });
-                            var mailOptions = {
-                                from: 'jenilgandhitest@gmail.com',
-                                to: 'gandeviakeval05@gmail.com',
-                                subject: 'Your OTP for Banker Transaction',
-                                html: '<h1>' + otpNumber+'</h1>'
-                            }
-                            transporter.sendMail(mailOptions, function (error, info) {
-                                if (error) {
-                                    console.log(error);
-                                } else {
-                                    console.log('Email sent: ' + info.response);
-                                }
-                            });
+                            sendMail("abcxyz1814@gmail.com",String(req.current_user.emailId),otpNumber)
                             if (!st1 || !st2 || !st3||!st4) {
                                 throw "Error saving your data"
                             }
+
                             return res.json({ "Success:": true,"data":trxObj._id });
                         }
                     }
@@ -99,20 +114,18 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
             }
 
             catch (e) {
-                console.log(e.toString());
+                console.log("Error:"+e.toString());
+                return res.json({"Error:":e.toString()})
             }
 
         }
     }
     catch (e) {
-        console.log(e.toString())
+        console.log("Errorooor"+e.toString())
         return res.json({ "Success:": false })
     }
 })
 
-router.post("/verifyLoanInquiryDetails/testing", async (req, res) => {
-    res.send("Success from now")
-})
 
 router.post("/verifyOtp",[authenticate],async(req,res)=>{
     try{
@@ -152,4 +165,35 @@ router.post("/verifyOtp",[authenticate],async(req,res)=>{
     }
 })
 
+
+router.post("/testmail",async(req,res)=>{
+    try{
+
+    
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'abcxyz1814@gmail.com',
+            pass: 'abcxyzpass'
+        }
+    });
+    var mailOptions = {
+        from: 'abcxyz1814@gmail.com',
+        to: 'jenilgandhi2111@gmail.com',
+        subject: 'Your OTP for Banker Transaction',
+        html: '<h1>' + "334455" + '</h1>'
+    }
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+    return res.send("Jenil")
+    }
+    catch (e) {
+        console.log(e.toString())
+    }
+})
 module.exports = router;

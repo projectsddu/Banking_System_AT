@@ -191,7 +191,9 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
                     $or: [
                         { senderAc: ac },
                         { receiverAc: ac },
-
+                    ],
+                    $and:[
+                        {isPending:false}
                     ]
                 }).sort({ "date": "descending" })
 

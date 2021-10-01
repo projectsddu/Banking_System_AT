@@ -8,6 +8,7 @@ import ViewLoanRequest from '../Loan/ViewLoanRequest';
 import AddCashToUser from '../Cash/AddCashToUser';
 import AddAnotherAdmin from '../AddAdmin/addAnotherAdmin';
 import ViewProfile from '../Profile/ViewProfile';
+import Logout from "../Logout/logout"
 import "./Body.css"
 import { NavLink } from 'react-router-dom';
 
@@ -22,7 +23,8 @@ export default function BodyComp(props) {
         "sanctionLoan": <SanctionLoan />,
         "addCashToUser": <AddCashToUser />,
         "addAnotherAdmin": <AddAnotherAdmin/>,
-        "viewProfile": <ViewProfile />
+        "viewProfile": <ViewProfile />,
+        "logout":<Logout/>
     }
     return (
         <>

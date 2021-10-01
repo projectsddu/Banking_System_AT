@@ -103,7 +103,7 @@ export default function FixedDeposits() {
         {loading ? "loading..." :
         data["depositData"].length==0?<>
         <div>
-          <h1>No fixed deposits as of now</h1>
+          <h1 style={{"color" : "#00d2f7"}}>No fixed deposits as of now</h1>
         </div>
         
         </>:

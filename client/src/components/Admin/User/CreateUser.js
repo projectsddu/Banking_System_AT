@@ -9,6 +9,7 @@ export default function CreateUser() {
         firstName: '',
         middleName: '',
         lastName: '',
+        emailId:'',
         pinNo: '',
         address: '',
         aadharNo: '',
@@ -77,6 +78,11 @@ export default function CreateUser() {
                     <input className="ddu-input my-2" placeholder="Enter Last Name"
                         value={userDetails["lastName"]}
                         onChange={(e) => { setUserDetails({ ...userDetails, lastName: e.target.value }) }}
+                        required
+                    />
+                    <input className="ddu-input my-2" placeholder="Enter your email"
+                        value={userDetails["emailId"]}
+                        onChange={(e) => { setUserDetails({ ...userDetails, emailId: e.target.value }) }}
                         required
                     />
                     <input className="ddu-input my-2" placeholder="Enter Pin Number" type="text" maxlength="4"

@@ -9,7 +9,7 @@ var SHA256 = require("crypto-js/sha256")
 router.post("/user/add_user", verifyDetails, async (req, res) => {
     console.log(req.create_user)
     if (req.create_user) {
-
+        console.log(req.body)
         const new_user = await User(req.body).save()
         return res.json({ "Success": "Success" })
     }

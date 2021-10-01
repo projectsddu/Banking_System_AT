@@ -28,7 +28,7 @@ export default function LogoutComponent() {
 
     return (
         <div>
-            <h1>Logout Page</h1>
+            {/* <h1>Logout Page</h1> */}
         </div>
     )
 }

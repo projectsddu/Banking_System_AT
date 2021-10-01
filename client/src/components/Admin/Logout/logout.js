@@ -4,14 +4,14 @@ import $ from "jquery"
 
 export default function LogoutComponent() {
 
-   // By Keval
+   // By Rikin
     const history = useHistory()
     useEffect(() => {
        $.ajax({
            type: "post",
            url: "/admin/logout",
            success:(res)=>{
-            console.log(res);
+            // console.log(res);
                if (res == "user logout!!")
                {
                    history.push("/admin/login")

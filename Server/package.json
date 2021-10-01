@@ -14,7 +14,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5",
     "nodemailer": "^6.6.5",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "winston": "^3.3.3"
   },
   "devDependencies": {},
   "scripts": {

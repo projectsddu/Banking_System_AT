@@ -79,11 +79,16 @@ function MakePayment() {
             }
             return Promise.reject(response);
         }).then(function (data) {
+            console.log(data)
             if (data.hasOwnProperty("Success:")) {
                 console.log(data.data)
                 history.push("/otp/"+data.data)
                 toast.success("Your Transaction has been initiated!");
                 // history.goBack()
+            }
+            else
+            {
+                toast.error("Something went wrong!")
             }
         }).catch(function (error) {
             toast.error("Something went wrong!");
