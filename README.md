@@ -40,8 +40,7 @@
 <h1>
     How to Test?
 </h1> 
-- First item
-- Second item
-- Third item
-- Fourth item
+1. Baked potato
+2. Baked beans
+3. Pepper
     
