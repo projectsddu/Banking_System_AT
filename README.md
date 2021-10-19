@@ -42,7 +42,7 @@
 </h1> 
 <ul>
     <li> 
-        <p> Clone the repository by using this command <b>&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp; </b> </p></li>
+        <p> Clone the repository by using this command **&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp;** </p></li>
     <li>
         <h4>Now go to the server folder and run the command <span style="background-color: gray; font-weight: bold;"> &nbsp; npm i &nbsp; </span></h4>
     </li>
