@@ -41,8 +41,8 @@ export default function AccountComponent() {
     let make_payment_req_url = "/makePayment/" + slug["pathname"].split("/")[2];
     let make_neft_payment_req_url = "/NEFT/" + slug["pathname"].split("/")[2];
     let make_rtgs_payment_req_url = "/RTGS/" + slug["pathname"].split("/")[2];
-    console.log(loading ? "....." : data)
-    console.log(make_payment_req_url);
+    // console.log(loading ? "....." : data)
+    // console.log(make_payment_req_url);
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
     const expiryDate = loading ? "cancel" : data["cardData"]["expiryDate"];
@@ -184,7 +184,7 @@ export default function AccountComponent() {
             ) : (
               <TransactionTable
                 heading="Latest Transactions"
-                lowerheading="transactions for ac no : 123456789"
+                lowerheading="Transactions can be sorted by date or amount."
                 curAc={slug["pathname"].split("/")[2]}
                 trxdata={data["transaction"]}
               ></TransactionTable>

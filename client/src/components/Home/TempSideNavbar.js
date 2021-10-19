@@ -147,7 +147,7 @@ function TempSideNavbar() {
 
 
   const callBack1 = data => {
-    console.log("jenijknjknjnjbndsjbsjdbfjsdbfjsdbfjsdbfj")
+
     const tplist = []
     for (var i = 0; i < data["data"].length; i++) {
       var obj1 = data["data"][i]
@@ -156,24 +156,23 @@ function TempSideNavbar() {
     }
     navlist[0]["dropdown_menu"] = data["data"]
     // navlist[1]["dropdown_menu"]["data"]["link"] = "/Account/"
-    console.log("Data", data)
+    // console.log("Data", data)
     setNavlist(navlist)
     // console.log(navlist)
     // console.log(data)
   }
 
   const callBack2 = data => {
-    console.log("ohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-    console.log("ohh", data["metaData"])
+    // console.log("ohh", data["metaData"])
 
     if (data["metaData"]) {
       for (let i = 0; i < data["metaData"].length; i++) {
-        console.log("ohh", data["metaData"][i].summary)
+        // console.log("ohh", data["metaData"][i].summary)
         const dat = data["metaData"][i].summary
         const link = data["metaData"][i].lId
         const dat1 = { "text": dat, "href": "/yourLoans/" + link }
-        console.log("ohh1", dat1)
-        console.log("ohh2", navlist[4]["dropdown_menu"])
+        // console.log("ohh1", dat1)
+        // console.log("ohh2", navlist[4]["dropdown_menu"])
         const dat2 = navlist[3]["dropdown_menu"]
         dat2.push(dat1)
       }
@@ -207,27 +206,12 @@ function TempSideNavbar() {
   // console.log(loading ? "" : data)
   // const [loading, setLoading] = useState(true);
 
-
-
-
-
-
-
-
-
-
   function getLastAcNo(e, n = 5) {
     var length = e.length
     return e.slice(length - n, length)
   }
 
-
-
-
   useEffect(() => {
-
-
-
     // setNavlist(navbar_json)
 
   }, []);

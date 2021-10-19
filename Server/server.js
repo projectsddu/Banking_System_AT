@@ -3,16 +3,6 @@ const app = express()
 const http = require('http');
 const cookieParser = require("cookie-parser")
 const logger = require("./logger")
-// const HomeRouter = require("./Routers/HomeRouter")
-// const AccountRouter = require("./Routers/AccountRouter")
-// const CardRouter = require("./Routers/CardRouter")
-// const PaymentRouter = require("./Routers/PaymentRouter")
-// const RTGSRouter = require("./Routers/RTGSRouter")
-// const NEFTRouter = require("./Routers/NEFTRouter")
-// const LoanInquiryRouter = require("./Routers/LoanInquiryRouter")
-// const DepositRouter = require("./Routers/DepositRouter")
-// const DepositModel = require("./Collections/DepositModel")
-// const LoanInquiryRouter = require("./Routers/LoanInquiryRouter_1")
 
 require("./Database/connect")
 const HOST = '127.0.0.1';

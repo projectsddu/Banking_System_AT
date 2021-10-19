@@ -11,14 +11,14 @@ export default function LogoutComponent() {
            type: "post",
            url: "/logout",
            success:(res)=>{
-            console.log(res);
+            // console.log(res);
                if (res == "user logout!!")
                {
                    history.push("/login")
                }
                else
                {
-                   console.log("error")
+                //    console.log("error")
                }
            }
        })

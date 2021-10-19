@@ -19,13 +19,13 @@ function cal(e) {
 
         var months = year * 12;
         var maturity = 0;
-        console.log(amt);
+        // console.log(amt);
         amt = amt / months;
-        console.log(amt);
+        // console.log(amt);
         for (var i = 1; i <= months; i++) {
             maturity += amt * Math.pow((1 + ((rate / 100) / freq)), freq * ((months - i + 1) / 12));
-            console.log(((months - i + 1) / 12));
-            console.log(maturity);
+            // console.log(((months - i + 1) / 12));
+            // console.log(maturity);
         }
         document.getElementById("maturity").innerText = (maturity).toFixed(2);
     } else {

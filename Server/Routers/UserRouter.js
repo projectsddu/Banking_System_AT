@@ -3,14 +3,13 @@ const router = express.Router()
 const verifyDetails = require("../Middlewares/VerifyDetails")
 const authenticate = require("../Middlewares/Authenticate")
 const User = require("../Collections/UserModel")
-const test = require("../Middlewares/Test")
 var SHA256 = require("crypto-js/sha256")
 const logger = require("../logger")
 
 router.post("/user/add_user", verifyDetails, async (req, res) => {
-    console.log(req.create_user)
+    // console.log(req.create_user)
     if (req.create_user) {
-        console.log(req.body)
+        // console.log(req.body)
         const new_user = await User(req.body).save()
         return res.json({ "Success": "Success" })
     }
@@ -23,7 +22,7 @@ router.post("/user/add_user", verifyDetails, async (req, res) => {
 router.post("/user/login_user", async (req, res) => {
     try {
         const { username, pinNo } = req.body;
-        console.log(req.body)
+        // console.log(req.body)
         if (!username || !pinNo) {
             return res.json({ "Error": "Fields cannot be empty!" })
         }
@@ -31,8 +30,8 @@ router.post("/user/login_user", async (req, res) => {
             // your username is firstname_middlename_lastname
 
             const user_names = username.split("_")
-            console.log(req.body.pinNo)
-            console.log(user_names)
+            // console.log(req.body.pinNo)
+            // console.log(user_names)
             const user = await User.findOne({
                 firstName: user_names[0],
                 middleName: user_names[1],
@@ -45,7 +44,7 @@ router.post("/user/login_user", async (req, res) => {
             }
             else {
 
-                console.log("Current user:" + user.firstName + " " + user.middleName + " " + user.lastName);
+                // console.log("Current user:" + user.firstName + " " + user.middleName + " " + user.lastName);
                 const token = await user.generateAuthToken()
 
                 // Saving current users session
@@ -66,7 +65,7 @@ router.post("/user/login_user", async (req, res) => {
     }
     catch (e) {
         logger.add_log(e.toString(), "ERROR")
-        console.log("Error:" + e.toString())
+        // console.log("Error:" + e.toString())
     }
 
 })

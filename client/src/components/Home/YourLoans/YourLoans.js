@@ -19,7 +19,7 @@ export default function YourLoans() {
       const response = await fetch(url, { method: "POST" });
       const data = await response.json();
       setData(data);
-      console.log(data)
+      // console.log(data)
       setLoading(false);
     }, []);
 
@@ -33,7 +33,7 @@ export default function YourLoans() {
     let endDate = new Date(data["Data"]["sanctionedDateTime"]);
     let totalMonths = (startDate.getFullYear() - endDate.getFullYear()) * 12;
     totalMonths += (endDate.getMonth() - startDate.getMonth());
-    console.log(totalMonths)
+    // console.log(totalMonths)
     return totalMonths
   }
   const timeCompleted = function () {

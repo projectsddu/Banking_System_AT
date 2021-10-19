@@ -2,9 +2,8 @@ const verifyLoanInquiry = async function (data) {
 
     // Check for name
     const name = data["fullName"]
-    console.log(data);
+    // console.log(data);
     if (name == "") {
-        console.log("hereeeeeeeeeeee", name);
         return "Name cannot be empty!!"
     }
 
@@ -48,7 +47,6 @@ const verifyLoanInquiry = async function (data) {
     // check for selected loan type
     const loanType = data["loanType"];
     if (loanType === "") {
-        console.log("yes from loan type");
         return "Please select loan type!!"
     }
 

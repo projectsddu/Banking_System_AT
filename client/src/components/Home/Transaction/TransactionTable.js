@@ -38,7 +38,7 @@ function TransactionTable(props) {
     function sortByAmount() {
         transactions.sort(sortByProperty("amount"))
         setTransactions(transactions.map((e) => { return e }));
-        console.log(transactions);
+        // console.log(transactions);
     }
 
     function getTotalByAmount() {
@@ -62,9 +62,6 @@ function TransactionTable(props) {
     const isDebit = function (e) {
         const curAc = props.curAc
         if (e["senderAc"] == curAc) {
-            console.log(
-                "called"
-            )
             return true
         }
         else {
@@ -72,7 +69,7 @@ function TransactionTable(props) {
         }
     }
     const decrement = function () {
-        console.log(numQuery)
+        // console.log(numQuery)
         if (numQuery == 1) {
             // setNumQuery(1)
         }

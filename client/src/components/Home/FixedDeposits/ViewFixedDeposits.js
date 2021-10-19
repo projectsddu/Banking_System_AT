@@ -14,14 +14,14 @@ export default function FixedDeposits() {
     return curDate.getDate() + "/" + curDate.getMonth() + "/" + curDate.getFullYear()
   }
   const getFinalAmount = function (metaData, depositData, idx) {
-    console.log(depositData["depositData"])
+    // console.log(depositData["depositData"])
     var principle = depositData["depositData"][idx]["principleAmount"]
     var interest = depositData["depositData"][idx]["interestRate"]
     var maturityDate = depositData["depositData"][idx]["maturityDate"]
     var dateOfIssue = depositData["depositData"][idx]["dateOfIssue"]
     var maturityMonths = 12 * ((new Date(maturityDate)).getFullYear() - (new Date(dateOfIssue)).getFullYear())
     // console.log(principle, interest, maturityDate, dateOfIssue)
-    console.log("meta", metaData)
+    // console.log("meta", metaData)
     if (metaData === false) {
       // it is a fixed deposit
       maturityMonths += ((new Date(maturityDate)).getMonth() - (new Date(dateOfIssue)).getMonth())
@@ -42,9 +42,9 @@ export default function FixedDeposits() {
         else {
           total += (total + recurringAmount) * (interest / 100)
         }
-        console.log(total)
+        // console.log(total)
       }
-      console.log("total", total)
+      // console.log("total", total)
       return total.toFixed(2)
 
     }
@@ -58,16 +58,16 @@ export default function FixedDeposits() {
     if (depositData) {
       const deposits = depositData["depositData"];
       const recurData = depositData["recurringData"]
-      console.log(recurData)
+      // console.log(recurData)
       const allJsx = []
       const userFirstName = capitalize(depositData["username"]["firstName"])
       const userLastName = capitalize(depositData["username"]["lastName"])
       // console.log(deposits);
       for (let deposit in deposits) {
         let counter = deposit
-        console.log(counter)
+        // console.log(counter)
         deposit = deposits[deposit];
-        console.log(deposit);
+        // console.log(deposit);
         let depositJsx = <>
           <div class="col-sm-6 mb-3">
             <div class="card" style={{ width: "103%" }}>

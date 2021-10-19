@@ -8,7 +8,7 @@ const OTP = require("../Collections/OTPModel")
 var nodemailer = require('nodemailer');
 const logger = require("../logger")
 const sendMail = function (from, to, otp) {
-    console.log("Transaporter")
+
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -16,14 +16,14 @@ const sendMail = function (from, to, otp) {
             pass: 'abcxyzpass'
         }
     });
-    console.log("mailOptions")
+    // console.log("mailOptions")
     var mailOptions = {
         from: from,
         to: to,
         subject: 'Your OTP for Banker Transaction',
         html: '<h1>' + String(otp) + '</h1>'
     }
-    console.log("sending mail")
+    // console.log("sending mail")
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
@@ -94,7 +94,7 @@ router.post("/verifyRTGS/:acNum", [authenticate, verifyRTGSDetails], async (req,
     }
     catch (e) {
         logger.add_log(e.toString(), "ERROR")
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Success:": false })
     }
 })

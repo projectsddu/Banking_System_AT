@@ -62,17 +62,17 @@ router.post("/user/getACDetails/:acNumber", [authenticate], async (req, res) => 
                 const allAc = await Account.find({
                     accountOwner: req.current_user
                 })
-                console.log(req.current_user.firstName + " " + req.current_user.lastName)
+                // console.log(req.current_user.firstName + " " + req.current_user.lastName)
                 var ulist = []
                 const user_list = Promise.all(allAc.map(async (e) => {
-                    console.log(e["accountOwner"]["_id"])
+                    // console.log(e["accountOwner"]["_id"])
                     const user = await User.findOne({ _id: e["accountOwner"]["_id"] })
                     // console.log(user)
                     ulist.push(user)
                     return user["firstName"]
                 })).then((e) => {
                     ulist = e
-                    console.log(e)
+                    // console.log(e)
                     logger.add_log("/user/getACDetails/:acNumber Serving user details for " + req.current_user.firstName + " " + req.current_user.lastName, "INFO")
                     return res.json({ "data": allAc, "ulist": ulist, "Success": true });
                 })
@@ -182,9 +182,8 @@ router.post("/account/:acNum", [authenticate], async (req, res) => {
             }
             else {
                 // particular account details
-                console.log("kndfkndfkdnfkndkfnkdnfk,")
-                console.log(acnum)
-                console.log(String(acnum).length)
+                // console.log(acnum)
+                // console.log(String(acnum).length)
                 if (String(acnum).length != 24) {
                     logger.add_log("/account/:acNum " + "Account number must be 24 characters long", "ERROR")
                     return res.json({ "Error:": "Account number must be 24 characters long" })

@@ -36,24 +36,23 @@ export default function CreateUser() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            console.log(response)
+            // console.log(response)
             if (response.ok) {
                 return response.json();
             }
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success")) {
-                // console.log("JHer")
                 // console.log(data)
                 toast.success("User Created Successfully!!");
                 // history.goBack()
             }
             else {
                 toast.error("Something went wrong!");
-                console.log(data.body)
+                // console.log(data.body)
             }
         }).catch(function (error) {
-            console.log(error.body)
+            // console.log(error.body)
             toast.error("Something went wrong!");
         });
     }

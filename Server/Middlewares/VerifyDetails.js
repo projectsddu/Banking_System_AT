@@ -2,7 +2,7 @@ const User = require("../Collections/UserModel")
 const verifyDetails = async function (req, res, next) {
     try {
 
-        console.log(req.body["DOB"])
+        // console.log(req.body["DOB"])
         let firstName = req.body["firstName"].toLowerCase()
         let middleName = req.body["middleName"].toLowerCase()
         let lastName = req.body["lastName"].toLowerCase()
@@ -20,7 +20,7 @@ const verifyDetails = async function (req, res, next) {
             panCardNo
 
         }).count()
-        console.log(userno)
+        // console.log(userno)
         if (userno == 0) {
             req.create_user = true;
         }

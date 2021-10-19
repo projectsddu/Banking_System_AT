@@ -7,11 +7,9 @@ router.post("/verifyLoanInquiryDetails", [authenticate], async (req, res) => {
     try {
         if (req.is_authenticated) {
 
-            console.log("hello from loan")
-
-            const {fullName, email, occupation, companyName, monthlyIncome, loanAmount,
-                loanTenure, address, postCode, phoneNumber, city, 
-                userQueries, loanType} = req.body;
+            const { fullName, email, occupation, companyName, monthlyIncome, loanAmount,
+                loanTenure, address, postCode, phoneNumber, city,
+                userQueries, loanType } = req.body;
 
             const loanInquiryObj = LoanInquiry({
                 userAccount: req.current_user,
@@ -30,14 +28,14 @@ router.post("/verifyLoanInquiryDetails", [authenticate], async (req, res) => {
             })
 
             let status = await loanInquiryObj.save();
-            if(!status) {
+            if (!status) {
                 throw "Error saving your data"
             }
             return res.json({ "Success:": true });
         }
     }
     catch (e) {
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Success:": false })
     }
 })

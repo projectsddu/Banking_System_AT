@@ -13,7 +13,6 @@ const createCreditCardMiddleware = async function (req, res, next) {
             req.makeCreditStatus = true;
         }
         else {
-            console.log("insakansdknaskndkasnd")
             throw "No account found"
         }
         next()

@@ -29,7 +29,7 @@ const authenticateAdmin = async function (req, res, next) {
     next();
   } catch (e) {
     logger.add_log("Problem in admin authentication:" + e.toString(), "ERROR")
-    console.log(e);
+    // console.log(e);
     return res.json({ "Error:": "Error authenticating user" });
   }
 };

@@ -49,7 +49,7 @@ router.post("/cards/getUserCreditCards", [authenticate], async (req, res) => {
                     value: req.current_user
                 })
                 userlist.push(req.current_user.firstName + " " + req.current_user.lastName)
-                console.log(e)
+                // console.log(e)
                 return e
             })
 
@@ -98,7 +98,6 @@ router.post("/cards/getUserDebitCards/:acNumber", [authenticate], async (req, re
                     ulist.push(req.current_user.firstName + " " + req.current_user.lastName)
                 })
             ).then((e) => { return e })
-            console.log("Here on card router");
             return res.json({ "data": resp, "acDetails": allAc, "ulist": ulist, "Success:": true })
 
         }
@@ -183,8 +182,8 @@ router.post("/cards/makeCreditCards/:acNum", [authenticate, creditCardAuthentica
     try {
         if (req.is_authenticated) {
             const ac = req.ac;
-            console.log(ac ? "true" : false)
-            console.log(req.body.hasOwnProperty("pinNo") ? "true" : false)
+            // console.log(ac ? "true" : false)
+            // console.log(req.body.hasOwnProperty("pinNo") ? "true" : false)
 
             if (ac && req.body.hasOwnProperty("pinNo")) {
                 ac.isEcardIssued = true

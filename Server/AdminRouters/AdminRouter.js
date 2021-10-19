@@ -31,7 +31,7 @@ router.post("/admin/create_admin", [verifyAdminDetails], async (req, res) => {
     return res.json({ "Success:": true });
   } catch (e) {
     logger.add_log("/admin/createadmin " + e.toString(), "ERROR")
-    console.log(e.toString());
+    // console.log(e.toString());
   }
 });
 
@@ -42,7 +42,7 @@ router.post("/admin/loginAdmin", async (req, res) => {
       throw "Fields cannot be empty!";
     } else {
       const usernames = String(username).split("_");
-      console.log(usernames, pinNo);
+      // console.log(usernames, pinNo);
       const admin = await Admin.findOne({
         firstName: usernames[0],
         middleName: usernames[1],
@@ -55,7 +55,7 @@ router.post("/admin/loginAdmin", async (req, res) => {
       //     lastName: "gandhi",
       //     pinNo: "3456"
       // })
-      console.log(admin);
+      // console.log(admin);
       if (admin) {
         const token = await admin.generateAuthToken();
         const savedCookie = res.cookie("LoginToken", token, {
@@ -101,7 +101,7 @@ router.post(
         throw "Error Connecting!";
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       return res.json({ "Error:": e.toString() });
     }
   }
@@ -115,7 +115,6 @@ router.post("/admin/block_user", [authenticate], async (req, res) => {
     let firstName = fullName[0].toLowerCase();
     let middleName = fullName[1].toLowerCase();
     let lastName = fullName[2].toLowerCase();
-    // console.log("11111111")
 
     const userExist = await User.findOne({
       firstName: firstName,
@@ -125,14 +124,12 @@ router.post("/admin/block_user", [authenticate], async (req, res) => {
     if (!userExist) {
       return res.json({ "Error:": "User not Exist!!!" });
     }
-    // console.log("32222222")
     if (req.current_admin.pinNo == pinNo) {
       const sts = await User.deleteOne({
         firstName: firstName,
         middleName: middleName,
         lastName: lastName,
       });
-      // console.log("3333333333")
       if (!sts) {
         logger.add_log("/admin/block_user error blocking user ...", "ERROR")
         return res.json({ "Error:": "Error while blocking User!!!" });
@@ -144,7 +141,7 @@ router.post("/admin/block_user", [authenticate], async (req, res) => {
       return res.json({ "Error:": "Wrong Pin Number of Admin!!!" });
     }
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     logger.add_log("/admin.block_user " + e.toString(), "ERROR")
     return res.json({ "Error:": e.toString() });
   }
@@ -159,7 +156,7 @@ router.post("/admin/createUserAccount", [authenticate], async (req, res) => {
     const firstName = usernames[0];
     const middleName = usernames[1];
     const lastName = usernames[2];
-    console.log(firstName, middleName, lastName);
+    // console.log(firstName, middleName, lastName);
     const user = await User.findOne({ firstName, middleName, lastName });
     // console.log("User", user);
     if (!user) {
@@ -228,7 +225,7 @@ router.post("/admin/addCashToUser", [authenticate], async (req, res) => {
       return res.json({ "Success": true });
     }
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     logger.add_log("/admin/addcashtouser " + e.toString(), "ERROR")
     return res.json({ "Error:": e.toString() });
   }
@@ -255,7 +252,7 @@ router.post("/admin/addAnotherAdmin", [authenticate], async (req, res) => {
   }
   catch (e) {
     logger.add_log("/admin/addanotheradmin " + e.toString(), "ERROR")
-    console.log(e);
+    // console.log(e);
     return res.json({ "Error:": e.toString() });
   }
 })
@@ -267,7 +264,7 @@ router.post("/admin/viewProfile", [authenticate], async (req, res) => {
 
   }
   catch (e) {
-    console.log(e);
+    // console.log(e);
     return res.json({ "Error:": e.toString() });
   }
 })

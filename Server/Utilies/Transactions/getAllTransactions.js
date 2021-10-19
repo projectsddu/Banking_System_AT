@@ -7,26 +7,25 @@ const getPastTransactionsAnalytics = function (transactions, ac) {
     for (let i = 0; i < transactions.length; i++) {
         let transaction = transactions[i];
         if (Object.keys(months).length == 12) {
-            console.log("iksndksndksnd");
             break;
         }
 
         const month = new Date(
             transaction.transactionDateTime
         ).getMonth();
-        console.log(String(transaction.receiver._id), String(ac._id))
+        // console.log(String(transaction.receiver._id), String(ac._id))
         if (String(transaction.receiver._id) != String(ac._id)) {
-            console.log("jsbnj")
+            // console.log("jsbnj")
             debit = debit + Number(transaction.amount)
         }
         else {
-            console.log("ooooooooooooooo")
+            // console.log("ooooooooooooooo")
             credit = credit + Number(transaction.amount)
         }
 
         months[month] = true
     }
-    console.log({ "debit": debit, "credit": credit, "netAcBal": credit - debit })
+    // console.log({ "debit": debit, "credit": credit, "netAcBal": credit - debit })
     return { "debit": debit, "credit": credit, "netAcBal": credit - debit }
 }
 
@@ -103,8 +102,6 @@ function makeTransactionData(transaction_data, curAc) {
         let mnth = (6 - len);
         let temp = []
         for (let j = 0; j < mnth; j++) {
-            // console.log("knsknskdn")
-            // console.log(mnth)
             temp.push({ "name": "N/A", "income": 0, "expense": 0 })
         }
         // finalReturnData.concat(temp)
@@ -140,7 +137,7 @@ const getTransactionData = async function (current_user) {
     x = getPastTransactionsAnalytics(transactions, current_user)
     // console.log(x)
     const graphData = makeTransactionData(transactions, current_user)
-    console.log({ "graphData": graphData, "headerData": x })
+    // console.log({ "graphData": graphData, "headerData": x })
     return { "graphData": graphData, "headerData": x }
 
 

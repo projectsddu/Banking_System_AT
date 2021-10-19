@@ -34,7 +34,7 @@ export default function AdminLogin() {
                     history.push("/admin/home")
                 }
                 else {
-                    console.log(result)
+                    // console.log(result)
                 }
             }
             ).catch(error => console.log('error', error));

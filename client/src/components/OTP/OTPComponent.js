@@ -12,7 +12,7 @@ export default function OTPComponent() {
     function handleSubmit(e)
     {
         e.preventDefault()
-        console.log(otp.otp,slug);
+        // console.log(otp.otp,slug);
         $.ajax({
             type: "post",
             url: "/verifyOtp",

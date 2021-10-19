@@ -4,7 +4,6 @@ const authenticate = require("../Middlewares/Authenticate")
 const logger = require("../logger")
 
 router.post("/logout", authenticate, (req, res) => {
-    console.log("Hello from logout page");
     res.clearCookie("LoginToken")
     // res.cookies.set('LoginToken', {expires: Date.now()})
     logger.add_log("/logout User Logout" + req.current_user.firstName + " " + req.current_user.lastName, "SUCCESS")

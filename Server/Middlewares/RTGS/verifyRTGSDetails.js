@@ -2,8 +2,7 @@ const Account = require("../../Collections/AccountModel");
 const logger = require("../../logger")
 const verifyRTGSDetails = async function (req, res, next) {
     try {
-        console.log(req.body)
-        console.log("in middleware");
+        // console.log(req.body);
         const acNum = req.params.acNum;
 
         const accountExist = await Account.findOne({
@@ -34,7 +33,7 @@ const verifyRTGSDetails = async function (req, res, next) {
     }
     catch (e) {
         logger.add_log("Problem in verifyRTGS " + e.toString(), "ERROR")
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Error:": e.toString() })
     }
 }

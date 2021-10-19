@@ -22,7 +22,7 @@ function cal(e) {
         var year = parseInt(document.f1.years.value);
         var freq = parseInt(document.f1.freq.value);
         var maturity = amt * Math.pow((1 + ((rate / 100) / freq)), freq * year);
-        console.log(maturity);
+        // console.log(maturity);
         // console.log(document.getElementById("maturity-1"))
         document.getElementById("maturityAmt").innerText = maturity.toFixed(2);
     } else if (depositType == "rd" && document.f1.freq.value.length != 0) {
@@ -33,13 +33,13 @@ function cal(e) {
 
         var months = year * 12;
         var maturity = 0;
-        console.log(amt);
+        // console.log(amt);
         amt = amt / months;
-        console.log(amt);
+        // console.log(amt);
         for (var i = 1; i <= months; i++) {
             maturity += amt * Math.pow((1 + ((rate / 100) / freq)), freq * ((months - i + 1) / 12));
-            console.log(((months - i + 1) / 12));
-            console.log(maturity);
+            // console.log(((months - i + 1) / 12));
+            // console.log(maturity);
         }
         // console.log(maturity-1);
         document.getElementById("maturityAmt").innerText = (maturity).toFixed(2);
@@ -110,7 +110,7 @@ export default function ApplyFixedDeposits() {
             const accounts = userData["data"]
             const allJsx = []
             for (let account in accounts) {
-                console.log(account);
+                // console.log(account);
                 account = accounts[account]
                 let acJsx = <><option value={account._id}>{account["_id"]}, Balance: {account.accountBalance}</option></>
                 allJsx.push(acJsx);
@@ -130,7 +130,7 @@ export default function ApplyFixedDeposits() {
 
     // let final_request = "/account/" + slug["pathname"].split("/")[2];
     const { data, loading } = useFetch("/user/getACDetails/-1");
-    console.log(loading ? "loading..." : data);
+    // console.log(loading ? "loading..." : data);
 
     function handleOnSubmit(e) {
         e.preventDefault();
@@ -147,18 +147,18 @@ export default function ApplyFixedDeposits() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.ok) {
                 response.json()
                     .then(e => {
-                        console.log(e)
-                        console.log("Here!")
+                        // console.log(e)
+                        
                         if (e["Success:"]) {
                             toast.success("Your Application was successful!!");
                             // history.goBack()
                         }
                         else {
-                            // console.log("Here pan")
+                            
                             toast.error(e["Error"]);
                         }
 

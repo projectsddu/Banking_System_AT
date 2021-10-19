@@ -3,7 +3,6 @@ import "./CreateUserAccount.css";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import "./CreateuserController";
 import $ from "jquery";
 
 function CreateUserAccount() {
@@ -33,9 +32,9 @@ function CreateUserAccount() {
   }
 
   function handleSubmit(e) {
-    console.log(accountDetails);
+    // console.log(accountDetails);
     e.preventDefault();
-    console.log("submitted");
+    // console.log("submitted");
     $.ajax({
       type: "post",
       url: "/admin/createUserAccount",
@@ -43,7 +42,7 @@ function CreateUserAccount() {
       dataType: "json",
       contentType: "application/json;charset=utf-8",
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         if(response["Success:"])
         {
           toast.success("Account created would be visible in users dashboard");
@@ -54,7 +53,7 @@ function CreateUserAccount() {
         }
       },
       error: function (response) {
-        console.log(response);
+        // console.log(response);
       },
     });
   }

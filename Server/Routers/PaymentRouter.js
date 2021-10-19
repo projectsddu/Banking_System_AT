@@ -11,7 +11,6 @@ const logger = require("../logger")
 
 
 const sendMail = function (from, to, otp) {
-    console.log("Transaporter")
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -19,14 +18,14 @@ const sendMail = function (from, to, otp) {
             pass: 'abcxyzpass'
         }
     });
-    console.log("mailOptions")
+    // console.log("mailOptions")
     var mailOptions = {
         from: from,
         to: to,
         subject: 'Your OTP for Banker Transaction',
         html: '<h1>' + String(otp) + '</h1>'
     }
-    console.log("sending mail")
+    // console.log("sending mail")
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
@@ -40,7 +39,7 @@ const sendMail = function (from, to, otp) {
 
 router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransaction], async (req, res) => {
     try {
-        console.log(await req.body)
+        // console.log(await req.body)
         if (req.is_authenticated) {
             // verify receiver details
             const { fullName, acNumber, email, amount, reason } = req.body;
@@ -63,7 +62,6 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
 
                 if (receiverAccount) {
                     if (parseInt(req.current_ac.accountBalance) < parseInt(amount)) {
-                        console.log("here")
                         logger.add_log("PAYMENT/DEBIT/ACNUM Not enough balanace to do transaction!!", "ERROR")
                         return res.status(422).json({ Error: "Not enough balanace to do transaction!!" });
                     }
@@ -120,7 +118,7 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
 
             catch (e) {
                 logger.add_log("PAYMENT/DEBIT/ACNUM " + e.toString(), "ERROR")
-                console.log("Error:" + e.toString());
+                // console.log("Error:" + e.toString());
                 return res.json({ "Error:": e.toString() })
             }
 
@@ -128,7 +126,7 @@ router.post("/payment/debit/:acNumber", [authenticate, verifyDebitCardTransactio
     }
     catch (e) {
         logger.add_log("PAYMENT/DEBIT/ACNUM " + e.toString(), "ERROR")
-        console.log("Errorooor" + e.toString())
+        // console.log("Errorooor" + e.toString())
         return res.json({ "Success:": false })
     }
 })
@@ -165,7 +163,7 @@ router.post("/verifyOtp", [authenticate], async (req, res) => {
     }
     catch (e) {
         logger.add_log("/VERIFYOTP " + e.toString(), "ERROR")
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Error:": false, "message": e.toString() })
     }
 })

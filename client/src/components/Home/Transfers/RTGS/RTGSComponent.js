@@ -27,8 +27,8 @@ export default function NEFTComponent() {
     }
 
     const slug = useLocation();
-    console.log(slug);
-    console.log(slug["pathname"].split("/"));
+    // console.log(slug);
+    // console.log(slug["pathname"].split("/"));
 
     const saveData = async function () {
 
@@ -40,15 +40,14 @@ export default function NEFTComponent() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            console.log(response)
+            // console.log(response)
             if (response.ok) {
                 return response.json();
             }
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success:")) {
-                console.log("JHer")
-                console.log(data)
+                // console.log(data)
                 // const tid = slug["pathname"].split("/")[2]
                 const tid = data["data"]["_id"]
                 history.push("/otp/"+tid)
@@ -57,10 +56,10 @@ export default function NEFTComponent() {
             }
             else {
                 toast.error(data["Error"]);
-                console.log(data.body)
+                // console.log(data.body)
             }
         }).catch(function (error) {
-            console.log(error.body)
+            // console.log(error.body)
             toast.error("Something went wrong!");
         });
 

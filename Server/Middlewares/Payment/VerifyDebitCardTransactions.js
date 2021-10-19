@@ -26,7 +26,6 @@ const verifyDebitCardTransaction = async function (req, res, next) {
         else {
             throw "Account Do not exists"
         }
-        // console.log("Jeinaskndkjsandjkznj")
 
         next();
     }

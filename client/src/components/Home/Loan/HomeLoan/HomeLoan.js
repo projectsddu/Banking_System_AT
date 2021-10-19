@@ -30,7 +30,7 @@ export default function HomeLoan() {
         const msg = verifyLoanInquiry(userDetails).then((e) => {
             if (e == "Your Details are verified please be patient while we process your request") {
                 toast.info(e);
-                console.log("before save data");
+                // console.log("before save data");
                 saveData();
             }
             else {
@@ -50,7 +50,7 @@ export default function HomeLoan() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.ok) {
                 return response.json();
             }

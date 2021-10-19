@@ -4,7 +4,7 @@ const AccountModel = require("../../Collections/AccountModel")
 
 // deducts amount before transaction
 const deductAmount = function (adminAc, userAc, money) {
-    console.log("here", userAc.accountBalance)
+    // console.log("here", userAc.accountBalance)
     adminAc.accountBalance = adminAc.accountBalance - money
     userAc.accountBalance = userAc.accountBalance + money
     adminAc.save()
@@ -22,20 +22,20 @@ const hasExipredDeposit = async function (userObj, adminUser, adminAccount) {
             const curDepositDate = new Date(curDeposit.maturityDate)
             const issuedDate = new Date(curDeposit.dateOfIssue)
             const today = new Date();
-            console.log("today", today)
-            console.log("curdepositDate", curDepositDate)
+            // console.log("today", today)
+            // console.log("curdepositDate", curDepositDate)
             if (today.getTime() > curDepositDate.getTime()) {
-                console.log("expired")
+                // console.log("expired")
                 let n_months = Number(today.getFullYear() - issuedDate.getFullYear()) * 12
                 n_months += (Number(today.getMonth() - issuedDate.getMonth()))
                 const totalInterest = ((Number(curDeposit.interestRate) / 12) * n_months) / 100
                 const principle = curDeposit.principleAmount
-                console.log(principle)
+                // console.log(principle)
                 const maturityAmount = principle + (principle * totalInterest)
-                console.log(maturityAmount)
+                // console.log(maturityAmount)
                 const userAc = await curDeposit.referenceAccount._id
                 const usersAc = await AccountModel.findOne({ _id: userAc })
-                console.log(userAc)
+                // console.log(userAc)
                 if (userAc) {
                     deductAmount(adminAccount, usersAc, maturityAmount)
                     // Make the transaction

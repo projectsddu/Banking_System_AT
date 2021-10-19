@@ -8,7 +8,7 @@ const DebitCardGenerator = async function () {
         const cardDetails = {}
         cardDetails["cardNum"] = getRandomNumber(16)
         cardDetails["cvv"] = getRandomNumber(3)
-        console.log(cardDetails)
+        // console.log(cardDetails)
         return cardDetails
     }
     catch (e) {

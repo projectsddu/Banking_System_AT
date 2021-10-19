@@ -26,12 +26,12 @@ export default function NEFTComponent() {
     }
 
     const slug = useLocation();
-    console.log(slug["pathname"].split("/"));
+    // console.log(slug["pathname"].split("/"));
 
     const saveData = async function () {
 
         const acNum = slug["pathname"].split("/")[2];
-        console.log(acNum);
+        // console.log(acNum);
 
         fetch('/verifyNEFT/' + acNum, {
             method: 'POST',
@@ -40,14 +40,14 @@ export default function NEFTComponent() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            console.log(response)
+            // console.log(response)
             if (response.ok) {
                 return response.json();
             }
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success:")) {
-                console.log(data)
+                // console.log(data)
                 const tid = data["data"]["_id"]
                 history.push("/otp/"+tid)
                 toast.success("Your payment was a success");

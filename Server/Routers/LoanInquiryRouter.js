@@ -7,8 +7,6 @@ router.post("/verifyLoanInquiryDetails", [authenticate], async (req, res) => {
     try {
         if (req.is_authenticated) {
 
-            console.log("hello from loan")
-
             const {fullName, email, occupation, companyName, monthlyIncome, loanAmount,
                 loanTenure, address, postCode, phoneNumber, city, 
                 userQueries, loanType} = req.body;
@@ -37,7 +35,7 @@ router.post("/verifyLoanInquiryDetails", [authenticate], async (req, res) => {
         }
     }
     catch (e) {
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Success:": false })
     }
 })

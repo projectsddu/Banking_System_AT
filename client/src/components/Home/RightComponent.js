@@ -37,8 +37,8 @@ function RightComponent({ component_name }) {
         "NEFT": <NEFTComponent />,
         "RTGS": <RTGSComponent />,
         "yourLoans": <YourLoans />,
-        "otp":<OTPComponent/>,
-        "logout": <LogoutComponent/>
+        "otp": <OTPComponent />,
+        "logout": <LogoutComponent />
     }
     return (
         <div className="col">

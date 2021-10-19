@@ -16,7 +16,7 @@ export default function ViewProfile() {
             url: "/admin/viewProfile",
             success: function (response) {
               const data = response["userData"];
-              console.log(data);
+            //   console.log(data);
               setUserData({fullName: data["firstName"] + " " + data["lastName"]});
             },
           });

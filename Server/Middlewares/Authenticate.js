@@ -3,7 +3,7 @@ const Account = require("../Collections/AccountModel")
 const jwt = require("jsonwebtoken")
 const logger = require("../logger")
 const authenticate = async function (req, res, next) {
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const uid = req.cookies.LoginToken
         const user_id = jwt.verify(uid, "SECRETKEY")

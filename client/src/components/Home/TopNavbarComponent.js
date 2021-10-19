@@ -30,7 +30,7 @@ export default function TopNavbarComponent({ property_name }) {
     };
     const { data, loading } = useFetch("/home/getDetails")
 
-    console.log(loading ? "Loading......" : data)
+    // console.log(loading ? "Loading......" : data)
 
 
     // console.log(userCookies.get("UserName"));

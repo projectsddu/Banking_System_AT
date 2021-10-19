@@ -9,7 +9,6 @@ var nodemailer = require('nodemailer');
 const logger = require("../logger")
 
 const sendMail = function (from, to, otp) {
-    console.log("Transaporter")
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -17,14 +16,14 @@ const sendMail = function (from, to, otp) {
             pass: 'abcxyzpass'
         }
     });
-    console.log("mailOptions")
+    // console.log("mailOptions")
     var mailOptions = {
         from: from,
         to: to,
         subject: 'Your OTP for Banker Transaction',
         html: '<h1>' + String(otp) + '</h1>'
     }
-    console.log("sending mail")
+    // console.log("sending mail")
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
@@ -92,7 +91,7 @@ router.post("/verifyNEFT/:acNum", [authenticate, verifyNEFTDetails], async (req,
 
     }
     catch (e) {
-        console.log(e.toString())
+        // console.log(e.toString())
         logger.add_log("/NEFTTRANSACTION " + e.toString(), "ERROR")
         return res.json({ "Success:": false })
     }

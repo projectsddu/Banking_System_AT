@@ -22,7 +22,7 @@ const verifyAdminDetails = async function (req, res, next) {
     }
     catch (e) {
         logger.add_log("Problem in verifyAdminDetails " + e.toString(), "ERROR")
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.send({ "Error:": e.toString() })
     }
 }

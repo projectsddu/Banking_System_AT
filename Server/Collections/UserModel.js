@@ -78,26 +78,5 @@ User.methods.generateAuthToken = async function () {
     }
 }
 
-// hashing the password
-// User.pre('save', async function (next) {
-//     console.log('inside the pre');
-//     if (this.isModified('pinNo')) {
-//         this.pinNo = SHA256(this.pinNo).toString()
-//         console.log(SHA256(this.pinNo).toString())
-//     }
-//     next();
-// })
-
-
-// hashing the password
-// User.pre('save', async function (next) {
-//     if (this.isModified('pinNo')) {
-//         this.pinNo = bcrypt.hash(this.pinNo, 12);
-//     }
-//     next();
-// })
-
-
-
 const UserModel = mongoose.model("USER", User)
 module.exports = UserModel

@@ -8,9 +8,6 @@ function sortByDate(transactions) {
 const isDebit = function (e, curAc) {
 
     if (e["senderAc"] == curAc) {
-        console.log(
-            "called"
-        )
         return true
     }
     else {
@@ -22,7 +19,7 @@ function makeTransactionData(transaction_data, curAc) {
     var returnArray = []
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
-    console.log(transaction_data)
+    // console.log(transaction_data)
 
     // Logic is we keep adding for a particular month 
     // until it is changed
@@ -60,8 +57,7 @@ function makeTransactionData(transaction_data, curAc) {
         let mnth = (6 - len);
         let temp = []
         for (let j = 0; j < mnth; j++) {
-            console.log("knsknskdn")
-            console.log(mnth)
+            // console.log(mnth)
             temp.push({ "name": "N/A", "income": 0, "expense": 0 })
         }
         // finalReturnData.concat(temp)
@@ -70,9 +66,9 @@ function makeTransactionData(transaction_data, curAc) {
         // finalReturnData = finalReturnData.concat(temp)
     }
     else {
-        console.log("in here")
+        // console.log("in here")
     }
-    console.log(finalReturnData)
+    // console.log(finalReturnData)
     return finalReturnData
 
 }

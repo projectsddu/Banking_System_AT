@@ -30,7 +30,7 @@ router.post("/transaction/getUserTransactions/:acNumber", [authenticate], async 
         }
     }
     catch (e) {
-        console.log(e.toString());
+        // console.log(e.toString());
         return res.json({ "Error:": e.toString() })
     }
 })

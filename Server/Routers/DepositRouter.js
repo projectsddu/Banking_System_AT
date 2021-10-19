@@ -14,7 +14,6 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
 
     try {
         if (req.is_authenticated && req.accountAttchedWithUser) {
-            console.log("from deposit router");
             const { principleAmount, maturity, acNumber, depositType, recurringAmount } = req.body;
 
             if (!principleAmount || !maturity || !acNumber || !depositType) {
@@ -123,7 +122,7 @@ router.post("/fd/getFDDetails", [authenticate], async (req, res) => {
         // make a list of deposit objects
 
         var status = await hasExipredDeposit(req.current_user, req.admin_user, req.admin_account)
-        console.log("status" + status)
+        // console.log("status" + status)
         const allDeposits = await Deposit.find({
             depositOwner: req.current_user
         })

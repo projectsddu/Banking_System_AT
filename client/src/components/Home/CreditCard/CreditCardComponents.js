@@ -13,7 +13,6 @@ export default function EcardsComponent() {
         // Similar to componentDidMount and componentDidUpdate:
         useEffect(async () => {
             const response = await fetch(url, { method: "POST" });
-            // console.log("her")
             const data = await response.json();
             setData(data);
             // console.log(data)

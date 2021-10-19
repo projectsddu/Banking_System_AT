@@ -86,7 +86,7 @@ router.post("/loan/convertLoan/:lId", [authenticate], async (req, res) => {
         }
     }
     catch (e) {
-        console.log("Error:", e.toString())
+        // console.log("Error:", e.toString())
         return res.json({ "Error:": "Something went so wrong!!!" })
     }
 })
@@ -109,7 +109,7 @@ router.post("/loans/getAllUserLoans", [authenticate], async (req, res) => {
         }
     }
     catch (e) {
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Error:": "Something went wrong", "Data": "None" })
     }
 })
@@ -121,7 +121,7 @@ router.post("/loan/getLoanDetails/:lid", [authenticate], async (req, res) => {
         return res.json({ "Success:": true, "Data": loanObj })
     }
     catch (e) {
-        console.log(e.toString())
+        // console.log(e.toString())
         return res.json({ "Error": "Something went really wrong!" })
     }
 })

@@ -8,26 +8,23 @@ const getPastTransactionsAnalytics = function (transactions, ac) {
     for (let i = 0; i < transactions.length; i++) {
         let transaction = transactions[i];
         if (Object.keys(months).length == 12) {
-            console.log("iksndksndksnd");
             break;
         }
 
         const month = new Date(
             transaction.transactionDateTime
         ).getMonth();
-        console.log(String(transaction.receiverAc._id), String(ac._id))
+        // console.log(String(transaction.receiverAc._id), String(ac._id))
         if (String(transaction.receiverAc._id) != String(ac._id)) {
-            console.log("jsbnj")
             debit = debit + Number(transaction.amount)
         }
         else {
-            console.log("ooooooooooooooo")
             credit = credit + Number(transaction.amount)
         }
 
         months[month] = true
     }
-    console.log({ "debit": debit, "credit": credit, "netAcBal": credit - debit })
+    // console.log({ "debit": debit, "credit": credit, "netAcBal": credit - debit })
     return { "debit": debit, "credit": credit, "netAcBal": credit - debit }
 }
 const calculateCreditScore = function (transactions, account) {

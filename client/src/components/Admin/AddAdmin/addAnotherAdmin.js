@@ -31,7 +31,7 @@ function AddAnotherAdmin() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            console.log(response)
+            // console.log(response)
             if (response.ok) {
                 return response.json();
             }
@@ -43,10 +43,10 @@ function AddAnotherAdmin() {
             }
             else {
                 toast.error("Something went wrong!");
-                console.log(data.body)
+                // console.log(data.body)
             }
         }).catch(function (error) {
-            console.log(error.body)
+            // console.log(error.body)
             toast.error("Something went wrong!");
         });
     }

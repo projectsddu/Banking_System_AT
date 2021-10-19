@@ -24,7 +24,7 @@ export default function LoginComponent({ data }) {
         e.preventDefault()
         // Backend API call to login the user
         // console.log(e);
-        console.log(userDetails);
+        // console.log(userDetails);
         // const res = fetch("")
         var data = JSON.stringify(userDetails)
         var myHeaders = new Headers();
@@ -38,7 +38,7 @@ export default function LoginComponent({ data }) {
             body: raw,
             redirect: 'follow'
         };
-        console.log("before fetch");
+        // console.log("before fetch");
         fetch("/user/login_user", requestOptions)
             .then(response => response.text())
             .then((result) => {
