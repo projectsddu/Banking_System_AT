@@ -40,22 +40,6 @@
 <h1>
     How to Test?
 </h1> 
-<ul>
-    <li> 
-        <p> Clone the repository by using this command **&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp;** </p></li>
-    <li>
-        <h4>Now go to the server folder and run the command <span style="background-color: gray; font-weight: bold;"> &nbsp; npm i &nbsp; </span></h4>
-    </li>
-     <li>
-        <h4>Now go to the client folder and run the command <span style="background-color: gray; font-weight: bold;"> &nbsp; npm i &nbsp; </span></h4>
-    </li>
-    <li>
-        <h4> Now go to the server folder in the command prompt and type the following command <span style="background-color: gray; font-weight: bold;"> &nbsp; nodemon server.js &nbsp; </span></h4>
-    </li>
-    <li>
-        <h4> Now go to the client folder in the command prompt and type the following command <span style="background-color: gray; font-weight: bold;"> &nbsp; npm start &nbsp; </span></h4>
-    </li>
-    <li>
-        <h4>Now the server is up and running. Enjoy the website 😃 </h4>
-    </li>
-</ul>
+- Clone the repository by using this command **&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp;** 
+- Clone the repository by using this command **&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp;** 
+    
