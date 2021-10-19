@@ -104,8 +104,9 @@ router.post("/fd/addNewFD", [authenticate, verifyDeposit], async (req, res) => {
                 if (!fixedStatus) {
                     throw "Error while creating FixedDeposit Object!!";
                 }
+                logger.add_log("New FD added!" + fixedObj._id, "SUCCESS")
             }
-            logger.add_log("New FD added!" + fixedObj._id, "SUCCESS")
+
             return res.json({ "Success:": true });
         }
     }
@@ -147,7 +148,7 @@ router.post("/fd/getFDDetails", [authenticate], async (req, res) => {
             "firstName": req.current_user.firstName,
             "lastName": req.current_user.lastName
         }
-        logger.add_log("/fd/getDetails serving data for fixed deposit to user " + re.current_user.firstName + " " + req.current_user.lastName, "SUCCESS")
+        logger.add_log("/fd/getDetails serving data for fixed deposit to user " + req.current_user.firstName + " " + req.current_user.lastName, "SUCCESS")
         // console.log({ "depositData": allDeposits, "username": username, "Success:": true })
         return res.json({ "depositData": allDeposits, "username": username, "Success:": true, "recurringData": rcr });
 
