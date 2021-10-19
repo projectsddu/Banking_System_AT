@@ -40,6 +40,8 @@
 <h1>
     How to Test?
 </h1> 
-- Clone the repository by using this command **&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp;** 
-- Clone the repository by using this command **&nbsp;git clone https://github.com/projectsddu/Banking_System.git &nbsp;** 
+- First item
+- Second item
+- Third item
+- Fourth item
     
