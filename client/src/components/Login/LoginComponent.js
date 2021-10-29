@@ -1,5 +1,7 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import { ToastContainer, toast } from "react-toastify";
 import './LoginComponent.css'
 import img from "./Asset/login_asset.jpg"
 import './input_field_animation.css'
@@ -47,6 +49,7 @@ export default function LoginComponent({ data }) {
                     history.push("/home")
                 }
                 else {
+                    toast.error("Provide correct credentials!!")
                     console.log(result)
                 }
             }
@@ -97,6 +100,17 @@ export default function LoginComponent({ data }) {
                 </div>
             </div>
 
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
 
 
 

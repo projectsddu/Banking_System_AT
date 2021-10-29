@@ -19,7 +19,9 @@ function App() {
   }
   return (
     <>
-
+      <Route exact path="/">
+        <LoginComponent></LoginComponent>
+      </Route>
       <Route path="/login">
         <LoginComponent></LoginComponent>
       </Route>
