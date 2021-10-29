@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-// import { injectStyle } from "react-toastify/dist/inject-style";
+import { injectStyle } from "react-toastify/dist/inject-style";
 import { ToastContainer, toast } from "react-toastify";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
