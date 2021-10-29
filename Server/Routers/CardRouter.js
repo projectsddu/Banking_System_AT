@@ -110,15 +110,16 @@ router.post("/cards/getUserDebitCards/:acNumber", [authenticate], async (req, re
     }
 })
 
-// The req object requires a pin number to be passed.
-router.post("/cards/makeDebitCards/:acNum", [authenticate, debitCardAuthenticate], async (req, res) => {
+// This is to be executed by the admin
+router.post("/cards/makeDebitCards/:acNum", [adminAuthenticate, debitCardAuthenticate], async (req, res) => {
     try {
+        console.log(req.makeDebitStatus)
 
-
-        if (req.is_authenticated && req.makeDebitStatus) {
+        if (req.makeDebitStatus) {
 
             const ac = req.ac
 
+            console.log(req.body)
             if (ac && req.body.hasOwnProperty("pinNo")) {
                 ac.isEcardissued = true
                 // Genereate code and create debitcard object.

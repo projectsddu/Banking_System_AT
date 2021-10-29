@@ -9,7 +9,7 @@ export default function CreateUser() {
         firstName: '',
         middleName: '',
         lastName: '',
-        emailId:'',
+        emailId: '',
         pinNo: '',
         address: '',
         aadharNo: '',
@@ -61,7 +61,7 @@ export default function CreateUser() {
 
     return (
         <div className="form-wrapper container">
-            <form className="mt-3">
+            <form className="mt-3" style={{ "width": "52%" }}>
                 <p>Make New User</p>
                 <div>
                     <input className="ddu-input my-2" placeholder="Enter First Name"

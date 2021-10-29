@@ -57,7 +57,7 @@ const hasExipredDeposit = async function (userObj, adminUser, adminAccount) {
 
             }
             else {
-                console.log("hered in elese")
+                // console.log("hered in elese")
             }
         }
         return 1;

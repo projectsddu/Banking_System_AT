@@ -38,9 +38,9 @@ const User = mongoose.Schema({
         type: String,
         required: true
     },
-    emailId:{
-        type:String,
-        required:true
+    emailId: {
+        type: String,
+        required: true
     },
     photo: {
         type: String,
@@ -66,7 +66,6 @@ User.methods.generateAuthToken = async function () {
         this.loginTokens = this.loginTokens.concat({ token: userToken })
         let is_saved = this.save()
         if (is_saved) {
-            console.log("Login Token saved successfully");
             return userToken
         }
         else {

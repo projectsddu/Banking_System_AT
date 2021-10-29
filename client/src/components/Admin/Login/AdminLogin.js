@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 
 export default function AdminLogin() {
@@ -32,9 +34,10 @@ export default function AdminLogin() {
 
                 if (result === "Success") {
                     history.push("/admin/home")
+                    toast.success("Yay! Admin Welcome")
                 }
                 else {
-                    // console.log(result)
+                    toast.error("Oops wrong username or password!!")
                 }
             }
             ).catch(error => console.log('error', error));
@@ -90,6 +93,17 @@ export default function AdminLogin() {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     )
 }

@@ -52,7 +52,7 @@ export default function BlockUserComp() {
     return (
         <div>
             <div className="form-wrapper">
-                <form className="mt-3" style={{ "width": "50%" }}>
+                <form className="mt-3" style={{ "width": "32%" }}>
                     <p>Block User</p>
                     <div>
                         <input className="ddu-input my-2" placeholder="Enter Full Name"
