@@ -9,6 +9,7 @@ const Transaction = require("../Collections/TransactionModel");
 const AccountType = require("../Collections/AccountTypeModel")
 const Loan = require("../Collections/LoanModel")
 const logger = require("../logger")
+const VUD = require("../Middlewares/Admin/addNewUser")
 
 
 router.post("/admin/getAdminDetails", [authenticate], (req, res) => {
@@ -158,8 +159,9 @@ router.post("/admin/block_user", [authenticate], async (req, res) => {
 });
 
 // TEST ME
-router.post("/admin/createUserAccount", [authenticate], async (req, res) => {
+router.post("/admin/createUserAccount", [authenticate, VUD], async (req, res) => {
   try {
+    console.log("jeni")
     // console.log(req.body);
     const { username, balance } = req.body;
     const usernames = String(username).split(" ");
@@ -196,7 +198,15 @@ router.post("/admin/createUserAccount", [authenticate], async (req, res) => {
 router.post("/admin/addCashToUser", [authenticate], async (req, res) => {
   try {
     const { acNum, amount, pinNo } = req.body;
-
+    if (!acNum) {
+      return res.json({ "Error:": "Account number is required!!" })
+    }
+    if (!amount) {
+      return res.json({ "Error:": "Amount is required!!" })
+    }
+    if (!pinNo) {
+      return res.json({ "Error:": "Pin Number is required!!" })
+    }
     // check account is exist or not
     const accountExist = await Account.findOne({
       _id: acNum,
@@ -244,7 +254,18 @@ router.post("/admin/addCashToUser", [authenticate], async (req, res) => {
 router.post("/admin/addAnotherAdmin", [authenticate], async (req, res) => {
   try {
     const { firstName, middleName, lastName, pinNo } = req.body;
-
+    if (!firstName) {
+      res.json({ "Error:": "Firstname is required!!" })
+    }
+    if (!middleName) {
+      res.json({ "Error:": "Middlename is required!!" })
+    }
+    if (!lastName) {
+      res.json({ "Error:": "Lastname is required!!" })
+    }
+    if (!pinNo) {
+      res.json({ "Error:": "Pin Number is required!!" })
+    }
     const obj = await Admin({
       firstName: firstName,
       middleName: middleName,

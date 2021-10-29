@@ -5,8 +5,9 @@ const authenticate = require("../Middlewares/Authenticate")
 const User = require("../Collections/UserModel")
 var SHA256 = require("crypto-js/sha256")
 const logger = require("../logger")
+const AdminAuthenticate = require("../Middlewares/Admin/authenticateAdmin")
 
-router.post("/user/add_user", verifyDetails, async (req, res) => {
+router.post("/user/add_user", [AdminAuthenticate, verifyDetails], async (req, res) => {
     // console.log(req.create_user)
     if (req.create_user) {
         // console.log(req.body)

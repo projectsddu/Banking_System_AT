@@ -9,6 +9,7 @@ const createDebitCardMiddleware = async function (req, res, next) {
             _id: acNum
         })
 
+
         if (ac && !ac.isEcardIssued) {
             console.log("JKemno")
             ac.isEcardIssued = true
@@ -29,7 +30,7 @@ const createDebitCardMiddleware = async function (req, res, next) {
     }
     catch (e) {
         logger.add_log("Problem in create debit card! " + e.toString(), "ERROR")
-        return res.json({ "Error:": "In Create Debit Card middleware" + e.toString() })
+        return res.json({ "Error:": "Your Details are invalid!!" })
     }
 }
 module.exports = createDebitCardMiddleware
