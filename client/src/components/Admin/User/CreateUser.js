@@ -36,24 +36,32 @@ export default function CreateUser() {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         }).then(function (response) {
-            // console.log(response)
+            console.log(response)
             if (response.ok) {
+                response.json().then((e) => {
+                    if (e["Error:"]) {
+                        toast.error(e["Error:"])
+                    }
+                    else {
+                        toast.success(e["Success"])
+                    }
+                })
                 return response.json();
             }
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success")) {
-                // console.log(data)
+                console.log(data)
                 toast.success("User Created Successfully!!");
                 // history.goBack()
             }
             else {
-                toast.error("Something went wrong!");
+
                 // console.log(data.body)
             }
         }).catch(function (error) {
             // console.log(error.body)
-            toast.error("Something went wrong!");
+
         });
     }
 

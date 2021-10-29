@@ -8,9 +8,9 @@ import './addAnotherAdmin.css'
 function AddAnotherAdmin() {
 
     const [adminDetails, setAdminDetails] = useState({
-        firstName: '', 
-        middleName: '', 
-        lastName: '', 
+        firstName: '',
+        middleName: '',
+        lastName: '',
         pinNo: ''
     });
 
@@ -38,11 +38,11 @@ function AddAnotherAdmin() {
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success")) {
-                
+
                 toast.success("Admin is created successfully!!");
             }
             else {
-                toast.error("Something went wrong!");
+                toast.error(data["Error:"]);
                 // console.log(data.body)
             }
         }).catch(function (error) {
@@ -57,17 +57,17 @@ function AddAnotherAdmin() {
                 <form className="mt-3">
                     <p>Add Another Admin</p>
                     <div>
-                        <input className="add-admin-input my-2" placeholder="Enter First Name" 
+                        <input className="add-admin-input my-2" placeholder="Enter First Name"
                             value={adminDetails["firstName"]}
                             onChange={(e) => { setAdminDetails({ ...adminDetails, firstName: e.target.value }) }}
                             required
                         />
-                        <input className="add-admin-input my-2" placeholder="Enter Middle Name" 
+                        <input className="add-admin-input my-2" placeholder="Enter Middle Name"
                             value={adminDetails["middleName"]}
                             onChange={(e) => { setAdminDetails({ ...adminDetails, middleName: e.target.value }) }}
                             required
                         />
-                        <input className="add-admin-input my-2" placeholder="Enter Last Name" 
+                        <input className="add-admin-input my-2" placeholder="Enter Last Name"
                             value={adminDetails["lastName"]}
                             onChange={(e) => { setAdminDetails({ ...adminDetails, lastName: e.target.value }) }}
                             required

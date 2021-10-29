@@ -7,8 +7,8 @@ import "./AddCashToUser.css"
 export default function AddCash() {
 
     const [cashDetails, setCashDetails] = useState({
-        acNum: '', 
-        amount: '', 
+        acNum: '',
+        amount: '',
         pinNo: ''
     });
 
@@ -36,11 +36,11 @@ export default function AddCash() {
             return Promise.reject(response);
         }).then(function (data) {
             if (data.hasOwnProperty("Success")) {
-                
+
                 toast.success("Cash is added successfully!!");
             }
             else {
-                toast.error("Something went wrong!");
+                toast.error(data["Error:"]);
                 // console.log(data.body)
             }
         }).catch(function (error) {
@@ -54,12 +54,12 @@ export default function AddCash() {
                 <form className="mt-3">
                     <p>Add Cash to User</p>
                     <div>
-                        <input className="add-cash-input my-2" placeholder="Enter User Account Number" 
+                        <input className="add-cash-input my-2" placeholder="Enter User Account Number"
                             value={cashDetails["acNum"]}
                             onChange={(e) => { setCashDetails({ ...cashDetails, acNum: e.target.value }) }}
                             required
                         />
-                        <input className="add-cash-input my-2" type="number" placeholder="Enter Amount" 
+                        <input className="add-cash-input my-2" type="number" placeholder="Enter Amount"
                             value={cashDetails["amount"]}
                             onChange={(e) => { setCashDetails({ ...cashDetails, amount: e.target.value }) }}
                             required
