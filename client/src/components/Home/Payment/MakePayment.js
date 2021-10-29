@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './MakePayment.css'
 import { useLocation, useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { injectStyle } from "react-toastify/dist/inject-style";
 import { ToastContainer, toast } from "react-toastify";
 import { useHistory } from 'react-router';
-import { injectStyle } from "react-toastify/dist/inject-style";
 import verifyPayment from '../Utility/VerifyPayment'
 import useFetch from '../Utility/General/Usefetch';
 

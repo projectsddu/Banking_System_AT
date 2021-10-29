@@ -1,5 +1,7 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import { ToastContainer, toast } from "react-toastify";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
 import { useState, useEffect } from 'react'
@@ -37,7 +39,10 @@ export default function AdminLogin() {
                     toast.success("Yay! Admin Welcome")
                 }
                 else {
-                    toast.error("Oops wrong username or password!!")
+
+                    toast.error("Provide correct credentials!!")
+                    
+
                 }
             }
             ).catch(error => console.log('error', error));
