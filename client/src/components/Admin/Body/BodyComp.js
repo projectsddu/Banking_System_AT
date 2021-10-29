@@ -8,6 +8,7 @@ import ViewLoanRequest from '../Loan/ViewLoanRequest';
 import AddCashToUser from '../Cash/AddCashToUser';
 import AddAnotherAdmin from '../AddAdmin/addAnotherAdmin';
 import ViewProfile from '../Profile/ViewProfile';
+import MakeDebitCard from "../User/MakeDebitCard"
 import Logout from "../Logout/logout"
 import "./Body.css"
 import { NavLink } from 'react-router-dom';
@@ -22,9 +23,10 @@ export default function BodyComp(props) {
         "viewLoanRequest": <ViewLoanRequest />,
         "sanctionLoan": <SanctionLoan />,
         "addCashToUser": <AddCashToUser />,
-        "addAnotherAdmin": <AddAnotherAdmin/>,
+        "addAnotherAdmin": <AddAnotherAdmin />,
         "viewProfile": <ViewProfile />,
-        "logout":<Logout/>
+        "logout": <Logout />,
+        "makeDebitCard": <MakeDebitCard />
     }
     return (
         <>
@@ -42,6 +44,7 @@ export default function BodyComp(props) {
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><NavLink class="dropdown-item" to="/admin/createUser">Create User</NavLink></li>
+                                <li><NavLink class="dropdown-item" to="/admin/makeDebitCard">Issue Debit Card</NavLink></li>
                                 <li><NavLink class="dropdown-item" to="/admin/createUserAccount">Create User Account</NavLink></li>
 
                                 <li><NavLink class="dropdown-item" to="/admin/blockUserAccount">Block User Account</NavLink></li>
@@ -71,10 +74,9 @@ export default function BodyComp(props) {
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><NavLink class="dropdown-item" to="/admin/viewProfile">View Profile</NavLink></li>
                                 <li><NavLink class="dropdown-item" to="/admin/addCashToUser">Add Cash to Users AC</NavLink></li>
-                                
-                                {/* <li><hr class="dropdown-divider" /></li> */}
                                 <li><NavLink class="dropdown-item" to="/admin/addAnotherAdmin">Add Another Admin</NavLink></li>
-                                
+                                <li><NavLink class="dropdown-item bg-danger text-white" to="/admin/logout">Logout</NavLink></li>
+
                             </ul>
                         </li>
                     </ul>

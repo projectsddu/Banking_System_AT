@@ -31,6 +31,10 @@ function App() {
       <Route path="/admin/home">
         <BodyComp name="home" />
       </Route>
+
+      <Route path="/admin/makeDebitCard">
+        <BodyComp name="makeDebitCard" />
+      </Route>
       <Route path="/admin/createUser">
         <BodyComp name="createUser" />
       </Route>

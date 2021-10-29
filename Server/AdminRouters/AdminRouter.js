@@ -7,8 +7,18 @@ const User = require("../Collections/UserModel");
 const Account = require("../Collections/AccountModel");
 const Transaction = require("../Collections/TransactionModel");
 const AccountType = require("../Collections/AccountTypeModel")
+const Loan = require("../Collections/LoanModel")
 const logger = require("../logger")
 
+
+router.post("/admin/getAdminDetails", [authenticate], (req, res) => {
+  const adm = req.current_admin
+  const admBal = req.admin_account.accountBalance
+  var totalLoans = 9
+
+  totalLoans = 8
+  return res.json({ "Name": adm.firstName + " " + adm.middleName + " " + adm.lastName, "Amount": admBal, "Loans": totalLoans })
+})
 router.post("/admin/create_admin", [verifyAdminDetails], async (req, res) => {
   try {
     const { firstName, middleName, lastName, pinNo } = req.body;

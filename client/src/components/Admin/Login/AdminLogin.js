@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
 
 
 export default function AdminLogin() {
@@ -34,10 +36,13 @@ export default function AdminLogin() {
 
                 if (result === "Success") {
                     history.push("/admin/home")
+                    toast.success("Yay! Admin Welcome")
                 }
                 else {
+
                     toast.error("Provide correct credentials!!")
-                    // console.log(result)
+                    
+
                 }
             }
             ).catch(error => console.log('error', error));

@@ -25,7 +25,7 @@ const getPastTransactionsAnalytics = function (transactions, ac) {
 
         months[month] = true
     }
-    // console.log({ "debit": debit, "credit": credit, "netAcBal": credit - debit })
+
     return { "debit": debit, "credit": credit, "netAcBal": credit - debit }
 }
 
@@ -50,15 +50,15 @@ const isDebit = function (e, curAc) {
         e["sender"]._id, curAc._id
     )
     if (String(e["sender"]._id) == String(curAc._id) && (String(e["receiver"]._id) != String(curAc._id))) {
-        console.log(
-            "called true"
-        )
+        // console.log(
+        //     "called true"
+        // )
         return true
     }
     else {
-        console.log(
-            "called false"
-        )
+        // console.log(
+        //     "called false"
+        // )
         return false
     }
 }

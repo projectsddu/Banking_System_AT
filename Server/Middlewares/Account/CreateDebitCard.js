@@ -10,6 +10,7 @@ const createDebitCardMiddleware = async function (req, res, next) {
         })
 
         if (ac && !ac.isEcardIssued) {
+            console.log("JKemno")
             ac.isEcardIssued = true
             req.ac = ac
 
@@ -17,7 +18,8 @@ const createDebitCardMiddleware = async function (req, res, next) {
         }
         else {
             if (ac.isEcardIssued) {
-                throw "Ecard already issued"
+                // throw "Ecard already issued"
+                return res.json({ "Error:": "The Debit card is already issued for this account!!" })
             }
             else {
                 throw "No account found"

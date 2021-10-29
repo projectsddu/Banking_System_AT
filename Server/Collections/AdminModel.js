@@ -32,7 +32,6 @@ Admin.methods.generateAuthToken = async function () {
         this.loginTokens = this.loginTokens.concat({ token: adminToken })
         let is_saved = this.save()
         if (is_saved) {
-            console.log("Login Token saved successfully");
             return adminToken
         }
         else {
