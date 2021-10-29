@@ -80,7 +80,7 @@ export default function FixedDeposits() {
                 <label>Interest Rate: {deposit.interestRate} pa</label><br />
                 <label>Maturity Date: {loading ? "Loading..." : parseDate(deposit.maturityDate)}</label><br />
                 <label>Maturity Amount:{loading ? "Loading..." : " $" + getFinalAmount(recurData[counter], depositData, counter)}</label><br />
-                <button type="button" style={{ "width": "97%" }} className="applyDepositBtn">View Full FD</button>
+                {/* <button type="button" style={{ "width": "97%" }} className="applyDepositBtn">View Full FD</button> */}
               </div>
             </div>
           </div>

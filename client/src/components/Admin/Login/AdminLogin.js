@@ -1,5 +1,7 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import { injectStyle } from "react-toastify/dist/inject-style";
+import { ToastContainer, toast } from "react-toastify";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
 import { useState, useEffect } from 'react'
@@ -34,6 +36,7 @@ export default function AdminLogin() {
                     history.push("/admin/home")
                 }
                 else {
+                    toast.error("Provide correct credentials!!")
                     // console.log(result)
                 }
             }
@@ -90,6 +93,17 @@ export default function AdminLogin() {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     )
 }
