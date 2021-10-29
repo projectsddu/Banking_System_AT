@@ -1,12 +1,11 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import { injectStyle } from "react-toastify/dist/inject-style";
+// import { injectStyle } from "react-toastify/dist/inject-style";
 import { ToastContainer, toast } from "react-toastify";
 import "./AdminLogin.css"
 import img from "../Assets/218.jpg"
 import { useState, useEffect } from 'react'
-import { ToastContainer, toast } from "react-toastify";
-import { injectStyle } from "react-toastify/dist/inject-style";
+
 
 
 export default function AdminLogin() {
@@ -41,7 +40,7 @@ export default function AdminLogin() {
                 else {
 
                     toast.error("Provide correct credentials!!")
-                    
+
 
                 }
             }

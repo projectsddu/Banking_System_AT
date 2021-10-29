@@ -1,9 +1,7 @@
 import React from 'react'
 import { ToastContainer, toast } from "react-toastify";
-import { injectStyle } from "react-toastify/dist/inject-style";
 import { useHistory } from "react-router-dom";
 import { injectStyle } from "react-toastify/dist/inject-style";
-import { ToastContainer, toast } from "react-toastify";
 import './LoginComponent.css'
 import img from "./Asset/login_asset.jpg"
 import './input_field_animation.css'
@@ -110,7 +108,7 @@ export default function LoginComponent({ data }) {
                 draggable
                 pauseOnHover
             />
-           
+
         </>
     )
 }
