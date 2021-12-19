@@ -59,7 +59,4 @@
         <h4>Now the server is up and running. Enjoy the website 😃 </h4>
     </li>
 </ul>
-<<<<<<< HEAD
 
-=======
->>>>>>> 57a9824b5bf160a6070d2ca138c34ad1f190b794
