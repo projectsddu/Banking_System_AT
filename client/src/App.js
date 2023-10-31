@@ -1,3 +1,4 @@
+// This is the app file
 import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router';
